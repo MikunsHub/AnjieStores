@@ -1,0 +1,81 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+/* reset */
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body{
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(31, 30, 30);
+}
+
+/* Sidebar start here  */
+.sidebar{
+    position: fixed;
+    background: #353441;
+    width: 20%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.sidebar h2{
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #3b3a4b;
+    padding: 20px;
+    font-weight: bold;
+}
+
+
+.sidebar ul li {
+    margin: 25px 0;
+}
+
+.sidebar ul li a{
+    color: #ffffff;
+    padding: 0 30px;
+
+}
+.sidebar ul li a:hover{
+    color: #000000;
+    margin-left: 20px;
+    transition: 0.2s;
+}
+
+.sidebar img{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: white;
+    margin-top: 10px;
+    /* margin-right: 0px; */
+    margin-left: 60px;
+    margin-bottom:10px ;
+    
+}
+
+/* Sidebar end Here  */
+
+/* Main Content Section Start Here  */
+
+.main{
+    margin-left: 20%;
+}
+
+.main h1{
+    background-color: rgb(209, 209, 224);
+    padding-left: 10px;
+    
+}
+
+
