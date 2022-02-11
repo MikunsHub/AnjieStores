@@ -17,7 +17,7 @@ body{
 /* Sidebar start here  */
 .sidebar{
     position: fixed;
-    background: #353441;
+    background: rgb(126, 48, 106);
     width: 20%;
     height: 100%;
     top: 0;
@@ -75,6 +75,8 @@ body{
 .main h1{
     background-color: rgb(209, 209, 224);
     padding-left: 10px;
+    text-align: center;
+    font-family: Geneva, Verdana, sans-serif;
     
 }
 
