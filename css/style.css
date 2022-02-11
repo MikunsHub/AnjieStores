@@ -11,7 +11,7 @@
 body{
     box-sizing: border-box;
     font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgb(31, 30, 30);
+    /* background-color: rgb(31, 30, 30); */
 }
 
 /* Sidebar start here  */
@@ -58,13 +58,12 @@ body{
     overflow: hidden;
     background-color: white;
     margin-top: 10px;
-    /* margin-right: 0px; */
     margin-left: 60px;
     margin-bottom:10px ;
     
 }
 
-/* Sidebar end Here  */
+/* Sidebar ends Here  */
 
 /* Main Content Section Start Here  */
 
@@ -80,4 +79,99 @@ body{
     
 }
 
+.main .overview-boxes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top:15px;
+    padding: 0 20px;
+    margin-bottom: 26px;
+}
 
+.overview-boxes .box{
+display: flex;
+align-items: center;
+justify-content: center;
+width: calc(100% / 4 - 15px);
+background: #fff;
+padding: 15px 0px;
+border-radius: 12px;
+box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.overview-boxes .box-topic{
+font-size: 20px;
+font-weight: 500;
+}
+
+.main .box .number{
+display: inline-block;
+font-size: 35px;
+margin-top: -6px;
+font-weight: 500;
+}
+
+.main .box .indicator{
+display: flex;
+align-items: center;
+}
+
+.main .box .indicator i{
+height: 20px;
+width: 20px;
+background: #8FDACB;
+line-height: 20px;
+text-align: center;
+border-radius: 50%;
+color: #fff;
+font-size: 20px;
+margin-right: 5px;
+}
+
+.box .indicator i.down{
+background: #e87d88;
+}
+
+.main .box .indicator .text{
+font-size: 12px;
+}
+
+.main .box .cart{
+display: inline-block;
+font-size: 32px;
+height: 50px;
+width: 50px;
+background: #cce5ff;
+line-height: 50px;
+text-align: center;
+color: #66b0ff;
+border-radius: 12px;
+margin: -15px 0 0 6px;
+}
+
+.main .box .cart.two{
+    color: #2BD47D;
+    background: #C0F2D8;
+}
+
+.main .box .cart.three{
+    color: #ffc233;
+    background: #ffe8b3;
+}
+
+.main .box .cart.four{
+    color: #e05260;
+    background: #f7d4d7;
+}
+
+.main .total-order{
+font-size: 20px;
+font-weight: 500;
+}
+
+.main .sales-boxes{
+display: flex;
+justify-content: space-between;
+/* padding: 0 20px; */
+}
