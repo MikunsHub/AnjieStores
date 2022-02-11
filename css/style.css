@@ -25,6 +25,22 @@ body{
     z-index: 1;
 }
 
+.div-img img{
+    display: flex;
+    justify-content:center;
+    /* text-align: center; */
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: white;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom:10px ;
+    
+}
+
 .sidebar h2{
     text-align: center;
     font-size: 20px;
@@ -51,17 +67,6 @@ body{
     transition: 0.2s;
 }
 
-.sidebar img{
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: white;
-    margin-top: 10px;
-    margin-left: 60px;
-    margin-bottom:10px ;
-    
-}
 
 /* Sidebar ends Here  */
 
@@ -71,22 +76,48 @@ body{
     margin-left: 20%;
 }
 
+.container{
+    justify-content:end;
+    margin-top: 5px;
+}
+
+
 .main h1{
     background-color: rgb(209, 209, 224);
-    padding-left: 10px;
+    padding:10px;
     text-align: center;
     font-family: Geneva, Verdana, sans-serif;
     
 }
 
+.search-box{
+    position: relative;
+    height: 50px;
+    max-width: 550px;
+    width: 100%;
+    margin: 0 20px; 
+}
+
+nav .search-box input{
+    height: 80%;
+    width: 80%;
+    outline: none;
+    background: #F5F6FA;
+    border: 2px solid #EFEEF1;
+    border-radius: 6px;
+    font-size: 18px;
+    padding: 0 15px;
+}
+
 .main .overview-boxes{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
     flex-wrap: wrap;
     margin-top:15px;
     padding: 0 20px;
     margin-bottom: 26px;
+    gap: 1rem;
 }
 
 .overview-boxes .box{
@@ -95,7 +126,7 @@ align-items: center;
 justify-content: center;
 width: calc(100% / 4 - 15px);
 background: #fff;
-padding: 15px 0px;
+padding: 1px 1px;
 border-radius: 12px;
 box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
