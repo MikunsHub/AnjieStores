@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnjieStores Categories</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="div-img">
+            <img src="images/user.png" alt="current user">
+            <h2>Current User</h2>
+        </div>
+        <ul class="nav">
+            <li>
+                <a href="/index.html">
+                    <i class="fas fa-server"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="/user_mgt.html">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span>User Management</span>
+                </a>
+            </li>
+            <li>
+                <a href="/categories.html">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-cog"></i>
+                    <span>Inventory</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-question-circle"></i>
+                    <span>Media</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-address-card"></i>
+                    <span>Sales Management</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-cog"></i>
+                    <span>Sales Report</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-cog"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main">
+        <h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1>
+    
+        <div class="cat-container">
+            <h2>Categories</h2>
+            <div>
+                <!-- send to category adding template -->
+                <a href="#" class="button-add">+ Add New Category</a>
+
+            </div>
+            <div style="display:flex; justify-content:space-between; margin:20px" class="cat-value-search">
+                <h3>
+                    Show
+                    <span>
+                        <select name="digits" id="digits">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        entries
+                    </span>
+                </h3>
+
+                <div class="search-box">
+                    <input type="text" placeholder="Search...">
+                </div>
+            </div>
+            <div class="table-container">
+                <table style="width:100%;">
+                    <tr>
+                      <th>id</th>
+                      <th>Category Name</th>
+                      <th>Action</th>
+                    </tr>
+                    <tr>
+                      <td>1</td>
+                      <td>Laptop</td>
+                      <td>
+                          <a href="#">Edit</a>
+                          <a href="#">Delete</a>
+                      </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        
+</body>
+</html>
