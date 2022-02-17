@@ -36,7 +36,7 @@
             <li>
                 <a href="#">
                     <i class="fas fa-cog"></i>
-                    <span>Inventory</span>
+                    <span>Order</span>
                 </a>
             </li>
             <li>
@@ -67,17 +67,17 @@
     </div>
 
     <div class="main">
-        <h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1>
+        <a href="/index.html"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
 
         <!-- user management template -->
         <div class="user-container" id="userManagement" name="userManagement">
             <h2>User Management</h2>
-            <div>
+            <div class="button-add">
                 <!-- send to cashier adding template -->
                 <!-- this section will involve giving several staff permission -->
-                <a href="#" class="button-add">+ Add New Cashier</a>
+                <a href="#">+ Add New Cashier</a>
             </div>
-            <div style="display:flex; justify-content:space-between; margin:20px" class="staff-info-search">
+            <div class="staff-info-search">
                 <h3>
                     Show
                     <span>
@@ -91,26 +91,28 @@
                         entries
                     </span>
                 </h3>
-
+                
                 <div class="search-box">
-                    <input type="text" placeholder="Type staff name...">
+                    <input style="margin-bottom:10px" type="text" placeholder="Type staff name...">
                 </div>
             </div>
             <div class="table-container">
-                <table style="width:100%;">
+                <table>
                     <tr>
                         <th>id</th>
                         <th>Staff no</th>
-                        <th>Category Name</th>
+                        <th>Full Name</th>
                         <th>Staff Level</th>
                         <th>Action</th>
                     </tr>
                     <tr>
                         <td>1</td>
-                        <td>Laptop</td>
+                        <td>1234</td>
+                        <td>Adeyanju Pelumi</td>
+                        <td>Cashier</td>
                         <td>
-                            <a href="#">Promote</a> <!-- This button will redirect to a page where you can update Staff Level -->
-                            <a href="#">Deactivate</a> <!-- This button can be used to terminate staff employment or indicate that the staff doesn't work in the store again -->
+                            <a class="Promote" href="#">Promote</a> <!-- This button will redirect to a page where you can update Staff Level -->
+                            <a class="Deactivate" href="#">Deactivate</a> <!-- This button can be used to terminate staff employment or indicate that the staff doesn't work in the store again -->
                         </td>
                     </tr>
                     </table>

@@ -76,10 +76,6 @@ body{
     margin-left: 20%;
 }
 
-.container{
-    justify-content:end;
-    margin-top: 5px;
-}
 
 
 .main h1{
@@ -98,7 +94,7 @@ body{
     margin: 0 20px; 
 }
 
-nav .search-box input{
+/* nav .search-box input{
     height: 80%;
     width: 80%;
     outline: none;
@@ -107,7 +103,7 @@ nav .search-box input{
     border-radius: 6px;
     font-size: 18px;
     padding: 0 15px;
-}
+} */
 
 .main .overview-boxes{
     display: flex;
@@ -206,3 +202,221 @@ display: flex;
 justify-content: space-between;
 /* padding: 0 20px; */
 }
+
+.card {
+    padding:20px;
+    width:450px; 
+    border-radius: 12px; 
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.card .card-topic {
+    margin-bottom:10px;
+}
+
+.card .img_container{
+    display:flex; 
+    gap:50px; 
+    margin-left:15px;
+}
+
+.card .img_container img{
+    width:100px; 
+    height:100px; 
+    border-radius: 50%; 
+}
+
+.card .value-container{
+    display:flex; 
+    gap: 50px;
+}
+
+.card-content-container{
+    text-align:center;
+}
+
+.card-content-name {
+    font-weight: bold;
+}
+
+.card-content-number {
+    font-size: 10px;
+}
+
+/* user_mgt */
+.user-container h2 {
+    padding:20px;
+    margin-bottom:40px;
+    
+}
+
+.user-container .button-add a {
+    margin:50px;
+    width: 125px;
+    height: 35px;
+    background: #4E9CAF;
+    padding: 10px ;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+}
+
+.staff-info-search{
+    display:flex; 
+    justify-content:space-between; 
+    margin:20px;
+    margin-top:50px;
+    margin-bottom:30px;
+}
+
+.staff-info-search select{
+    width: 90px;
+    height:45px;
+    padding: 15px 30px;
+    margin: 8px 0px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.staff-info-search h3{
+    margin-left: 25px;
+}
+
+.search-box{
+    width:250px;
+    height: 70px;
+}
+
+.table-container{
+    border-collapse: collapse;
+    font-size: 0.9em;
+}
+
+.table-container tr{
+    text-align: center;
+}
+
+.table-container th, td{
+    /* width: 100%; */
+    padding-top: 0px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 40px;
+}
+
+.table-container td .Promote {
+    margin:10px;
+    width: 125px;
+    height: 35px;
+    background: #38b342;
+    padding: 10px ;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-size: 10px;
+    line-height: 25px;
+}
+
+.table-container td .Deactivate{
+    margin:10px;
+    width: 125px;
+    height: 35px;
+    background: #af4e4e;
+    padding: 10px ;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-size: 10px;
+    line-height: 25px;
+}
+
+/* categories */
+.cat-container h2 {
+    padding:20px;
+    margin-bottom:40px;
+    
+}
+
+.cat-container .button-add a {
+    margin:50px;
+    width: 125px;
+    height: 35px;
+    background: #4E9CAF;
+    padding: 10px ;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+}
+
+.cat-value-search{
+    display:flex; 
+    justify-content:space-between; 
+    margin:20px;
+    margin-top:50px;
+    margin-bottom:30px;
+}
+
+.cat-value-search select{
+    width: 90px;
+    height:45px;
+    padding: 15px 30px;
+    margin: 8px 0px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.cat-value-search h3{
+    margin-left: 25px;
+}
+
+.search-box{
+    display:flex; 
+    /* justify-content:space-between; */
+    width:250px;
+    height: 70px;
+}
+
+
+.table-container th, td{
+    /* width: 100%; */
+    padding-top: 0px;
+    padding-bottom: 20px;
+    padding-left: 50px;
+    padding-right: 40px;
+}
+
+.table-container td .Edit {
+    margin:10px;
+    width: 125px;
+    height: 55px;
+    background: #38b342;
+    padding: 10px 17px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-size: 12px;
+    line-height: 25px;
+}
+
+.table-container td .Deactivate{
+    margin:10px;
+    width: 125px;
+    height: 35px;
+    background: #af4e4e;
+    padding: 10px ;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-size: 10px;
+    line-height: 25px;
+}
+
+/* order page */

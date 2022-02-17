@@ -36,7 +36,7 @@
             <li>
                 <a href="#">
                     <i class="fas fa-cog"></i>
-                    <span>Inventory</span>
+                    <span>Order</span>
                 </a>
             </li>
             <li>
@@ -67,16 +67,16 @@
     </div>
 
     <div class="main">
-        <h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1>
+        <a href="/index.html"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
     
         <div class="cat-container">
             <h2>Categories</h2>
-            <div>
+            <div class="button-add">
                 <!-- send to category adding template -->
-                <a href="#" class="button-add">+ Add New Category</a>
+                <a href="#" >+ Add New Category</a>
 
             </div>
-            <div style="display:flex; justify-content:space-between; margin:20px" class="cat-value-search">
+            <div class="cat-value-search">
                 <h3>
                     Show
                     <span>
@@ -96,7 +96,7 @@
                 </div>
             </div>
             <div class="table-container">
-                <table style="width:100%;">
+                <table>
                     <tr>
                       <th>id</th>
                       <th>Category Name</th>
@@ -104,10 +104,11 @@
                     </tr>
                     <tr>
                       <td>1</td>
-                      <td>Laptop</td>
+                      <td>Samsung washing machine</td>
                       <td>
-                          <a href="#">Edit</a>
-                          <a href="#">Delete</a>
+                          <a class="Edit" href="#">Edit</a>
+                          <!-- <button></button> -->
+                          <a class="Deactivate" href="#">Delete</a>
                       </td>
                     </tr>
                 </table>
