@@ -204,19 +204,21 @@ justify-content: space-between;
 }
 
 .card {
-    padding:20px;
+    padding:5px;
+    padding-bottom:15px;
     width:450px; 
     border-radius: 12px; 
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
 }
 
-.card .card-topic {
+.card .card-topic h2 {
     margin-bottom:10px;
+    text-align: center;
 }
 
 .card .img_container{
     display:flex; 
-    gap:50px; 
+    justify-content: space-evenly;
     margin-left:15px;
 }
 
@@ -228,7 +230,7 @@ justify-content: space-between;
 
 .card .value-container{
     display:flex; 
-    gap: 50px;
+    justify-content: space-evenly;
 }
 
 .card-content-container{
@@ -240,7 +242,19 @@ justify-content: space-between;
 }
 
 .card-content-number {
-    font-size: 10px;
+    font-size: 30px;
+}
+
+.card-content-metric{
+    font-size:12px;
+}
+
+.card-content-amount{
+    font-size:20px;
+}
+
+.card-content-time{
+    font-size:10px;
 }
 
 /* user_mgt */
