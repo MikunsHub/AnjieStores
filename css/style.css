@@ -206,9 +206,9 @@ justify-content: space-between;
 .card {
     padding:5px;
     padding-bottom:15px;
-    width:450px; 
+    width:500px; 
     border-radius: 12px; 
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
 }
 
 .card .card-topic h2 {
@@ -219,12 +219,11 @@ justify-content: space-between;
 .card .img_container{
     display:flex; 
     justify-content: space-evenly;
-    margin-left:15px;
 }
 
 .card .img_container img{
-    width:100px; 
-    height:100px; 
+    width:60px; 
+    height:60px; 
     border-radius: 50%; 
 }
 
@@ -307,7 +306,7 @@ justify-content: space-between;
 
 .table-container{
     border-collapse: collapse;
-    font-size: 0.9em;
+    font-size: 0.8em;
 }
 
 .table-container tr{
@@ -434,3 +433,36 @@ justify-content: space-between;
 }
 
 /* order page */
+
+/* test */
+
+.newtable table{
+    border-collapse: collapse;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+    background-color:white;
+    text-align: center;
+    overflow: hidden;
+    border-radius: 12px;
+}
+.newtable table thead{
+    box-shadow: 0 2px 3px rgba(0,0,0,0.3);
+}
+
+.newtable table thead th{
+    padding: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing:0.1rem;
+    font-size: 0.7rem;
+    font-weight:900;
+}
+
+.newtable table thead td{
+    padding: 1rem 2rem;
+}
+
+
+.newtable tr{
+    text-align:center;
+    padding: 230rem 20rem
+}
+
