@@ -74,6 +74,7 @@ body{
 
 .main{
     margin-left: 20%;
+    height:100vh;
 }
 
 
@@ -88,7 +89,7 @@ body{
 
 .search-box{
     position: relative;
-    height: 50px;
+    /* height: 50px; */
     max-width: 550px;
     width: 100%;
     margin: 0 20px; 
@@ -301,7 +302,7 @@ justify-content: space-between;
 
 .search-box{
     width:250px;
-    height: 70px;
+    /* height: 70px; */
 }
 
 .table-container{
@@ -394,7 +395,7 @@ justify-content: space-between;
     display:flex; 
     /* justify-content:space-between; */
     width:250px;
-    height: 70px;
+    /* height: 70px; */
 }
 
 
@@ -466,3 +467,14 @@ justify-content: space-between;
     padding: 230rem 20rem
 }
 
+
+
+
+
+.search-box{
+    padding:8px
+}
+.search{
+    height:40px;
+    padding-left: 8px;
+}

@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>AnjieStores</title>
         <link rel="stylesheet" href="css/style.css" />
-        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"/>
     </head>
 
     <body>
@@ -17,43 +17,43 @@
             </div>
             <ul class="nav">
                 <li>
-                    <a href="/index.html">
+                    <a href="#dashboard">
                         <i class="fas fa-server"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/user_mgt.html">
+                    <a href="#User_management">
                         <i class="fas fa-concierge-bell"></i>
                         <span>User Management</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/categories.html">
+                    <a href="#categories">
                         <i class="fas fa-calendar-alt"></i>
                         <span>Categories</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/order.html">
+                    <a href="#order">
                         <i class="fas fa-cog"></i>
                         <span>Order</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="#media">
                         <i class="fas fa-question-circle"></i>
                         <span>Media</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="#sales_management">
                         <i class="fas fa-address-card"></i>
                         <span>Sales Management</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="#sales_report">
                         <i class="fas fa-cog"></i>
                         <span>Sales Report</span>
                     </a>
@@ -68,6 +68,8 @@
         </div>
 
         <!-- main content -->
+        <!-- Dashboard -->
+       <section id="dashboard">
         <div class="main">
             <a href="/index.html"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
             
@@ -208,6 +210,120 @@
             </div>
 
         </div>
-    </body>
+       </section>
 
+       <!-- user management  -->
+       <section id="User_management">
+        <div class="main">
+            <a href="/index.html"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
+    
+            <!-- user management template -->
+            <div class="user-container" id="userManagement" name="userManagement">
+                <h2>User Management</h2>
+                <div class="button-add">
+                    <!-- send to cashier adding template -->
+                    <!-- this section will involve giving several staff permission -->
+                    <a href="#">+ Add New Cashier</a>
+                </div>
+                <div class="staff-info-search">
+                    <h3>
+                        Show
+                        <span>
+                            <select name="digits" id="digits">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            entries
+                        </span>
+                    </h3>
+                    
+                    <div class="search-box">
+                        <input style="margin-bottom:10px" class="search" type="text" placeholder="Type staff name...">
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                            <th>id</th>
+                            <th>Staff no</th>
+                            <th>Full Name</th>
+                            <th>Staff Level</th>
+                            <th>Action</th>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>1234</td>
+                            <td>Adeyanju Pelumi</td>
+                            <td>Cashier</td>
+                            <td>
+                                <a class="Promote" href="#">Promote</a> <!-- This button will redirect to a page where you can update Staff Level -->
+                                <a class="Deactivate" href="#">Deactivate</a> <!-- This button can be used to terminate staff employment or indicate that the staff doesn't work in the store again -->
+                            </td>
+                        </tr>
+                        </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- categories setion -->
+       </section>
+       <section id="categories">
+        <div class="main">
+            <a href="/index.html"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
+        
+            <div class="cat-container">
+                <h2>Categories</h2>
+                <div class="button-add">
+                    <!-- send to category adding template -->
+                    <a href="#" >+ Add New Category</a>
+    
+                </div>
+                <div class="cat-value-search">
+                    <h3>
+                        Show
+                        <span>
+                            <select name="digits" id="digits">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                            entries
+                        </span>
+                    </h3>
+    
+                    <div class="search-box">
+                        <input class="search" type="text" placeholder="Search...">
+                    </div>
+                </div>
+                <div class="table-container">
+                    <table>
+                        <tr>
+                          <th>id</th>
+                          <th>Category Name</th>
+                          <th>Action</th>
+                        </tr>
+                        <tr>
+                          <td>1</td>
+                          <td>Samsung washing machine</td>
+                          <td>
+                              <a class="Edit" href="#">Edit</a>
+                              <!-- <button></button> -->
+                              <a class="Deactivate" href="#">Delete</a>
+                          </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+    
+       </section>
+       <section id="order">
+
+       </section>
+    </body>
+    <!-- <script src="https://kit.fontawesome.com/a076d05399.js"></script> -->
 </html>
