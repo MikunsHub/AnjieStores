@@ -433,9 +433,9 @@ justify-content: space-between;
     line-height: 25px;
 }
 
-/* order page */
 
-/* test */
+
+/* table at dashboard page */
 
 .newtable table{
     border-collapse: collapse;
@@ -467,14 +467,153 @@ justify-content: space-between;
     padding: 230rem 20rem
 }
 
-
-
-
-
+/* search box for user management & categories */
 .search-box{
     padding:8px
 }
 .search{
     height:40px;
     padding-left: 8px;
+}
+
+/* order page */
+.btn-preview{
+    padding: 15px;
+    display:flex; 
+    justify-content:space-between;
+}
+
+
+.btn-preview .button-add a {
+    /* margin:50px; */
+    width: 125px;
+    height: 35px;
+    background: #4E9CAF;
+    padding: 10px ;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+  
+input:focus + .slider {
+box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+-webkit-transform: translateX(26px);
+-ms-transform: translateX(26px);
+transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+border-radius: 34px;
+}
+
+.slider.round:before {
+border-radius: 50%;
+}
+
+form .user-details{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* margin: 20px 0 12px 0; */
+}
+
+form .user-details .input-box{
+    margin: 20px 0 12px 0;
+    width: calc(100% / 2 - 20px);
+}
+
+.user-details .input-box .details{
+    display:block;
+    margin-bottom:5px;
+    font-weight: 400;
+}
+
+.user-details .input-box input{
+    height:45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid;
+    padding-left:10px;
+    font-size:16px;
+}
+
+.user-details .input-box select{
+    height:45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid;
+    padding-left:10px;
+    font-size:16px;
+}
+
+.user-details .order-button{
+    margin:5px;
+    height:45px;
+}
+
+.user-details .order-button input{
+    height:100%;
+    width:150%;
+    outline: none;
+    color:white;
+    border:none;
+    font-size:18px;
+    font-weight:500;
+    letter-spacing:1px;
+    background:#4E9CAF;
+    padding:10px;
+    border-radius:5px;
+}
+
+.user-details .order-button input:hover{
+    background:rgb(70, 148, 89);
 }

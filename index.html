@@ -268,7 +268,7 @@
             </div>
         </div>
 
-        <!-- categories setion -->
+        <!-- categories section -->
        </section>
        <section id="categories">
         <div class="main">
@@ -326,72 +326,69 @@
         <div class="main">
             <a href="/index.html"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
         
-            <div class="order-container">
+            <div style="padding:20px" class="order-container">
                 <h2>Order</h2>
-                <div class="btn-preview" style="display:flex; justify-content:space-between"> <!-- inline styling -->
-                    <a href="#">Preview Orders</a>
+                <div class="btn-preview" style="display:flex; justify-content:space-between;"> 
+                    <div class="button-add">
+                        <a href="#">Preview Orders</a>
+                    </div>
                     <!-- slider button -->
                     <label class="switch">
                         <input type="checkbox" checked>
                         <span class="slider round"></span>
-                        <span>Auto Manual</span>
                     </label>
                 </div>
+                <span style="display:flex;justify-content:flex-end;font-size:15px;">Auto/Manual</span>
     
                 <section>
                     <h4>Purchase Order Form</h4>
-                    <div>
-                        <div>
-                            <div style="display:inline-block;">
-                                <div class="div">
-                                    <label for="Employee name"><b>Employee</b></label>
-                                    <input type="text" id="Employee name" name="Employee name" placeholder="Your name">
+
+                    <div style="display:flex; justify-content:center; align-items:center;">
+                        <form action="#">
+                            <div class="user-details">
+                                <div class="input-box">
+                                    <span><b>Employee Name</b></span>
+                                    <input type="text" placeholder="Enter your name" id="">
                                 </div>
-                                
-    
-                                <div class="div">
-                                    <label for="id number"><b>Employee Name</b></label>
-                                    <input type="text" id="Employee Id" name="Employee Id" placeholder="Your id">
+                                <div class="input-box">
+                                    <span><b>Employee Number</b></span>
+                                    <input type="text" placeholder="Enter your staff number" id="">
                                 </div>
-                                
+                                <div class="input-box">
+                                    <span><b>Category</b></span>
+                                    <select name="digits" id="digits">
+                                        <option value="Wallmart">Groceries</option>
+                                        <option value="Ali Express">Toiletries</option>
+                                        <option value="Cosco">Electronics</option>
+                                        <option value="Shoprite">Beverages</option>
+                                        <option value="Foodco">Drinks</option>
+                                    </select>
+                                </div>
+                                <div class="input-box">
+                                    <span><b>Quantity</b></span>
+                                    <input type="number" placeholder="Enter your quantity" min="10">
+                                </div>
+                                <div class="input-box">
+                                    <span><b>Date</b></span>
+                                    <input type="date" placeholder="Enter your quantity" min="10">
+                                </div>
+                                <div class="input-box">
+                                    <span><b>Supplier</b></span>
+                                    <select name="digits" id="digits">
+                                        <option value="Wallmart">Wallmart</option>
+                                        <option value="Ali Express">Ali Express</option>
+                                        <option value="Cosco">Cosco</option>
+                                        <option value="Shoprite">Shoprite</option>
+                                        <option value="Foodco">Foodco</option>
+                                    </select>
+                                </div>
+                                <div class="order-button">
+                                    <input type="submit" value="Order">
+                                </div>
                             </div>
-                            
-    
-                            <div class="">
-                                <label for="id number"><b>Employee Id</b></label>
-                                <input type="text" id="Employee Id" name="Employee Id" placeholder="Your id">
-    
-                                <label for="date ordered"><b>Date</b></label>
-                                <input type="date" id="date ord" name="date ordered">
-                            </div>
-                            
-                          
-                            
-                            <div class="">
-                                <label for="Category"><b>Category</b></label>
-                                <select id="category" name="Category">
-                                    <option value="Grocery">Grocery</option>
-                                    <option value="Toiletries">Toiletries</option>
-                                    <option value="Electronics">Electronics</option>
-                                </select>
-                            </div>
-                            
-    
-                            <label for="Supplier"><b>Supplier</b></label>
-                            <select id="supplier" name="Supplier">
-                                <option value="Walmart">Walmart</option>
-                                <option value="Shoprite">Shoprite</option>
-                                <option value="Games">Games</option>
-                            </select>
-    
-                            <label for="Quantity"><b>Quantity</b></label>
-                            <input type="number" name="Qty" id="Qty" placeholder="Quantity">
-    
-                            <!-- generate batch no -->
-                          
-                            <input type="submit" value="Order">
-                        </div>
+                        </form>
                     </div>
+
                 </section>
             </div>
         </div>
