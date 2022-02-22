@@ -617,3 +617,25 @@ form .user-details .input-box{
 .user-details .order-button input:hover{
     background:rgb(70, 148, 89);
 }
+
+/* products */
+
+.cat-options{
+    display:flex; 
+    justify-content:space-between; 
+    margin:20px;
+    margin-top:50px;
+    margin-bottom:30px;
+}
+
+.cat-options select{
+    width: 100px;
+    height:45px;
+    padding: 10px 5px;
+    margin: 8px 0px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+

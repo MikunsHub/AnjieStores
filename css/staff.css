@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body{
+    
+    height:100vh;
+    align-items:center;
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(209, 209, 224) ;
+}
+
+body h1{
+    text-align: center;
+    background-color: white;
+}
+
+.container{
+    display:flex;
+    justify-content: center;
+    padding: 20px 15px;
+    background-color: rgb(209, 209, 224);
+    border-radius: 5px;
+}
+
+
+form .user-details{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0 12px 0;
+}
+
+form .user-details .input-box{
+    margin: 20px 0 12px 0;
+    width:100%;
+}
+
+.user-details .input-box .details{
+    display:block;
+    margin-bottom:5px;
+    font-weight: 400;
+}
+
+.user-details .input-box input{
+    height:45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid;
+    padding-left:10px;
+    font-size:16px;
+}
+
+.user-details .input-box select{
+    height:45px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid;
+    padding-left:10px;
+    font-size:16px;
+}
+
+.user-details .order-button{
+    margin:5px;
+    height:45px;
+}
+
+.user-details .order-button a{
+    height:100%;
+    width:150%;
+    outline: none;
+    color:white;
+    border:none;
+    font-size:18px;
+    font-weight:500;
+    letter-spacing:1px;
+    background:#4E9CAF;
+    padding:10px;
+    border-radius:5px;
+}
+
+.user-details .order-button input:hover{
+    background:rgb(70, 148, 89);
+}
