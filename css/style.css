@@ -204,6 +204,8 @@ justify-content: space-between;
 /* padding: 0 20px; */
 }
 
+
+
 .card {
     padding:5px;
     padding-bottom:15px;
@@ -307,7 +309,7 @@ justify-content: space-between;
 
 .table-container{
     border-collapse: collapse;
-    font-size: 0.8em;
+    font-size: 0.75em;
 }
 
 .table-container tr{
@@ -437,6 +439,10 @@ justify-content: space-between;
 
 /* table at dashboard page */
 
+/* .newtable{
+    width: 50%; 
+}*/
+
 .newtable table{
     border-collapse: collapse;
     box-shadow: 0 5px 10px rgba(0,0,0,0.3);
@@ -444,6 +450,7 @@ justify-content: space-between;
     text-align: center;
     overflow: hidden;
     border-radius: 12px;
+    
 }
 .newtable table thead{
     box-shadow: 0 2px 3px rgba(0,0,0,0.3);
@@ -457,14 +464,16 @@ justify-content: space-between;
     font-weight:900;
 }
 
-.newtable table thead td{
+.newtable table td{
     padding: 1rem 2rem;
+    padding-bottom: 0.7rem;
+    font-size: 0.8rem;
 }
 
 
 .newtable tr{
     text-align:center;
-    padding: 230rem 20rem
+    padding: 230rem 20rem;
 }
 
 /* search box for user management & categories */
