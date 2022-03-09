@@ -8,7 +8,7 @@ kpi = "50,000"
 def index(request):
     context = {
         "order":kpi,
-        "Total_Sales":"70,000",
+        "Total_Sales":"190,000",
         "Profit": "30,000"
     }
     return render(request, 'inventory/index.html',context)
