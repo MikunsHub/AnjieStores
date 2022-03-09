@@ -2,26 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-# ProductsID INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-# 					  ProductName VARCHAR(20) NOT NULL,
-# 					  Barcode INT NOT NULL,
-# 					  ExpiryDate DATE NOT NULL,
-# 					  Price VARCHAR(15) NOT NULL,
-# 					  SupplierID INT NOT NULL FOREIGN KEY REFERENCES Products(ProductsID),
-# 					  OrdersID INT NOT NULL FOREIGN KEY REFERENCES Products(ProductsID),
-# 					  ProductTypeID INT FOREIGN KEY REFERENCES Products(ProductsID))
-
-# CREATE TABLE Employee(EmployeeID INT IDENTITY(1,1) UNIQUE,
-# 					  FullName VARCHAR(35) NOT NULL,
-# 					  Age INT NOT NULL,
-# 					  DoB DATE NOT NULL,
-# 					  Position VARCHAR(20),
-# 					  PhoneNo VARCHAR(11) UNIQUE NOT NULL,
-# 					  Address VARCHAR(50),
-# 					  Status VARCHAR(10),
-# 					  DateOfEmployment Date NOT NULL,
-# 					  ShiftType VARCHAR(10) NOT NULL)
-
 class Employee(models.Model):
     employeeID = models.IntegerField()
     fullName = models.CharField(max_length=35,blank=False,null=False) #not null
@@ -33,23 +13,32 @@ class Employee(models.Model):
     stateOfOrigin= models.CharField(max_length=10)
     employmentDate = models.DateField()
     status = models.CharField(max_length=10)
+    
 
 class Products(models.Model):
-    productsID = models.IntegerField() #Primary key
+    productsID = models.IntegerField(primary_key=True) 
     productName = models.CharField(max_length=30)
     Barcode = models.IntegerField()
     ExpiryDate = models.DateField()
     Price = models.IntegerField()
-    supplierID = models.ForeignKey(Supplier)
     orderID = models.ForeignKey(Order)
     productTypeID=  models.ForeignKey(ProductType)
 
-# CREATE TABLE Suppliers(SuppliersID INT IDENTITY(1,1) NOT NULL UNIQUE,
-# 					   SuppliersName VARCHAR(25) NOT NULL,
-# 					   SupAddress VARCHAR(25) NOT NULL,
-# 					   SupPhoneNo VARCHAR(11) NOT NULL,
-# 					   OrdersID INT NOT NULL,
-# 					   ProductsID INT NOT NULL)
+
+class ProductType(models.Model):
+    productTypeID = models.IntegerField()
+    productType = models.CharField(max_length=20)
+    productsID = models.ForeignKey(Products)
+
+
+class Orders(models.Model):
+    ordersID = models.IntegerField()
+    orderDate = models.DateField()
+    qtyOrdered = models.IntegerField()
+    productsID = models.ForeignKey(Products)
+    employeeID = models.ForeignKey(Employee)
+    suppliersID = models.ForeignKey(Suppliers)
+    
 
 class Suppliers(models.Model):
     suppliersID = models.IntegerField()
@@ -58,15 +47,20 @@ class Suppliers(models.Model):
     suppliersContact =models.CharField(max_length=11)
     ordersID = models.ForeignKey(Orders)
 
-# CREATE TABLE Orders(OrdersID INT IDENTITY(1,1) NOT NULL,
-# 					OrderDate DATE NOT NULL,
-# 					QtyOrdered INT NOT NULL,
-# 					ProductsID INT NOT NULL,
-# 					EmployeeID INT NOT NULL,
-# 					SuppliersID INT NOT NULL)
 
-class Orders(models.Model):
-    ordersID = models.IntegerField()
-    orderDate = models.DateField()
-    qtyOrdered = models.IntegerField()
-    pro
+class Cashier(models.Model):
+    cashierID = models.IntegerField()
+    employeeID =  models.ForeignKey(Employee)
+    stationStart = models.DateTimeField(auto_now_add=True) # confirm for auto_now_add
+    stationEnd = models.DateTimeField(auto_now_add=True)
+
+
+class Transactions(models.Model):
+    transactionID = models.IntegerField()
+    paymentMethod = models.CharField(max_lenght=10)
+    totalAmount = models.IntegerField()
+    cashierID = models.ForeignKey(Cashier)
+    noOfPurchasedItems = models.IntegerField()
+    paidAt = models.DateTimeField(auto_now_add=True) # confirm for auto_now_add and datetimefield
+    # purchasedItems = models.CharField() list out the purchased items and relate them to their products id
+
