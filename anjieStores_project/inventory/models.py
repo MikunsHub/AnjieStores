@@ -21,7 +21,7 @@ class Products(models.Model):
     Barcode = models.IntegerField()
     ExpiryDate = models.DateField()
     Price = models.IntegerField()
-    orderID = models.ForeignKey(Order)
+    orderID = models.ForeignKey(Orders)
     productTypeID=  models.ForeignKey(ProductType)
 
 
@@ -38,7 +38,7 @@ class Orders(models.Model):
     productsID = models.ForeignKey(Products)
     employeeID = models.ForeignKey(Employee)
     suppliersID = models.ForeignKey(Suppliers)
-    
+
 
 class Suppliers(models.Model):
     suppliersID = models.IntegerField()
