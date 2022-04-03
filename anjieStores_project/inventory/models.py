@@ -14,6 +14,18 @@ class Employee(models.Model):
     employmentDate = models.DateField()
     status = models.CharField(max_length=10)
 
+    def __str__(self):
+        return self.fullName
+
+class Test(models.Model):
+    name = models.CharField(max_length=35)
+    qty = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
+
+
 class Products(models.Model):
     productsID = models.IntegerField(primary_key=True) 
     productName = models.CharField(max_length=30)

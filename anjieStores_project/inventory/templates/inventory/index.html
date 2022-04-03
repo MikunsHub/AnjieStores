@@ -24,7 +24,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#User_management">
+                    <a href="#User_management"> 
                         <i class="fas fa-concierge-bell"></i>
                         <span>User Management</span>
                     </a>
@@ -75,7 +75,7 @@
                 <div class="box">
                     <div class="right-side">
                         <div class="box-topic">Total Order</div>
-                        <div class="number">{{ order }}</div>
+                        <div class="number">{{ employee.age }}</div>
                         <div class="indicator">
                             <i class='bx bx-up-arrow-alt'></i>
                             <span class="text">Up from yesterday</span>
@@ -252,9 +252,9 @@
                         </tr>
                         <tr>
                             <td>1</td>
-                            <td>1234</td>
-                            <td>Adeyanju Pelumi</td>
-                            <td>Cashier</td>
+                            <td>{{ employee.employeeID }}</td>
+                            <td>{{employee.fullName}}</td>
+                            <td>{{employee.position}}</td>
                             <td>
                                 <a class="Promote" href="#">Promote</a> <!-- This button will redirect to a page where you can update Staff Level -->
                                 <a class="Deactivate" href="#">Deactivate</a> <!-- This button can be used to terminate staff employment or indicate that the staff doesn't work in the store again -->

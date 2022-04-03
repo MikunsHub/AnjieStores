@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="{% static 'users/login.css' %}"/>
+    {% comment %} <link rel="stylesheet" href="{% static 'inventory/style.css' %}" /> {% endcomment %}
 </head>
 <body>
+    {% comment %} <section style="background-image: url('{{ 'users/images/sprmkt1\ \(1\).jpg' }}"> {% endcomment %}
+    {% comment %} <section style="background-image: url({% static 'users/images/sprmkt.jpg' %});"> {% endcomment %}
     <section>
         <div class="form-container">
-            <h1>Login</h1>
+            <h1>Sign Up</h1>
             <form action="">
                 <div class="control">
                     <label for="name">Name</label>
@@ -36,7 +40,7 @@
                     </select>
                 </div>
                 <div class="control">
-                    <a style="text-decoration:none;" href="/index.html">Register</a> <!-- put an input tag here  -->
+                    <button style="text-decoration:none;" href="/index.html">Register</button> <!-- put an input tag here  -->
                 </div>
             </form>
             <div  class="link">

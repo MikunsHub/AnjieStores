@@ -15,7 +15,7 @@ section {
     position: relative;
     height: 100vh;
     width: 100%;
-    background-image:  url('/images/sprmkt.jpg');
+    background-image: url('/static/users/images/sprmkt.jpg'); 
     background-size: cover;
     background-position: center center;
 }
@@ -62,7 +62,7 @@ h1{
     opacity:1;
 }
 
-.control a{
+.control button{
     width:100%;
     display: block;
     padding: 10px;
@@ -79,7 +79,7 @@ h1{
     text-align: center;
 }
 
-.control a:hover{
+.control button:hover{
     opacity:1;
 }
 
