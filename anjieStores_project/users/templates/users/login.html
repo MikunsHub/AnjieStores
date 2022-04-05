@@ -20,18 +20,18 @@
                 </div>
                 <div class="control">
                     <label for="psw">Password</label>
-                    <input type="password" name="psw" id="psw">
+                    <input type="password" name="password" id="psw">
                 </div>
                 <span><input type="checkbox">Remember me</span>
                 <div class="control">
-                    <button style="text-decoration:none;" href="/index.html">Login</button> <!-- put an input tag here  -->
+                    <input type="submit" value="Login"/><!-- put an input tag here  -->
                 </div>
             </form>
             <div class="link">
                 <a href="">Forgot password?</a>
             </div>
             <div  class="link">
-                <a href="/signup.html">Sign Up</a> 
+                <a href="{% url 'register' %}">Sign Up</a> 
             </div>
         </div>
     </section>

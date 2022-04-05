@@ -15,8 +15,17 @@
     <section>
         <div class="form-container">
             <h1>Sign Up</h1>
-            <form action="">
-                <div class="control">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                {% comment %} <div class="control">
                     <label for="name">Name</label>
                     <input type="text" name="name" id="name">
                 </div>
@@ -38,13 +47,13 @@
                         <option value="Admin">Admin</option>
                         <option value="Cashier">Cashier</option>
                     </select>
-                </div>
+                </div> {% endcomment %}
                 <div class="control">
                     <button style="text-decoration:none;" href="/index.html">Register</button> <!-- put an input tag here  -->
                 </div>
             </form>
             <div  class="link">
-                <a href="/login.html">Already have an account?</a> 
+                <a href="{% url 'login_page' %}">Already have an account?</a> 
             </div>
         </div>
     </section>

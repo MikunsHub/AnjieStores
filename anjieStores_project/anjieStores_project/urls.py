@@ -19,7 +19,8 @@ from users import views as users_views
 
 urlpatterns = [
     path('', include('inventory.urls')),
+    path('logout/', users_views.logoutUser, name='logout'),
     path('register/',users_views.register,name='register'),
-    path('login/',users_views.login,name='login'),
+    path('',users_views.login_page,name='login_page'),
     path('admin/', admin.site.urls),
 ]

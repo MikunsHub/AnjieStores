@@ -14,7 +14,7 @@
         <div class="sidebar">
             <div class="div-img">
                 <img src="{% static 'inventory/images/user.png' %}" alt="current user">
-                <h2>Current User</h2>
+                <h2>{{user}}</h2>
             </div>
             <ul class="nav">
                 <li>
@@ -54,7 +54,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{% url 'login_page' %}">
                         <i class="fas fa-cog"></i>
                         <span>Logout</span>
                     </a>
@@ -69,6 +69,13 @@
             <a href="/index.html">
                 <h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1>
             </a>
+            {% comment %} {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %} {% endcomment %}
     
             <!-- dashboard cards -->
             <div class="overview-boxes">
