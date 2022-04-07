@@ -3,7 +3,7 @@ from .models import Employee,Products,ProductType
 # def index(request):
 #     return HttpResponse("Hello, welcome to Anjie Stores")
 
-kpi = "50,000"
+
 
 def index(request):
     # context = {
@@ -14,9 +14,10 @@ def index(request):
     employee = Employee.objects.get(stateOfOrigin="Ekiti")
     productsType = ProductType.objects.all()
     products = Products.objects.all()
-    for product in products:
-        print(product.productName)
-        print(product.Price)
+    # for product in products:
+    #     print(product.productName)
+    #     print(product.Price)
+    print(productsType)
     context = {
         "staff_no":"1234",
         "full_name":"Ayomikun Ogunjuyigbe",
