@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Test, Employee
+from .models import Employee,Products,ProductType
 # def index(request):
 #     return HttpResponse("Hello, welcome to Anjie Stores")
 
@@ -11,14 +11,18 @@ def index(request):
     #     "Total_Sales":"190,000",
     #     "Profit": "30,000"
     # }
-    # a_Test= Test.objects.all()
     employee = Employee.objects.get(stateOfOrigin="Ekiti")
-    print(employee)
+    productsType = ProductType.objects.all()
+    products = Products.objects.all()
+    for product in products:
+        print(product.productName)
+        print(product.Price)
     context = {
-        # "a_Test": a_Test,
         "staff_no":"1234",
         "full_name":"Ayomikun Ogunjuyigbe",
-        "employee": employee
+        "employee": employee,
+        "productsType": productsType,
+        "products": products
     }
     return render(request, 'inventory/index.html',context)
 

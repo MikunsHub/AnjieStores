@@ -441,17 +441,19 @@
                             <th>Price(₦)</th>
                             <th>Action</th>
                         </tr>
-                        <tr>
-                            <td>1234</td>
-                            <td>LG Washing machine</td>
-                            <td>Electronics</td>
-                            <td>30</td>
-                            <td>02/23</td>
-                            <td>150,000</td>
-                            <td>
-                                <a class="Promote" href="#">Edit</a> <!-- This button will redirect to a page where you can update Staff Level-->
-                            </td> 
-                        </tr>
+                        {% for product in products %}
+                            <tr>
+                                <td>{{product.productsID}}</td>
+                                <td>{{product.productName}}</td>
+                                <td>{{product.productName}}</td>
+                                <td>{{product.quantity}}</td>
+                                <td>{{product.ExpiryDate}}</td>
+                                <td>{{product.Price}}</td>
+                                <td>
+                                    <a class="Promote" href="#">Edit</a> <!-- This button will redirect to a page where you can update Staff Level-->
+                                </td> 
+                            </tr>
+                        {% endfor %}
                         </table>
                 </div>
             </div>

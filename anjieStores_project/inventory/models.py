@@ -17,13 +17,19 @@ class Employee(models.Model):
     def __str__(self):
         return self.fullName
 
-class Test(models.Model):
-    name = models.CharField(max_length=35)
-    qty = models.IntegerField()
+# class Test(models.Model):
+#     name = models.CharField(max_length=35)
+#     qty = models.IntegerField()
+
+#     def __str__(self):
+#         return self.name
+
+class ProductType(models.Model):
+    productTypeID = models.IntegerField()
+    productType = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.name
-
+        return self.productType
 
 
 class Products(models.Model):
@@ -32,6 +38,22 @@ class Products(models.Model):
     Barcode = models.IntegerField()
     ExpiryDate = models.DateField()
     Price = models.IntegerField()
+    manufacturer =  models.CharField(max_length=35)
+    quantity = models.IntegerField()
+    productTypeID = models.ForeignKey(ProductType,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.productName
+
+class Suppliers(models.Model):
+    suppliersID = models.IntegerField()
+    suppliersName = models.CharField(max_length=25)
+    suppliersAddress = models.CharField(max_length=25)
+    suppliersContact =models.CharField(max_length=11)
+
+    def __str__(self):
+        return self.suppliersName
+
 
 class Orders(models.Model):
     ordersID = models.IntegerField()
@@ -39,19 +61,7 @@ class Orders(models.Model):
     qtyOrdered = models.IntegerField()
     productsID = models.ForeignKey(Products,on_delete=models.CASCADE)
     employeeID = models.ForeignKey(Employee,on_delete=models.CASCADE)  
-
-class ProductType(models.Model):
-    productTypeID = models.IntegerField()
-    productType = models.CharField(max_length=20)
-    productsID = models.ForeignKey(Products,on_delete=models.CASCADE)
-
-
-class Suppliers(models.Model):
-    suppliersID = models.IntegerField()
-    suppliersName = models.CharField(max_length=25)
-    suppliersAddress = models.CharField(max_length=25)
-    suppliersContact =models.CharField(max_length=11)
-    ordersID = models.ForeignKey(Orders,on_delete=models.CASCADE)
+    suppliersID = models.ForeignKey(Suppliers,on_delete=models.CASCADE)
 
 
 class Cashier(models.Model):
@@ -59,6 +69,7 @@ class Cashier(models.Model):
     employeeID =  models.ForeignKey(Employee,on_delete=models.CASCADE)
     stationStart = models.DateTimeField(auto_now_add=True) # confirm for auto_now_add
     stationEnd = models.DateTimeField(auto_now_add=True)
+    
 
 
 class Transactions(models.Model):
