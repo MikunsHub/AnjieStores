@@ -413,16 +413,21 @@
                 </div>
                 <div class="cat-options">
                     <h3>
-                        Show
+                        {% comment %} Show {% endcomment %}
                         <span>
-                            <select name="categories" >
+                            <form action="" method="get">
+                                {{myFilter.form}}
+                                <button type="submit">Search</button>
+                            </form>
+                            
+                            {% comment %} <select name="categories" >
                                 <option  value="Groceries">Groceries</option>
                                 <option value="Toiletries">Toiletries</option>
                                 <option value="Electronics">Electronics</option>
                                 <option value="Beverages">Beverages</option>
                                 <option value="Drinks">Drinks</option>
-                            </select>
-                            Products
+                            </select> {% endcomment %}
+                            {% comment %} Products {% endcomment %}
                         </span>
                     </h3>
                     
