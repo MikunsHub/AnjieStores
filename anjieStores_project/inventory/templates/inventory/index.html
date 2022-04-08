@@ -272,8 +272,10 @@
             </div>
         </div>
 
-        <!-- categories section -->
        </section>
+
+       <!-- categories section -->
+
        <section id="categories">
         <div class="main">
             <a href="/index.html"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
@@ -285,25 +287,13 @@
                     <a href="/categories.html" >+ Add New Category</a>
     
                 </div>
-                <div class="cat-value-search">
-                    <h3>
-                        Show
-                        <span>
-                            <select name="digits" id="digits">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            entries
-                        </span>
-                    </h3>
-    
-                    <div class="search-box">
-                        <input class="search" type="text" placeholder="Search...">
-                    </div>
+                <div class="cat-options">
+                    <form action="" method="get">
+                        {{prodTypefilter.form}}
+                        <button type="submit">Search</button>
+                    </form>
                 </div>
+                
                 <div class="table-container">
                     <table>
                         <tr>
@@ -311,14 +301,16 @@
                           <th>Category Name</th>
                           <th>Action</th>
                         </tr>
-                        <tr>
-                          <td>1</td>
-                          <td>Samsung washing machine</td>
-                          <td>
-                              <a class="Edit" href="#">Edit</a>
-                              <a class="Deactivate" href="#">Delete</a>
-                          </td>
-                        </tr>
+                        {% for producttype in productsType %}
+                            <tr>
+                                <td>{{producttype.productTypeID}}</td>
+                                <td>{{producttype.productType}}</td>
+                                <td>
+                                    <a class="Edit" href="#">Edit</a>
+                                    <a class="Deactivate" href="#">Delete</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
                     </table>
                 </div>
             </div>
@@ -412,28 +404,10 @@
                     <a href="/products.html">+ Add New Products</a>
                 </div>
                 <div class="cat-options">
-                    <h3>
-                        {% comment %} Show {% endcomment %}
-                        <span>
-                            <form action="" method="get">
-                                {{myFilter.form}}
-                                <button type="submit">Search</button>
-                            </form>
-                            
-                            {% comment %} <select name="categories" >
-                                <option  value="Groceries">Groceries</option>
-                                <option value="Toiletries">Toiletries</option>
-                                <option value="Electronics">Electronics</option>
-                                <option value="Beverages">Beverages</option>
-                                <option value="Drinks">Drinks</option>
-                            </select> {% endcomment %}
-                            {% comment %} Products {% endcomment %}
-                        </span>
-                    </h3>
-                    
-                    <div class="search-box">
-                        <input style="margin-bottom:10px" class="search" type="text" placeholder="Type product name...">
-                    </div>
+                    <form action="" method="get">
+                        {{myFilter.form}}
+                        <button type="submit">Search</button>
+                    </form>
                 </div>
                 <div class="table-container">
                     <table>
