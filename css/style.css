@@ -659,11 +659,8 @@ form .user-details .input-box{
 }
 
 .header-search{
-    /* width: 20%; */
     padding: 10px;
-    /* display:flex;
-    justify-content: space-between; */
-
+    width: 75%;
 }
 
 .header-search input{
@@ -671,6 +668,17 @@ form .user-details .input-box{
     border-radius: 3px;
     border-width: 1px;
     width: 300px;
+}
+
+.header-search button{
+    padding: 10px;
+    background: #2196F3;
+    border: none;
+}
+
+.category-cards{
+    display:flex;
+    justify-content: space-evenly;
 }
 
 .bill-container{
@@ -731,5 +739,23 @@ form .user-details .input-box{
     background: rgb(240, 240, 240);
     padding:15px;
     width: 100%;
+    border:none;
     border-width: 3px;
+    border-radius: 7px;
+}
+
+.pay-button button{
+    background: rgb(240, 240, 240);
+    padding:15px;
+    width: 100%;
+    border:none;
+    border-width: 3px;
+    border-radius: 7px;
+}
+.pay-button button:hover {background-color: rgb(240, 209, 209)}
+
+.pay-button button:active {
+  background-color: rgb(240, 209, 209);
+  /* box-shadow: 0 5px #666; */
+  transform: translateY(4px);
 }
