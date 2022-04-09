@@ -75,6 +75,7 @@ body{
 .main{
     margin-left: 20%;
     height:100vh;
+    width:80%
 }
 
 
@@ -649,6 +650,73 @@ form .user-details .input-box{
 }
 
 /* sales-section */
-/* .main .header-search{
+
+.full-container{
+    width: 100%;
     display:flex;
-} */
+    justify-content: space-between;
+    margin-right: 10px;
+}
+
+.header-search{
+    /* width: 20%; */
+    padding: 10px;
+    /* display:flex;
+    justify-content: space-between; */
+
+}
+
+.header-search input{
+    padding:10px;
+    border-radius: 3px;
+    border-width: 1px;
+    width: 300px;
+}
+
+.bill-container{
+    padding: 20px;
+    /* border-style: solid; */
+    border-width: 3px;
+    /* border-radius: 3px; */
+    background: rgb(241, 192, 229);
+    width: 20%;
+}
+
+.bill-container-items{
+    border-width: 3px;
+    background: rgb(241, 192, 229);
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.bill-content{
+    display: flex;
+    justify-content: space-between;
+}
+
+.bill-total{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.bill-payment-method{
+    margin-top: 20px;
+}
+
+.bill-payment-card{
+    width: 80px;
+    height: 80px;
+    border-width: 3px;
+    background: rgb(240, 240, 240);
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top:10px;
+    padding: 20px;
+
+}
+
+.bill-payment-card img{
+    width: 30px;
+    height: 30px;
+}
