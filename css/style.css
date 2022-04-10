@@ -660,7 +660,7 @@ form .user-details .input-box{
 
 .header-search{
     padding: 10px;
-    width: 75%;
+    width: 65%;
 }
 
 .header-search input{
@@ -678,14 +678,28 @@ form .user-details .input-box{
 
 .category-cards{
     display:flex;
-    justify-content: space-evenly;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+    padding:15px;
+    margin-bottom: 30px;
+}
+
+.top-category-card{
+    width: 140px;
+    height: 60px;
+    border-width: 3px;
+    background: rgb(240, 240, 240);
+    border-radius: 7px;
+    box-sizing: border-box;
+    margin-top:10px;
+    padding: 10px 10px;
+
 }
 
 .bill-container{
     padding: 20px;
-    /* border-style: solid; */
     border-width: 3px;
-    /* border-radius: 3px; */
+    border-radius: 7px;
     background: rgb(241, 192, 229);
     width: 25%;
 }
