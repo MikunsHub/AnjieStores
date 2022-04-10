@@ -24,3 +24,20 @@ def index(request):
     }
     return render(request, 'inventory/index.html',context)
 
+def dashboard(request):
+    return render(request, 'inventory/dashboard.html')
+
+def products(request):
+    return render(request, 'inventory/products.html')
+
+def categories(request):
+    return render(request, 'inventory/categories.html')
+
+def order(request):
+    return render(request, 'inventory/order.html')
+
+def pos(request):
+    return render(request, 'inventory/pos.html')
+
+def usr_mgt(request):
+    return render(request, 'inventory/user_mgt.html')

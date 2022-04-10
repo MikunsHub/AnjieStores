@@ -1,0 +1,52 @@
+{% extends "inventory/index.html" %}
+{% load static %}
+
+{% block content %}
+<section id="products">
+    <div class="main">
+        <a href="/index.html"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
+
+        <!-- products template -->
+        <div class="user-container" id="userManagement" name="userManagement">
+            <h2>Products</h2>
+            <div class="button-add">
+                <!-- send to cashier adding template -->
+                <!-- this section will involve giving several staff permission -->
+                <a href="/products.html">+ Add New Products</a>
+            </div>
+            <div class="cat-options">
+                <form action="" method="get">
+                    {{myFilter.form}}
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Product id</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Qty(cartons)</th>
+                        <th>Expiry date</th>
+                        <th>Price(₦)</th>
+                        <th>Action</th>
+                    </tr>
+                    {% for product in products %}
+                        <tr>
+                            <td>{{product.productsID}}</td>
+                            <td>{{product.productName}}</td>
+                            <td>{{product.productTypeID.productType}}</td>
+                            <td>{{product.quantity}}</td>
+                            <td>{{product.ExpiryDate}}</td>
+                            <td>{{product.Price}}</td>
+                            <td>
+                                <a class="Promote" href="#">Edit</a> <!-- This button will redirect to a page where you can update Staff Level-->
+                            </td> 
+                        </tr>
+                    {% endfor %}
+                    </table>
+            </div>
+        </div>
+    </div>
+   </section>
+{% endblock %}

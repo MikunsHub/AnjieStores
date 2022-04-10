@@ -1,0 +1,148 @@
+{% extends "inventory/index.html" %}
+{% load static %}
+
+{% block content %}
+<section id="sales_report">
+    <div class="main">
+        <a href="/index.html"><h1>Anjie<span>Stores</span></h1></a>
+        
+        <div class="full-container">
+             <div class="header-search">
+                 <!-- <i class="fas fa-search"></i> -->
+                 <input type="text" placeholder="Search Category..."> 
+                 <button type="button" class="">Search</button>
+
+                 <div class="category-cards">
+                     <div class="top-category-card">
+                         <h5>Electronics</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Beverages</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Groceries</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Toiletries</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Furniture</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Fruits</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Vegetables</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Meat & Fish</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Toys</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Toy</h5>
+                     </div>
+                 </div>
+
+                 <div class="table-container">
+                     <table>
+                         <tr>
+                           <th>id</th>
+                           <th>Product Name</th>
+                           <th>Action</th>
+                         </tr>
+                         <tr>
+                           <td>1</td>
+                           <td>Samsung washing machine</td>
+                           <td>
+                               <a class="Edit" href="#">Add</a>
+                               <a class="Deactivate" href="#">Remove</a>
+                           </td>
+                         </tr>
+                         <tr>
+                             <td>1</td>
+                             <td>Samsung washing machine</td>
+                             <td>
+                                 <a class="Edit" href="#">Add</a>
+                                 <a class="Deactivate" href="#">Remove</a>
+                             </td>
+                           </tr>
+                           <tr>
+                             <td>1</td>
+                             <td>Samsung washing machine</td>
+                             <td>
+                                 <a class="Edit" href="#">Add</a>
+                                 <a class="Deactivate" href="#">Remove</a>
+                             </td>
+                           </tr>
+                     </table>
+                 </div>
+
+             </div>
+             
+             <!-- selected items -->  
+             
+             <div class="bill-container">
+                 <div class="bill-container-title">
+                     <h2>Bills</h2>
+                 </div>
+                 <div class="bill-container-items">
+                     
+                     <div><h3>Milo</h3></div>
+                     
+                     <div class="bill-content">
+                         <div class="bill-items-unit">x 1</div>
+                         <div class="item-price">$12</div>
+                     </div>
+                 </div>
+
+                 <div class="bill-container-items">
+                     
+                     <div><h3>Bournvita</h3></div>
+                     
+                     <div class="bill-content">
+                         <div class="bill-items-unit">x 3</div>
+                         <div class="item-price">$22</div>
+                     </div>
+                 </div>
+                 <div>----------------------------------</div>
+                 <div class="bill-total">
+                     <h3>Total</h3>
+                     <h3>$12</h3>
+                 </div>
+                 <div class="bill-payment-method">
+                     <h3>Payment Method</h3>
+                     <div style="display:flex; justify-content:space-between;">
+                         <div class="bill-payment-card">
+                             <img src="{% static 'inventory/images/cash.png' %}" alt="">
+                             <h5>Cash</h5>
+                         </div>
+                         <div class="bill-payment-card">
+                             <img src="{% static 'inventory/images/credit-card.png' %}" alt="">
+                             <h5>Card</h5>
+                         </div>
+                         <div class="bill-payment-card">
+                             <img src="{% static 'inventory/images/bitcoin-wallet.png' %}" alt="">
+                             <h5>Crypto</h5>
+                         </div>
+                     </div>
+                 </div>
+                 <div class="pay-button">
+                     <button type="button" class="">Confirm Payment</button>
+                 </div>
+             </div>
+        </div>
+        
+    </div>
+</section>
+{% endblock %}

@@ -18,39 +18,39 @@
             </div>
             <ul class="nav">
                 <li>
-                    <a href="#dashboard">
+                    <a href="{% url 'dashboard' %}">
                         <i class="fas fa-server"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#User_management"> 
+                    <a href="{% url 'usr_mgt' %}"> 
                         <i class="fas fa-concierge-bell"></i>
                         <span>User Management</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#categories">
+                    <a href="{% url 'categories' %}">
                         <i class="fas fa-calendar-alt"></i>
                         <span>Categories</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#order">
+                    <a href="{% url 'order' %}">
                         <i class="fas fa-cog"></i>
                         <span>Order</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#products">
+                    <a href="{% url 'products' %}">
                         <i class="fas fa-question-circle"></i>
                         <span>Products</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#sales_report">
+                    <a href="{% url 'pos' %}">
                         <i class="fas fa-cog"></i>
-                        <span>Sales Report</span>
+                        <span>POS</span>
                     </a>
                 </li>
                 <li>
@@ -63,393 +63,10 @@
         </div>
 
         <!-- main content -->
-        <!-- Dashboard -->
-    <section id="dashboard">
-        <div class="main">
-            <a href="/index.html">
-                <h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1>
-            </a>
-            {% comment %} {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %} {% endcomment %}
-    
-            <!-- dashboard cards -->
-            <div class="overview-boxes">
-                <div class="box">
-                    <div class="right-side">
-                        <div class="box-topic">Total Order</div>
-                        <div class="number">{{ employee.age }}</div>
-                        <div class="indicator">
-                            <i class='bx bx-up-arrow-alt'></i>
-                            <span class="text">Up from yesterday</span>
-                        </div>
-                    </div>
-                    <i class='bx bx-cart-alt cart'></i>
-                </div>
-                <div class="box">
-                    <div class="right-side">
-                        <div class="box-topic">Total Sales</div>
-                        <div class="number">{{ Total_Sales }}</div>
-                        <div class="indicator">
-                            <i class='bx bx-up-arrow-alt'></i>
-                            <span class="text">Up from yesterday</span>
-                        </div>
-                    </div>
-                    <i class='bx bxs-cart-add cart two'></i>
-                </div>
-                <div class="box">
-                    <div class="right-side">
-                        <div class="box-topic">Total Profit</div>
-                        <div class="number">${{ Profit }}</div>
-                        <div class="indicator">
-                            <i class='bx bx-up-arrow-alt'></i>
-                            <span class="text">Up from yesterday</span>
-                        </div>
-                    </div>
-                    <i class='bx bx-cart cart three'></i>
-                </div>
-                <div class="box">
-                    <div class="right-side">
-                        <div class="box-topic">Total Return</div>
-                        <div class="number">11,086</div>
-                        <div class="indicator">
-                            <i class='bx bx-down-arrow-alt down'></i>
-                            <span class="text">Down From Today</span>
-                        </div>
-                    </div>
-                    <i class='bx bxs-cart-download cart four'></i>
-                </div>
-            </div>
-    
-            <div>
-                <div
-                    style="margin-bottom:35px; margin-left:20px; display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
-                    <div class="newtable">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>id</th>
-                                    <th>Category</th>
-                                    <th>Product name</th>
-                                    <th>Amount</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Beverages</td>
-                                    <td>Milo</td>
-                                    <td>₦500</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Beverages</td>
-                                    <td>Bournvita</td>
-                                    <td>₦1500</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Toiletries</td>
-                                    <td>Petals</td>
-                                    <td>₦700</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Groceries</td>
-                                    <td>Tomatoes</td>
-                                    <td>₦300</td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Electronics</td>
-                                    <td>Samsung Front-loader</td>
-                                    <td>₦30</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="top-cashier">
-                        <div class="card">
-                            <div class="card-topic">
-                                <h2><b>Cashier's Performance</b></h2>
-                            </div>
-                            <div class="img_container">
-                                <img src="{% static 'inventory/images/Mikun.jpg' %}" alt="cashier image">
-                                <img src="{% static 'inventory/images/Ife.jfif' %}" alt="cashier image">
-                                <img src="{% static 'inventory/images/Ayomikun.jpeg' %}" alt="cashier image">
-                            </div>
-                            <div class="value-container">
-                                <div class="card-content-container">
-                                    <div class="card-content-name">Ayomikun</div>
-                                    <div class="card-content-number">5</div>
-                                    <div class="card-content-metric">Customer/min</div>
-                                    <div class="card-content-amount">₦ 500</div>
-                                    <div class="card-content-time">per hour</div>
-                                </div>
-    
-                                <div class="card-content-container">
-                                    <div class="card-content-name">Ife</div>
-                                    <div class="card-content-number">5</div>
-                                    <div class="card-content-metric">Customer/min</div>
-                                    <div class="card-content-amount">₦ 500</div>
-                                    <div class="card-content-time">per hour</div>
-                                </div>
-    
-                                <div class="card-content-container">
-                                    <div class="card-content-name">Mikun</div>
-                                    <div class="card-content-number">5</div>
-                                    <div class="card-content-metric">Customer/min</div>
-                                    <div class="card-content-amount">₦ 500</div>
-                                    <div class="card-content-time">per hour</div>
-                                </div>
-    
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-    
-        </div>
-    </section>
-
-       <!-- user management  -->
-       <section id="User_management">
-        <div class="main">
-            <a href="/index.html"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
-    
-            <!-- user management template -->
-            <div class="user-container" id="userManagement" name="userManagement">
-                <h2>User Management</h2>
-                <div class="button-add">
-                    <!-- send to cashier adding template -->
-                    <!-- this section will involve giving several staff permission -->
-                    <a href="/staff.html">+ Add New Cashier</a>
-                </div>
-                <div class="staff-info-search">
-                    <h3>
-                        Show
-                        <span>
-                            <select name="digits" id="digits">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                            entries
-                        </span>
-                    </h3>
-                    
-                    <div class="search-box">
-                        <input style="margin-bottom:10px" class="search" type="text" placeholder="Type staff name...">
-                    </div>
-                </div>
-                <div class="table-container">
-                    <table>
-                        <tr>
-                            <th>id</th>
-                            <th>Staff no</th>
-                            <th>Full Name</th>
-                            <th>Staff Level</th>
-                            <th>Action</th>
-                        </tr>
-                        <tr>
-                            <td>1</td>
-                            <td>{{ employee.employeeID }}</td>
-                            <td>{{employee.fullName}}</td>
-                            <td>{{employee.position}}</td>
-                            <td>
-                                <a class="Promote" href="#">Promote</a> <!-- This button will redirect to a page where you can update Staff Level -->
-                                <a class="Deactivate" href="#">Deactivate</a> <!-- This button can be used to terminate staff employment or indicate that the staff doesn't work in the store again -->
-                            </td>
-                        </tr>
-                        </table>
-                </div>
-            </div>
-        </div>
-
-       </section>
-
-       <!-- categories section -->
-
-       <section id="categories">
-        <div class="main">
-            <a href="/index.html"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
+        {% block content %}
         
-            <div class="cat-container">
-                <h2>Categories</h2>
-                <div class="button-add">
-                    <!-- send to category adding template -->
-                    <a href="/categories.html" >+ Add New Category</a>
-    
-                </div>
-                <div class="cat-options">
-                    <form action="" method="get">
-                        {{prodTypefilter.form}}
-                        <button type="submit">Search</button>
-                    </form>
-                </div>
-                
-                <div class="table-container">
-                    <table>
-                        <tr>
-                          <th>id</th>
-                          <th>Category Name</th>
-                          <th>Action</th>
-                        </tr>
-                        {% for producttype in productsType %}
-                            <tr>
-                                <td>{{producttype.productTypeID}}</td>
-                                <td>{{producttype.productType}}</td>
-                                <td>
-                                    <a class="Edit" href="#">Edit</a>
-                                    <a class="Deactivate" href="#">Delete</a>
-                                </td>
-                            </tr>
-                        {% endfor %}
-                    </table>
-                </div>
-            </div>
-    
-       </section>
+        {% endblock %}
 
-       <!-- order section -->
-       <section id="order">
-        <div class="main">
-            <a href="/index.html"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
         
-            <div style="padding:20px" class="order-container">
-                <h2>Order</h2>
-                <div class="btn-preview" style="display:flex; justify-content:space-between;"> 
-                    <div class="button-add">
-                        <a href="/order.html">Preview Orders</a>
-                    </div>
-                    <!-- slider button -->
-                    <label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-                <span style="display:flex;justify-content:flex-end;font-size:15px;">Auto/Manual</span>
-    
-                <section>
-                    <h4>Purchase Order Form</h4>
-
-                    <div style="display:flex; justify-content:center; align-items:center;">
-                        <form action="#">
-                            <div class="user-details">
-                                <div class="input-box">
-                                    <span><b>Employee Name</b></span>
-                                    <input type="text" placeholder="Enter your name" id="">
-                                </div>
-                                <div class="input-box">
-                                    <span><b>Employee Number</b></span>
-                                    <input type="text" placeholder="Enter your staff number" id="">
-                                </div>
-                                <div class="input-box">
-                                    <span><b>Category</b></span>
-                                    <select name="digits" id="digits">
-                                        <option value="Groceries">Groceries</option>
-                                        <option value="Toiletries">Toiletries</option>
-                                        <option value="Electronics">Electronics</option>
-                                        <option value="Beverages">Beverages</option>
-                                        <option value="Drinks">Drinks</option>
-                                    </select>
-                                </div>
-                                <div class="input-box">
-                                    <span><b>Quantity</b></span>
-                                    <input type="number" placeholder="Enter your quantity" min="10">
-                                </div>
-                                <div class="input-box">
-                                    <span><b>Date</b></span>
-                                    <input type="date" placeholder="Enter your quantity" min="10">
-                                </div>
-                                <div class="input-box">
-                                    <span><b>Supplier</b></span>
-                                    <select name="digits" id="digits">
-                                        <option value="Wallmart">Wallmart</option>
-                                        <option value="Ali Express">Ali Express</option>
-                                        <option value="Cosco">Cosco</option>
-                                        <option value="Shoprite">Shoprite</option>
-                                        <option value="Foodco">Foodco</option>
-                                    </select>
-                                </div>
-                                <div class="order-button">
-                                    <input type="submit" value="Order">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </section>
-            </div>
-        </div>
-       </section>
-
-       <!-- products section -->
-       <section id="products">
-        <div class="main">
-            <a href="/index.html"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
-    
-            <!-- products template -->
-            <div class="user-container" id="userManagement" name="userManagement">
-                <h2>Products</h2>
-                <div class="button-add">
-                    <!-- send to cashier adding template -->
-                    <!-- this section will involve giving several staff permission -->
-                    <a href="/products.html">+ Add New Products</a>
-                </div>
-                <div class="cat-options">
-                    <form action="" method="get">
-                        {{myFilter.form}}
-                        <button type="submit">Search</button>
-                    </form>
-                </div>
-                <div class="table-container">
-                    <table>
-                        <tr>
-                            <th>Product id</th>
-                            <th>Product Name</th>
-                            <th>Category</th>
-                            <th>Qty(cartons)</th>
-                            <th>Expiry date</th>
-                            <th>Price(₦)</th>
-                            <th>Action</th>
-                        </tr>
-                        {% for product in products %}
-                            <tr>
-                                <td>{{product.productsID}}</td>
-                                <td>{{product.productName}}</td>
-                                <td>{{product.productTypeID.productType}}</td>
-                                <td>{{product.quantity}}</td>
-                                <td>{{product.ExpiryDate}}</td>
-                                <td>{{product.Price}}</td>
-                                <td>
-                                    <a class="Promote" href="#">Edit</a> <!-- This button will redirect to a page where you can update Staff Level-->
-                                </td> 
-                            </tr>
-                        {% endfor %}
-                        </table>
-                </div>
-            </div>
-        </div>
-       </section>
-
-       <!-- sales report section -->
-       <section id="sales_report">
-        <div class="main">
-            <a href="/index.html"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
-        
-            <div class="cat-container">
-                <h2>POS</h2>
-                
-            </div>
-    
-       </section>
-
     </body>
 </html>

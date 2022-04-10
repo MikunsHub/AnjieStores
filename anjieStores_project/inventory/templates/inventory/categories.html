@@ -1,0 +1,45 @@
+{% extends "inventory/index.html" %}
+{% load static %}
+
+{% block content %}
+<section id="categories">
+    <div class="main">
+        <a href="/index.html"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
+    
+        <div class="cat-container">
+            <h2>Categories</h2>
+            <div class="button-add">
+                <!-- send to category adding template -->
+                <a href="/categories.html" >+ Add New Category</a>
+
+            </div>
+            <div class="cat-options">
+                <form action="" method="get">
+                    {{prodTypefilter.form}}
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                    <tr>
+                      <th>id</th>
+                      <th>Category Name</th>
+                      <th>Action</th>
+                    </tr>
+                    {% for producttype in productsType %}
+                        <tr>
+                            <td>{{producttype.productTypeID}}</td>
+                            <td>{{producttype.productType}}</td>
+                            <td>
+                                <a class="Edit" href="#">Edit</a>
+                                <a class="Deactivate" href="#">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+</section>
+{% endblock %}

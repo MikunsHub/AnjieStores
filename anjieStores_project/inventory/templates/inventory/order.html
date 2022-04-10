@@ -1,0 +1,76 @@
+{% extends "inventory/index.html" %}
+{% load static %}
+
+{% block content %}
+<section id="order">
+    <div class="main">
+        <a href="/index.html"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
+    
+        <div style="padding:20px" class="order-container">
+            <h2>Order</h2>
+            <div class="btn-preview" style="display:flex; justify-content:space-between;"> 
+                <div class="button-add">
+                    <a href="/order.html">Preview Orders</a>
+                </div>
+                <!-- slider button -->
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <span style="display:flex;justify-content:flex-end;font-size:15px;">Auto/Manual</span>
+
+            <section>
+                <h4>Purchase Order Form</h4>
+
+                <div style="display:flex; justify-content:center; align-items:center;">
+                    <form action="#">
+                        <div class="user-details">
+                            <div class="input-box">
+                                <span><b>Employee Name</b></span>
+                                <input type="text" placeholder="Enter your name" id="">
+                            </div>
+                            <div class="input-box">
+                                <span><b>Employee Number</b></span>
+                                <input type="text" placeholder="Enter your staff number" id="">
+                            </div>
+                            <div class="input-box">
+                                <span><b>Category</b></span>
+                                <select name="digits" id="digits">
+                                    <option value="Groceries">Groceries</option>
+                                    <option value="Toiletries">Toiletries</option>
+                                    <option value="Electronics">Electronics</option>
+                                    <option value="Beverages">Beverages</option>
+                                    <option value="Drinks">Drinks</option>
+                                </select>
+                            </div>
+                            <div class="input-box">
+                                <span><b>Quantity</b></span>
+                                <input type="number" placeholder="Enter your quantity" min="10">
+                            </div>
+                            <div class="input-box">
+                                <span><b>Date</b></span>
+                                <input type="date" placeholder="Enter your quantity" min="10">
+                            </div>
+                            <div class="input-box">
+                                <span><b>Supplier</b></span>
+                                <select name="digits" id="digits">
+                                    <option value="Wallmart">Wallmart</option>
+                                    <option value="Ali Express">Ali Express</option>
+                                    <option value="Cosco">Cosco</option>
+                                    <option value="Shoprite">Shoprite</option>
+                                    <option value="Foodco">Foodco</option>
+                                </select>
+                            </div>
+                            <div class="order-button">
+                                <input type="submit" value="Order">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </section>
+        </div>
+    </div>
+</section>
+{% endblock %}
