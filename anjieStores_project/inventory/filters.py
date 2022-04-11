@@ -14,3 +14,9 @@ class ProductTypeFilter(django_filters.FilterSet):
         model = ProductType
         fields = '__all__'
         exclude = ['productTypeID']
+
+class ProductPOSFilter(django_filters.FilterSet):
+    class Meta:
+        model = Products
+        fields = '__all__'
+        exclude = ['Price','quantity','productsID','manufacturer','Barcode','quantity','ExpiryDate']

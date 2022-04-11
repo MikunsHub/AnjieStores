@@ -15,7 +15,7 @@ def register(request):
             user.username = user.username.lower()
             user.save()
             auth.login(request,user)
-            return redirect("index") #problem with redirect
+            return redirect("dashboard") #problem with redirect
         else:
             messages.error(request,"error occurred during registration")
     return render(request, 'users/signup.html',{'form':form})  #faulty function
@@ -40,7 +40,7 @@ def login_page(request):
         if user is not None:
             auth.login(request,user)
             print("I am working")
-            return redirect("index")
+            return redirect("dashboard")
         else:
             messages.error(request,"Username or Password does not exist")
     else:

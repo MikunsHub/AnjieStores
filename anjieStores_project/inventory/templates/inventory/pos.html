@@ -9,8 +9,12 @@
         <div class="full-container">
              <div class="header-search">
                  <!-- <i class="fas fa-search"></i> -->
-                 <input type="text" placeholder="Search Category..."> 
-                 <button type="button" class="">Search</button>
+                 <form action="" method="get">
+                    {{myFilterPOS.form}}
+                    <button type="submit">Search</button>
+                </form>
+                 {% comment %} <input type="text" placeholder="Search Category..."> 
+                 <button type="button" class="">Search</button> {% endcomment %}
 
                  <div class="category-cards">
                      <div class="top-category-card">
@@ -61,30 +65,16 @@
                            <th>Product Name</th>
                            <th>Action</th>
                          </tr>
-                         <tr>
-                           <td>1</td>
-                           <td>Samsung washing machine</td>
-                           <td>
-                               <a class="Edit" href="#">Add</a>
-                               <a class="Deactivate" href="#">Remove</a>
-                           </td>
-                         </tr>
-                         <tr>
-                             <td>1</td>
-                             <td>Samsung washing machine</td>
-                             <td>
-                                 <a class="Edit" href="#">Add</a>
-                                 <a class="Deactivate" href="#">Remove</a>
-                             </td>
-                           </tr>
-                           <tr>
-                             <td>1</td>
-                             <td>Samsung washing machine</td>
-                             <td>
-                                 <a class="Edit" href="#">Add</a>
-                                 <a class="Deactivate" href="#">Remove</a>
-                             </td>
-                           </tr>
+                         {% for product in products %}
+                            <tr>
+                            <td>{{product.productsID}}</td>
+                            <td>{{product.productName}}</td>
+                            <td>
+                                <a class="Edit" href="#">Add</a>
+                                <a class="Deactivate" href="#">Remove</a>
+                            </td>
+                            </tr>
+                         {% endfor %}
                      </table>
                  </div>
 

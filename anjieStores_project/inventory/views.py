@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Employee,Products,ProductType
-from .filters import ProductFilter,ProductTypeFilter
+from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
 
 
 def index(request):
@@ -28,16 +28,37 @@ def dashboard(request):
     return render(request, 'inventory/dashboard.html')
 
 def products(request):
-    return render(request, 'inventory/products.html')
+    products = Products.objects.all()
+    myFilter = ProductFilter(request.GET, queryset=products)
+    products = myFilter.qs
+    context = {
+        "products": products,
+        "myFilter": myFilter
+    }
+    return render(request, 'inventory/products.html',context)
 
 def categories(request):
-    return render(request, 'inventory/categories.html')
+    productsType = ProductType.objects.all()
+
+    prodTypefilter = ProductTypeFilter(request.GET, queryset=productsType)
+    context = {
+        "productsType": productsType,
+        "prodTypefilter": prodTypefilter
+    }
+    return render(request, 'inventory/categories.html',context)
 
 def order(request):
     return render(request, 'inventory/order.html')
 
 def pos(request):
-    return render(request, 'inventory/pos.html')
+    products = Products.objects.all()
+    myFilterPOS = ProductPOSFilter(request.GET, queryset=products)
+    products = myFilterPOS.qs
+    context = {
+        "products": products,
+        "myFilterPOS": myFilterPOS
+    }
+    return render(request, 'inventory/pos.html',context)
 
 def usr_mgt(request):
     return render(request, 'inventory/user_mgt.html')
