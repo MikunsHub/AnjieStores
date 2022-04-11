@@ -70,8 +70,9 @@
                             <td>{{product.productsID}}</td>
                             <td>{{product.productName}}</td>
                             <td>
-                                <a class="Edit" href="#">Add</a>
-                                <a class="Deactivate" href="#">Remove</a>
+                                {% comment %} changed from a tag to button tag {% endcomment %}
+                                <button onclick="incrementButton()" style="background:#38b342" class="Edited" href="#">Add</button>
+                                <button style="background:#af4e4e" class="Edited" href="#">Remove</button> 
                             </td>
                             </tr>
                          {% endfor %}
@@ -91,7 +92,7 @@
                      <div><h3>Milo</h3></div>
                      
                      <div class="bill-content">
-                         <div class="bill-items-unit">x 1</div>
+                         <div  class="bill-items-unit"><h3 id="incrementUnit" value="0">0</h3></div>
                          <div class="item-price">$12</div>
                      </div>
                  </div>
@@ -135,4 +136,11 @@
         
     </div>
 </section>
+<script src="{% static 'inventory/index.js' %}"></script>
+{% comment %} <script>
+    var i = 0;
+    function buttonClick() {
+        document.getElementById('inc').value = ++i;
+    }
+</script> {% endcomment %}
 {% endblock %}
