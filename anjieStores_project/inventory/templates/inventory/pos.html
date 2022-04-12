@@ -71,11 +71,16 @@
                             <td>{{product.productName}}</td>
                             <td>
                                 {% comment %} changed from a tag to button tag {% endcomment %}
-                                <button onclick="incrementButton()" style="background:#38b342" class="Edited" href="#">Add</button>
-                                <button style="background:#af4e4e" class="Edited" href="#">Remove</button> 
+                                {% comment %} <button onclick="incrementButton()" style="background:#38b342" class="Edited" href="#">Add</button>
+                                <button style="background:#af4e4e" class="Edited" href="#">Remove</button>  {% endcomment %}
                             </td>
                             </tr>
                          {% endfor %}
+                         <form style="display:flex; gap:5px;" method="post"  novalidate>
+                            {% csrf_token %}
+                            {{ form }}
+                            <input style="width:70px" type="submit" value="Submit" name="">
+                        </form>
                      </table>
                  </div>
 
@@ -88,8 +93,9 @@
                      <h2>Bills</h2>
                  </div>
                  <div class="bill-container-items">
-                     
-                     <div><h3>Milo</h3></div>
+                    {% for product in products %}
+                     <div><h3></h3>{{product.productName}}</div>
+                    {% endfor %}
                      
                      <div class="bill-content">
                          <div  class="bill-items-unit"><h3 id="incrementUnit" value="0">0</h3></div>
@@ -97,7 +103,7 @@
                      </div>
                  </div>
 
-                 <div class="bill-container-items">
+                 {% comment %} <div class="bill-container-items">
                      
                      <div><h3>Bournvita</h3></div>
                      
@@ -105,7 +111,7 @@
                          <div class="bill-items-unit">x 3</div>
                          <div class="item-price">$22</div>
                      </div>
-                 </div>
+                 </div> {% endcomment %}
                  <div>----------------------------------</div>
                  <div class="bill-total">
                      <h3>Total</h3>
@@ -136,7 +142,7 @@
         
     </div>
 </section>
-<script src="{% static 'inventory/index.js' %}"></script>
+<script type="text/javascript" src="{% static 'inventory/index.js' %}"></script>
 {% comment %} <script>
     var i = 0;
     function buttonClick() {

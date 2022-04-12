@@ -81,3 +81,5 @@ class Transactions(models.Model):
     paidAt = models.DateTimeField(auto_now_add=True) # confirm for auto_now_add and datetimefield
     # purchasedItems = models.CharField() list out the purchased items and relate them to their products id
 
+class ItemCount(models.Model):
+    count = models.IntegerField()

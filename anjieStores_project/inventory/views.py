@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .models import Employee,Products,ProductType
+from .models import Employee,Products,ProductType,ItemCount
 from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
+from .forms import ItemForm
 
 
 def index(request):
@@ -52,11 +53,23 @@ def order(request):
 
 def pos(request):
     products = Products.objects.all()
+    itemCount = ItemCount.objects.all()
     myFilterPOS = ProductPOSFilter(request.GET, queryset=products)
     products = myFilterPOS.qs
+
+    if request.method == 'POST':
+        form = ItemForm(request.POST)
+        print(request.POST.get("productqty"))
+        if form.is_valid():
+            pass  # does nothing, just trigger the validation
+    else:
+        form = ItemForm()
+
+
     context = {
         "products": products,
-        "myFilterPOS": myFilterPOS
+        "myFilterPOS": myFilterPOS,
+        "form": form
     }
     return render(request, 'inventory/pos.html',context)
 
