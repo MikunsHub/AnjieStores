@@ -56,15 +56,27 @@ def pos(request):
     itemCount = ItemCount.objects.all()
     myFilterPOS = ProductPOSFilter(request.GET, queryset=products)
     products = myFilterPOS.qs
+    print(products)
 
     if request.method == 'POST':
         form = ItemForm(request.POST)
         print(request.POST.get("productqty"))
+        qty = request.POST.get("productqty")
+        print("qty =",qty)
+        for product in products:
+            # print(product.Price)
+            price = product.Price
+            print("price =",price)
+            total = int(qty) * int(price)
+            print("total =",total)
         if form.is_valid():
             pass  # does nothing, just trigger the validation
     else:
         form = ItemForm()
-
+    # print(products.Price)
+    # for product in products:
+    #     print(product.Price)
+        # print(product.Price * request.POST.get("productqty"))
 
     context = {
         "products": products,
