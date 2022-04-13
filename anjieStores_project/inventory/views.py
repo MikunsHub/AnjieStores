@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from .models import Employee,Products,ProductType,ItemCount
 from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
 from .forms import ItemForm
-from .inventory_utils import get_info
+from .inventory_utils import get_info, save_cart, get_cart
 
 
 def index(request):
@@ -59,7 +59,9 @@ def pos(request):
     products = myFilterPOS.qs
     # print(products)
     cart= {}
+    totalAmtCart = {}
     # print(cart)
+    
     if request.method == 'POST':
         form = ItemForm(request.POST)
         qty = request.POST.get("productqty")
@@ -71,13 +73,10 @@ def pos(request):
             cart["price"] = price
             cart["productName"] = product.productName
             cart["qty"] = int(qty)
-            print(cart)
             total = get_info(cart)
+            save_cart(cart)
+            totalAmtCart["total"] = total
             print("total=",total)
-            # print(product.productName)
-            # print("price =",price)
-            # total = int(qty) * int(price)
-            # print("total =",total)
         # return redirect("pos")
         # if form.is_valid():
         #     pass  # does nothing, just trigger the validation
@@ -89,9 +88,17 @@ def pos(request):
         "products": products,
         "myFilterPOS": myFilterPOS,
         "form": form,
-        "cart": cart
+        "cart": cart,
+        "totalAmtCart":totalAmtCart
     }
     return render(request, 'inventory/pos.html',context)
+
+def checkout(request):
+    cart = get_cart()
+    context = {
+        "cart":cart
+    }
+    return render(request, 'inventory/checkout.html',context)
 
 def usr_mgt(request):
     return render(request, 'inventory/user_mgt.html')

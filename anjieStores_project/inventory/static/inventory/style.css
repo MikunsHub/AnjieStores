@@ -786,3 +786,16 @@ form .user-details .input-box{
   /* box-shadow: 0 5px #666; */
   transform: translateY(4px);
 }
+
+.checkout-button-add a {
+    margin:50px;
+    width: 125px;
+    height: 35px;
+    background: #4E9CAF;
+    padding: 10px ;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    line-height: 25px;
+}

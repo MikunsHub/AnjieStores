@@ -8,14 +8,9 @@
         
         <div class="full-container">
              <div class="header-search">
-                 <!-- <i class="fas fa-search"></i> -->
-                 <form action="" method="get">
-                    {{myFilterPOS.form}}
-                    <button type="submit">Search</button>
-                </form>
                  {% comment %} <input type="text" placeholder="Search Category..."> 
                  <button type="button" class="">Search</button> {% endcomment %}
-
+                 
                  <div class="category-cards">
                      <div class="top-category-card">
                          <h5>Electronics</h5>
@@ -63,24 +58,15 @@
                          <tr>
                            <th>id</th>
                            <th>Product Name</th>
-                           <th>Quantity</th>
+                           <th>Action</th>
                          </tr>
-                         {% for product in products %}
+                         {% comment %} {% for product in cart %} {% endcomment %}
                             <tr>
-                            <td>{{product.productsID}}</td>
-                            <td>{{product.productName}}</td>
-                            <td>
-                                {% comment %} changed from a tag to button tag {% endcomment %}
-                                {% comment %} <button onclick="incrementButton()" style="background:#38b342" class="Edited" href="#">Add</button>
-                                <button style="background:#af4e4e" class="Edited" href="#">Remove</button>  {% endcomment %}
-                            </td>
+                            <td>{{cart.productsID}}</td>
+                            <td>{{cart.productName}}</td>
+                            <td>{{cart.qty}}</td>
                             </tr>
-                         {% endfor %}
-                         <form style="display:flex; gap:5px;" method="post"  novalidate>
-                            {% csrf_token %}
-                            {{ form }}
-                            <input style="width:70px" type="submit" value="Submit" name="">
-                        </form>
+                        {% comment %} {% endfor %} {% endcomment %}
                      </table>
                  </div>
 
