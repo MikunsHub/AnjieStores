@@ -93,9 +93,10 @@
                      <h2>Bills</h2>
                  </div>
                  <div class="bill-container-items">
-                    {% for product in products %}
+                    <div><h3></h3>{{cart.productName}}</div>
+                    {% comment %} {% for product in products %}
                      <div><h3></h3>{{product.productName}}</div>
-                    {% endfor %}
+                    {% endfor %} {% endcomment %}
                      
                      <div class="bill-content">
                          <div  class="bill-items-unit"><h3 id="incrementUnit" value="0">0</h3></div>

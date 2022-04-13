@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Employee,Products,ProductType,ItemCount
 from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
 from .forms import ItemForm
+from .inventory_utils import get_info
 
 
 def index(request):
@@ -56,32 +57,39 @@ def pos(request):
     itemCount = ItemCount.objects.all()
     myFilterPOS = ProductPOSFilter(request.GET, queryset=products)
     products = myFilterPOS.qs
-    print(products)
-
+    # print(products)
+    cart= {}
+    # print(cart)
     if request.method == 'POST':
         form = ItemForm(request.POST)
-        print(request.POST.get("productqty"))
         qty = request.POST.get("productqty")
-        print("qty =",qty)
+        # print("qty =",qty)
+        
         for product in products:
             # print(product.Price)
             price = product.Price
-            print("price =",price)
-            total = int(qty) * int(price)
-            print("total =",total)
-        if form.is_valid():
-            pass  # does nothing, just trigger the validation
+            cart["price"] = price
+            cart["productName"] = product.productName
+            cart["qty"] = int(qty)
+            print(cart)
+            total = get_info(cart)
+            print("total=",total)
+            # print(product.productName)
+            # print("price =",price)
+            # total = int(qty) * int(price)
+            # print("total =",total)
+        # return redirect("pos")
+        # if form.is_valid():
+        #     pass  # does nothing, just trigger the validation
     else:
         form = ItemForm()
-    # print(products.Price)
-    # for product in products:
-    #     print(product.Price)
-        # print(product.Price * request.POST.get("productqty"))
 
+    print(cart)
     context = {
         "products": products,
         "myFilterPOS": myFilterPOS,
-        "form": form
+        "form": form,
+        "cart": cart
     }
     return render(request, 'inventory/pos.html',context)
 
