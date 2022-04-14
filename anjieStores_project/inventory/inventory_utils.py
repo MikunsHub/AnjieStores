@@ -16,5 +16,9 @@ def save_cart(cart):
         json.dump(cart, outfile,indent = 4)
 
 def get_cart():
-    return json.load(open(r"C:\Users\HP PC\Documents\PersonalProjects\AnjieStores\anjieStores_project\inventory\temp_storage\cart.json"))
+    with open(r"C:\Users\HP PC\Documents\PersonalProjects\AnjieStores\anjieStores_project\inventory\temp_storage\cart.json") as d:
+        dictData = json.load(d)
+        print(dictData)
+        print(type(dictData))
+    return dictData
 

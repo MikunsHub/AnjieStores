@@ -8,9 +8,14 @@
         
         <div class="full-container">
              <div class="header-search">
+                 <!-- <i class="fas fa-search"></i> -->
+                 <form action="" method="get">
+                    {{myFilterPOS.form}}
+                    <button type="submit">Search</button>
+                </form>
                  {% comment %} <input type="text" placeholder="Search Category..."> 
                  <button type="button" class="">Search</button> {% endcomment %}
-                 
+
                  <div class="category-cards">
                      <div class="top-category-card">
                          <h5>Electronics</h5>
@@ -58,15 +63,18 @@
                          <tr>
                            <th>id</th>
                            <th>Product Name</th>
-                           <th>Action</th>
+                           <th>Quantity</th>
                          </tr>
-                         {% comment %} {% for product in cart %} {% endcomment %}
+                         {% for product in products %}
                             <tr>
-                            <td>{{cart.productsID}}</td>
-                            <td>{{cart.productName}}</td>
-                            <td>{{cart.qty}}</td>
+                            <td>{{product.productsID}}</td>
+                            <td>{{product.productName}}</td>
+                            <td>
+                                {% comment %} changed from a tag to button tag {% endcomment %}
+                                {% include "inventory/partial.html" %}
+                            </td>
                             </tr>
-                        {% comment %} {% endfor %} {% endcomment %}
+                         {% endfor %}
                      </table>
                  </div>
 
@@ -79,15 +87,16 @@
                      <h2>Bills</h2>
                  </div>
                  <div class="bill-container-items">
-                    <div><h3></h3>{{cart.productName}}</div>
-                    {% comment %} {% for product in products %}
+
+                    {% for product in products %}
                      <div><h3></h3>{{product.productName}}</div>
-                    {% endfor %} {% endcomment %}
-                     
                      <div class="bill-content">
-                         <div  class="bill-items-unit"><h3 id="incrementUnit">x {{cart.qty}}</h3></div>
-                         <div class="item-price">${{ totalAmtCart.total }}</div>
-                     </div>
+                        <div  class="bill-items-unit"><h3 id="#quantity"></h3>{{ cart }}</div>
+                        <div class="item-price">${{ totalAmtCart.total }}</div>
+                    </div>
+                    {% endfor %}
+                     
+                     
                  </div>
 
                  {% comment %} <div class="bill-container-items">
@@ -131,10 +140,16 @@
     </div>
 </section>
 <script type="text/javascript" src="{% static 'inventory/index.js' %}"></script>
-{% comment %} <script>
+<script>
     var i = 0;
     function buttonClick() {
         document.getElementById('inc').value = ++i;
     }
-</script> {% endcomment %}
+</script>
+<script src="https://unpkg.com/htmx.org@1.6.0"></script>
+<script>
+        document.body.addEventListener('htmx:configRequest', (e) => {
+          e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+          })
+</script> 
 {% endblock %}

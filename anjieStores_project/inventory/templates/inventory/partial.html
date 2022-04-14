@@ -1,0 +1,22 @@
+
+    {% comment %} <button hx-post="{% url 'posts:like_post' post.id %}" id="like-button" onclick="incrementButton()" style="background:#38b342" class="Edited" href="#">Add</button> {% endcomment %}
+    {% comment %} <button style="background:#af4e4e" class="Edited" href="#">Remove</button> {% endcomment %}
+<form method="post" hx-post="{% url 'checkout' %}" hx-target="#quantity">
+    {% csrf_token %}
+    <input type="text"  name="addtocart"><br><br>
+    <button hx-post="{% url 'checkout' %}" type="submit">Submit</button>
+</form>
+{% comment %} <form method="POST" hx-post="{% url 'blog:post_list' %}" hx-target="#result">
+    {% csrf_token %}
+    <div>
+    <label>num_1:</label>
+    <input type="text" name="num_1" value="1" placeholder="Enter value" />
+    </div>
+    <div>
+    <label>num_2:</label>
+    <input type="text" name="num_2" value="2" placeholder="Enter value" />
+    </div>
+    <br />
+    <div id="result">{{ result }}</div>
+    <button type="submit">Submit</button>
+</form> {% endcomment %}
