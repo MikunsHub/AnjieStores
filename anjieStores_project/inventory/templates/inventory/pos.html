@@ -8,82 +8,101 @@
         
         <div class="full-container">
              <div class="header-search">
-                 <!-- <i class="fas fa-search"></i> -->
-                 <form id="filter" action="" method="get">
-                    {{myFilterPOS.form}}
-                    <button type="submit">Search</button>
+                <form action="" id="pos-form">
+                    <fieldset>
+                        <legend>Add Products</legend>
+                        <div class="row align-items-end">
+                            <div class="col-lg-5 col-md-5 col-sm-12">
+                                <div class="form-group mb-3">
+                                    <label for="product-id">Select Product</label>
+                                    <select id="product-id" class="form-select form-select-sm">
+                                        <option value="" disabled selected></option>
+                                        {% for product in products %}
+                                            <option value="{{ product.pk }}">{{ product }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-5 col-md-12">
+                                <div class="form-group mb-3">
+                                    <label for="product-qty">Qty</label>
+                                    <input type="number" class="form-control form-control-sm text-center" step="any" id="product-qty" value="1">
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-2 col-md-12">
+                                <div class="form-group mb-3">
+                                    <button class="btn btn-light btn-sm bg-gradient border rounded-0 text-start" type="button" id="add_item"><i class="mdi mdi-plus"></i> Add Item</button>
+                                </div>
+                            </div>
+        
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <div class="d-flex w-100" id="POS-field">
+                            <div class="col-8 bg-gradient bg-light border h-100">
+                                <table class="table table-bordered">
+                                    <colgroup>
+                                        <col width="5%">
+                                        <col width="15%">
+                                        <col width="40%">
+                                        <col width="20%">
+                                        <col width="20%">
+                                    </colgroup>
+                                    <thead>
+                                        <tr class="bg-dark bg-gradient bg-opacity-50 text-light">
+                                            <th class="py-1 px-2 text-center  text-light"></th>
+                                            <th class="py-1 px-2 text-center  text-light">QTY</th>
+                                            <th class="py-1 px-2 text-center  text-light">Product</th>
+                                            <th class="py-1 px-2 text-center  text-light">Price</th>
+                                            <th class="py-1 px-2 text-center  text-light">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-4 bg-gradient bg-dark bg-opacity-50 border h-100">
+                                <div class="col-12 py-4 px-2">
+                                    <dl>
+                                        <dt class="h4 fw-bold text-light">Sub Total</dt>
+                                        <dd class="text-end py-1 px-2 rounded-0 bg-light">
+                                            <input type="hidden" name="sub_total" value="0">
+                                            <span class="h3 fw-bold" id="sub_total">0.00</span>
+                                        </dd>
+                                        <dt class="h4 fw-bold text-light">Tax Inclusive (%)</dt>
+                                        <dd>
+                                            <input type="number" class="form-control form-control-lg rounded-0 text-end" step="any" min="0" max="100" name="tax" value="0">
+                                        </dd>
+                                        <dt class="h4 fw-bold text-light">Tax Amount</dt>
+                                        <dd class="text-end py-1 px-2 rounded-0 bg-light">
+                                            <input type="hidden" name="tax_amount" value="0">
+                                            <span class="h3 fw-bold" id="tax_amount">0.00</span>
+                                        </dd>
+                                        <dt class="h4 fw-bold text-light">Grand Total</dt>
+                                        <dd class="text-end py-1 px-2 rounded-0 bg-light">
+                                            <input type="hidden" name="grand_total" value="0">
+                                            <input type="hidden" name="tendered_amount" value="0">
+                                            <input type="hidden" name="amount_change" value="0">
+                                            <input type="hidden" name="grand_total" value="0">
+                                            <input type="hidden" name="grand_total" value="0">
+                                            <span class="h3 fw-bold" id="grand_total">0.00</span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-md-12 text-end">
+                            <button class="btn btn-primary btn-sm rounded-0" type="button" id="check_out"><i class="mdi mdi-save"></i> Checkout</button>
+                        </div>
+                    </div>
                 </form>
-                 {% comment %} <input type="text" placeholder="Search Category..."> 
-                 <button type="button" class="">Search</button> {% endcomment %}
+                 
 
-                 <div class="category-cards">
-                     <div class="top-category-card">
-                         <h5>Electronics</h5>
-                     </div>
-
-                     <div class="top-category-card">
-                         <h5>Beverages</h5>
-                     </div>
-
-                     <div class="top-category-card">
-                         <h5>Groceries</h5>
-                     </div>
-
-                     <div class="top-category-card">
-                         <h5>Toiletries</h5>
-                     </div>
-
-                     <div class="top-category-card">
-                         <h5>Furniture</h5>
-                     </div>
-
-                     <div class="top-category-card">
-                         <h5>Fruits</h5>
-                     </div>
-
-                     <div class="top-category-card">
-                         <h5>Vegetables</h5>
-                     </div>
-
-                     <div class="top-category-card">
-                         <h5>Meat & Fish</h5>
-                     </div>
-
-                     <div class="top-category-card">
-                         <h5>Toys</h5>
-                     </div>
-
-                     <div class="top-category-card">
-                         <h5>Toy</h5>
-                     </div>
-                 </div>
-
-                 <div class="table-container">
-                     <table>
-                         <tr>
-                           <th>id</th>
-                           <th>Product Name</th>
-                           <th>Quantity</th>
-                         </tr>
-                         {% for product in products %}
-                            <tr>
-                            <td>{{product.productsID}}</td>
-                            <td>{{product.productName}}</td>
-                            <td>
-                                {% comment %} changed from a tag to button tag {% endcomment %}
-                                {% comment %} <button onclick="incrementButton()" style="background:#38b342" class="Edited" href="#">Add</button>
-                                <button style="background:#af4e4e" class="Edited" href="#">Remove</button>  {% endcomment %}
-                                <form id="form" method="POST">
-                                    {% csrf_token %}
-                                    <input id="quantity" type="number" name="quantity">
-                                    <button style="background:#38b342" class="Edited" href="#">Add</button>
-                                </form>
-                            </td>
-                            </tr>
-                         {% endfor %}
-                         
-                     </table>
-                 </div>
+                 
+                {% comment %} for table {% endcomment %}
+                <div class="table-container"></div>
 
              </div>
              
