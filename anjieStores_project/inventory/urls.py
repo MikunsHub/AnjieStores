@@ -11,6 +11,8 @@ urlpatterns = [
     path('pos/', views.pos, name='pos'),
     path('checkout/', views.checkout, name='checkout'),
     path('cart_add/', views.cart_add, name='cart_add'),
+    path('bill/', views.bill, name='bill'),
+    path('ajax-posting/', views.ajax_posting, name='ajax_posting'),
     path('usr_mgt/', views.usr_mgt, name='usr_mgt'),
 ]
 

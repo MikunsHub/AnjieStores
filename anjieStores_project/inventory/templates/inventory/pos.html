@@ -9,7 +9,7 @@
         <div class="full-container">
              <div class="header-search">
                  <!-- <i class="fas fa-search"></i> -->
-                 <form action="" method="get">
+                 <form id="filter" action="" method="get">
                     {{myFilterPOS.form}}
                     <button type="submit">Search</button>
                 </form>
@@ -73,14 +73,15 @@
                                 {% comment %} changed from a tag to button tag {% endcomment %}
                                 {% comment %} <button onclick="incrementButton()" style="background:#38b342" class="Edited" href="#">Add</button>
                                 <button style="background:#af4e4e" class="Edited" href="#">Remove</button>  {% endcomment %}
+                                <form id="form" method="POST">
+                                    {% csrf_token %}
+                                    <input id="quantity" type="number" name="quantity">
+                                    <button style="background:#38b342" class="Edited" href="#">Add</button>
+                                </form>
                             </td>
                             </tr>
                          {% endfor %}
-                         <form style="display:flex; gap:5px;" method="post"  novalidate>
-                            {% csrf_token %}
-                            {{ form }}
-                            <input style="width:70px" type="submit" value="Submit" name="">
-                        </form>
+                         
                      </table>
                  </div>
 
@@ -99,7 +100,7 @@
                     {% endfor %} {% endcomment %}
                      
                      <div class="bill-content">
-                         <div  class="bill-items-unit"><h3 id="incrementUnit">x {{cart.qty}}</h3></div>
+                         <div  class="bill-items-unit"><h3 id="output"></h3></div>
                          <div class="item-price">${{ totalAmtCart.total }}</div>
                      </div>
                  </div>
@@ -144,7 +145,36 @@
         
     </div>
 </section>
-<script type="text/javascript" src="{% static 'inventory/index.js' %}"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $('#form').on('submit', function(e){
+        
+    e.preventDefault();
+    
+      $.ajax({
+           type : "POST", 
+           url: "{% url 'ajax_posting' %}",
+           data: {
+            quantity : $('#quantity').val(),
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            dataType: "json",
+    
+           },
+           
+           success: function(data){
+              $('#output').html(data.msg) /* response message */
+           },
+    
+           failure: function() {
+               
+           }
+    
+    
+       });
+    
+    
+            });    
+</script>
 {% comment %} <script>
     var i = 0;
     function buttonClick() {

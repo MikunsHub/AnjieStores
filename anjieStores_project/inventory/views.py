@@ -4,7 +4,8 @@ from .models import Employee,Products,ProductType,ItemCount
 from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
 from .forms import ItemForm
 from .inventory_utils import get_info, save_cart, get_cart
-
+import json
+from django.http import JsonResponse
 
 def index(request):
     
@@ -57,40 +58,50 @@ def pos(request):
     products = Products.objects.all()
     myFilterPOS = ProductPOSFilter(request.GET, queryset=products)
     products = myFilterPOS.qs
-    # print(products)
-    # create cart--> a json file
-    cart= {}
-    totalAmtCart = {}
-    # print(cart)
     
-    if request.method == 'POST':
-        form = ItemForm(request.POST)
-        qty = request.POST.get("productqty")
-        
-        for product in products:
-            cart= {}
-            price = product.Price
-            cart["price"] = price
-            cart["productName"] = product.productName
-            cart["qty"] = int(qty)
-            total = get_info(cart)
-            save_cart(cart)
-            totalAmtCart["total"] = total
-            # print("total=",total)
-        # return redirect("pos")
-        # if form.is_valid():
-        #     pass  # does nothing, just trigger the validation
-    else:
-        form = ItemForm()
-
     context = {
         "products": products,
         "myFilterPOS": myFilterPOS,
-        "form": form,
-        # "cart": cart,
-        "totalAmtCart":totalAmtCart
     }
     return render(request, 'inventory/pos.html',context)
+
+# ajax_posting function
+def ajax_posting(request):
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        quantity = request.POST.get('quantity', None) # getting data from quantity input
+        if quantity: #cheking quantity has a value
+            response = {
+                         'msg':quantity # response message
+            }
+            return JsonResponse(response) # return response as JSON
+    
+
+
+
+def cart_add(request):
+    cart = 0
+    if request.method == "POST":
+        cart = request.POST.get("addtocart")
+        # print(cart)
+        print(request.headers.get('Hx-Request'))
+    if request.headers.get('Hx-Request') == "true" :
+        print(cart)
+        # return only the result to be replaced
+        return HttpResponse(str(cart))
+    else:
+        return render(request,'inventory/partial.html',{'cart':cart})
+    
+
+
+def bill(request):
+    return render(request,'inventory/bill.html')
+
+
+
+def usr_mgt(request):
+    return render(request, 'inventory/user_mgt.html')
+
+
 
 def checkout(request):
     products = Products.objects.all()
@@ -111,32 +122,42 @@ def checkout(request):
     }
     return render(request, 'inventory/checkout.html',context)
 
-def cart_add(request):
-    cart = 0
-    if request.method == "POST":
-        cart = request.POST.get("addtocart")
-        # print(cart)
-        print(request.headers.get('Hx-Request'))
-    if request.headers.get('Hx-Request') == None :
-        print(cart)
-        # return only the result to be replaced
-        return HttpResponse(str(cart))
-    else:
-        return render(request,'inventory/partial.html',{'cart':cart})
+
+# def pos(request):
+#     products = Products.objects.all()
+#     myFilterPOS = ProductPOSFilter(request.GET, queryset=products)
+#     products = myFilterPOS.qs
+#     # print(products)
+#     # create cart--> a json file
+#     cart= {}
+#     totalAmtCart = {}
+#     # print(cart)
     
-
-def usr_mgt(request):
-    return render(request, 'inventory/user_mgt.html')
-
-# def post_list(request):
-#     result = 0
-#     if request.method == "POST":
-#         num1 = request.POST.get('num_1')
-#         num2 = request.POST.get('num_2')
-#         result = int(num1) + int(num2)
-
-#     if request.headers.get('Hx-Request') == 'true':
-#         # return only the result to be replaced
-#         return HttpResponse(str(result))
+#     if request.method == 'POST':
+#         form = ItemForm(request.POST)
+#         qty = request.POST.get("productqty")
+        
+#         for product in products:
+#             cart= {}
+#             price = product.Price
+#             cart["price"] = price
+#             cart["productName"] = product.productName
+#             cart["qty"] = int(qty)
+#             total = get_info(cart)
+#             save_cart(cart)
+#             totalAmtCart["total"] = total
+#             # print("total=",total)
+#         # return redirect("pos")
+#         # if form.is_valid():
+#         #     pass  # does nothing, just trigger the validation
 #     else:
-#         return render(request, 'blog/post_list.html', {'result': result})
+#         form = ItemForm()
+
+#     context = {
+#         "products": products,
+#         "myFilterPOS": myFilterPOS,
+#         "form": form,
+#         # "cart": cart,
+#         "totalAmtCart":totalAmtCart
+#     }
+#     return render(request, 'inventory/pos.html',context)

@@ -41,6 +41,7 @@ class Products(models.Model):
     manufacturer =  models.CharField(max_length=35)
     quantity = models.IntegerField()
     productTypeID = models.ForeignKey(ProductType,on_delete=models.CASCADE)
+    status = models.IntegerField(default=1)
 
     def __str__(self):
         return self.productName

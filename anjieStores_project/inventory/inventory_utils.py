@@ -1,6 +1,6 @@
 # from .models import Employee,Products,ProductType
 import json
-
+from django.shortcuts import HttpResponse
 # def productTypeFilter(request):
 #     productsType = ProductType.objects.filter(productsType=)
 
@@ -21,4 +21,5 @@ def get_cart():
         print(dictData)
         print(type(dictData))
     return dictData
+
 

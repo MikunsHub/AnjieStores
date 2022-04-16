@@ -81,61 +81,10 @@
              </div>
              
              <!-- selected items -->  
+            
+            {% include "inventory/bill.html" %}
              
-             <div class="bill-container">
-                 <div class="bill-container-title">
-                     <h2>Bills</h2>
-                 </div>
-                 <div class="bill-container-items">
-
-                    {% for product in products %}
-                     <div><h3></h3>{{product.productName}}</div>
-                     <div class="bill-content">
-                        <div  class="bill-items-unit"><h3 id="#quantity"></h3>{{ cart }}</div>
-                        <div class="item-price">${{ totalAmtCart.total }}</div>
-                    </div>
-                    {% endfor %}
-                     
-                     
-                 </div>
-
-                 {% comment %} <div class="bill-container-items">
-                     
-                     <div><h3>Bournvita</h3></div>
-                     
-                     <div class="bill-content">
-                         <div class="bill-items-unit">x 3</div>
-                         <div class="item-price">$22</div>
-                     </div>
-                 </div> {% endcomment %}
-                 <div>----------------------------------</div>
-                 <div class="bill-total">
-                     <h3>Total</h3>
-                     <h3>$12</h3>
-                 </div>
-                 <div class="bill-payment-method">
-                     <h3>Payment Method</h3>
-                     <div style="display:flex; justify-content:space-between;">
-                         <div class="bill-payment-card">
-                             <img src="{% static 'inventory/images/cash.png' %}" alt="">
-                             <h5>Cash</h5>
-                         </div>
-                         <div class="bill-payment-card">
-                             <img src="{% static 'inventory/images/credit-card.png' %}" alt="">
-                             <h5>Card</h5>
-                         </div>
-                         <div class="bill-payment-card">
-                             <img src="{% static 'inventory/images/bitcoin-wallet.png' %}" alt="">
-                             <h5>Crypto</h5>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="pay-button">
-                     
-                     <a href="{% url 'checkout' %} "><button type="button" class="">Confirm Payment</button></a>
-                 </div>
-             </div>
-        </div>
+             
         
     </div>
 </section>
@@ -148,8 +97,8 @@
 </script>
 <script src="https://unpkg.com/htmx.org@1.6.0"></script>
 <script>
-        document.body.addEventListener('htmx:configRequest', (e) => {
-          e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
-          })
+    document.body.addEventListener('htmx:configRequest', (event) => {
+        event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+      })
 </script> 
 {% endblock %}
