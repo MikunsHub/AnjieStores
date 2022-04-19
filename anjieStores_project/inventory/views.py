@@ -62,25 +62,11 @@ def pos(request):
     return render(request, 'inventory/pos.html',context)
 
 
-
-def cart_add(request):
-    cart = 0
-    if request.method == "POST":
-        cart = request.POST.get("addtocart")
-        # print(cart)
-        print(request.headers.get('Hx-Request'))
-    if request.headers.get('Hx-Request') == "true" :
-        print(cart)
-        # return only the result to be replaced
-        return HttpResponse(str(cart))
-    else:
-        return render(request,'inventory/partial.html',{'cart':cart})
+def test(request):
+    return render(request,'inventory/test.html')
     
-
 
 def usr_mgt(request):
     return render(request, 'inventory/user_mgt.html')
-
-
 
 
