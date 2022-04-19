@@ -1,11 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http.response import HttpResponse
-from .models import Employee,Products,ProductType,ItemCount
+from .models import Employee,Products,ProductType
 from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
-from .forms import ItemForm
-from .inventory_utils import get_info, save_cart, get_cart
-import json
-from django.http import JsonResponse
 
 def index(request):
     
@@ -65,17 +61,6 @@ def pos(request):
     }
     return render(request, 'inventory/pos.html',context)
 
-# ajax_posting function
-def ajax_posting(request):
-    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        quantity = request.POST.get('quantity', None) # getting data from quantity input
-        if quantity: #cheking quantity has a value
-            response = {
-                         'msg':quantity # response message
-            }
-            return JsonResponse(response) # return response as JSON
-    
-
 
 
 def cart_add(request):
@@ -93,71 +78,9 @@ def cart_add(request):
     
 
 
-def bill(request):
-    return render(request,'inventory/bill.html')
-
-
-
 def usr_mgt(request):
     return render(request, 'inventory/user_mgt.html')
 
 
 
-def checkout(request):
-    products = Products.objects.all()
-    myFilterPOS = ProductPOSFilter(request.GET, queryset=products)
-    products = myFilterPOS.qs
 
-    if request.method == 'POST':
-        form = ItemForm(request.POST)
-        # if form.is_valid():
-        #     pass  # does nothing, just trigger the validation
-    else:
-        form = ItemForm()
-
-    context = {
-        "products": products,
-        "form": form,
-        "myFilterPOS": myFilterPOS
-    }
-    return render(request, 'inventory/checkout.html',context)
-
-
-# def pos(request):
-#     products = Products.objects.all()
-#     myFilterPOS = ProductPOSFilter(request.GET, queryset=products)
-#     products = myFilterPOS.qs
-#     # print(products)
-#     # create cart--> a json file
-#     cart= {}
-#     totalAmtCart = {}
-#     # print(cart)
-    
-#     if request.method == 'POST':
-#         form = ItemForm(request.POST)
-#         qty = request.POST.get("productqty")
-        
-#         for product in products:
-#             cart= {}
-#             price = product.Price
-#             cart["price"] = price
-#             cart["productName"] = product.productName
-#             cart["qty"] = int(qty)
-#             total = get_info(cart)
-#             save_cart(cart)
-#             totalAmtCart["total"] = total
-#             # print("total=",total)
-#         # return redirect("pos")
-#         # if form.is_valid():
-#         #     pass  # does nothing, just trigger the validation
-#     else:
-#         form = ItemForm()
-
-#     context = {
-#         "products": products,
-#         "myFilterPOS": myFilterPOS,
-#         "form": form,
-#         # "cart": cart,
-#         "totalAmtCart":totalAmtCart
-#     }
-#     return render(request, 'inventory/pos.html',context)

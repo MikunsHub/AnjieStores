@@ -8,101 +8,85 @@
         
         <div class="full-container">
              <div class="header-search">
-                <form action="" id="pos-form">
-                    <fieldset>
-                        <legend>Add Products</legend>
-                        <div class="row align-items-end">
-                            <div class="col-lg-5 col-md-5 col-sm-12">
-                                <div class="form-group mb-3">
-                                    <label for="product-id">Select Product</label>
-                                    <select id="product-id" class="form-select form-select-sm">
-                                        <option value="" disabled selected></option>
-                                        {% for product in products %}
-                                            <option value="{{ product.pk }}">{{ product }}</option>
-                                        {% endfor %}
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-5 col-md-12">
-                                <div class="form-group mb-3">
-                                    <label for="product-qty">Qty</label>
-                                    <input type="number" class="form-control form-control-sm text-center" step="any" id="product-qty" value="1">
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-2 col-md-12">
-                                <div class="form-group mb-3">
-                                    <button class="btn btn-light btn-sm bg-gradient border rounded-0 text-start" type="button" id="add_item"><i class="mdi mdi-plus"></i> Add Item</button>
-                                </div>
-                            </div>
-        
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <div class="d-flex w-100" id="POS-field">
-                            <div class="col-8 bg-gradient bg-light border h-100">
-                                <table class="table table-bordered">
-                                    <colgroup>
-                                        <col width="5%">
-                                        <col width="15%">
-                                        <col width="40%">
-                                        <col width="20%">
-                                        <col width="20%">
-                                    </colgroup>
-                                    <thead>
-                                        <tr class="bg-dark bg-gradient bg-opacity-50 text-light">
-                                            <th class="py-1 px-2 text-center  text-light"></th>
-                                            <th class="py-1 px-2 text-center  text-light">QTY</th>
-                                            <th class="py-1 px-2 text-center  text-light">Product</th>
-                                            <th class="py-1 px-2 text-center  text-light">Price</th>
-                                            <th class="py-1 px-2 text-center  text-light">Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>
-                            </div>
-                            <div class="col-4 bg-gradient bg-dark bg-opacity-50 border h-100">
-                                <div class="col-12 py-4 px-2">
-                                    <dl>
-                                        <dt class="h4 fw-bold text-light">Sub Total</dt>
-                                        <dd class="text-end py-1 px-2 rounded-0 bg-light">
-                                            <input type="hidden" name="sub_total" value="0">
-                                            <span class="h3 fw-bold" id="sub_total">0.00</span>
-                                        </dd>
-                                        <dt class="h4 fw-bold text-light">Tax Inclusive (%)</dt>
-                                        <dd>
-                                            <input type="number" class="form-control form-control-lg rounded-0 text-end" step="any" min="0" max="100" name="tax" value="0">
-                                        </dd>
-                                        <dt class="h4 fw-bold text-light">Tax Amount</dt>
-                                        <dd class="text-end py-1 px-2 rounded-0 bg-light">
-                                            <input type="hidden" name="tax_amount" value="0">
-                                            <span class="h3 fw-bold" id="tax_amount">0.00</span>
-                                        </dd>
-                                        <dt class="h4 fw-bold text-light">Grand Total</dt>
-                                        <dd class="text-end py-1 px-2 rounded-0 bg-light">
-                                            <input type="hidden" name="grand_total" value="0">
-                                            <input type="hidden" name="tendered_amount" value="0">
-                                            <input type="hidden" name="amount_change" value="0">
-                                            <input type="hidden" name="grand_total" value="0">
-                                            <input type="hidden" name="grand_total" value="0">
-                                            <span class="h3 fw-bold" id="grand_total">0.00</span>
-                                        </dd>
-                                    </dl>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset>
-                    <div class="row">
-                        <div class="col-md-12 text-end">
-                            <button class="btn btn-primary btn-sm rounded-0" type="button" id="check_out"><i class="mdi mdi-save"></i> Checkout</button>
-                        </div>
-                    </div>
-                </form>
-                 
+                 <!-- <i class="fas fa-search"></i> -->
+                 <input type="text" placeholder="Search Category..."> 
+                 <button type="button" class="">Search</button>
 
-                 
-                {% comment %} for table {% endcomment %}
-                <div class="table-container"></div>
+                 <div class="category-cards">
+                     <div class="top-category-card">
+                         <h5>Electronics</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Beverages</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Groceries</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Toiletries</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Furniture</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Fruits</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Vegetables</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Meat & Fish</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Toys</h5>
+                     </div>
+
+                     <div class="top-category-card">
+                         <h5>Toy</h5>
+                     </div>
+                 </div>
+
+                 <div class="table-container">
+                     <table>
+                         <tr>
+                           <th>id</th>
+                           <th>Product Name</th>
+                           <th>Action</th>
+                         </tr>
+                         <tr>
+                           <td>1</td>
+                           <td>Samsung washing machine</td>
+                           <td>
+                               <a class="Edit" href="#">Add</a>
+                               <a class="Deactivate" href="#">Remove</a>
+                           </td>
+                         </tr>
+                         <tr>
+                             <td>1</td>
+                             <td>Samsung washing machine</td>
+                             <td>
+                                 <a class="Edit" href="#">Add</a>
+                                 <a class="Deactivate" href="#">Remove</a>
+                             </td>
+                           </tr>
+                           <tr>
+                             <td>1</td>
+                             <td>Samsung washing machine</td>
+                             <td>
+                                 <a class="Edit" href="#">Add</a>
+                                 <a class="Deactivate" href="#">Remove</a>
+                             </td>
+                           </tr>
+                     </table>
+                 </div>
 
              </div>
              
@@ -113,18 +97,16 @@
                      <h2>Bills</h2>
                  </div>
                  <div class="bill-container-items">
-                    <div><h3></h3>{{cart.productName}}</div>
-                    {% comment %} {% for product in products %}
-                     <div><h3></h3>{{product.productName}}</div>
-                    {% endfor %} {% endcomment %}
+                     
+                     <div><h3>Milo</h3></div>
                      
                      <div class="bill-content">
-                         <div  class="bill-items-unit"><h3 id="output"></h3></div>
-                         <div class="item-price">${{ totalAmtCart.total }}</div>
+                         <div class="bill-items-unit">x 1</div>
+                         <div class="item-price">$12</div>
                      </div>
                  </div>
 
-                 {% comment %} <div class="bill-container-items">
+                 <div class="bill-container-items">
                      
                      <div><h3>Bournvita</h3></div>
                      
@@ -132,7 +114,7 @@
                          <div class="bill-items-unit">x 3</div>
                          <div class="item-price">$22</div>
                      </div>
-                 </div> {% endcomment %}
+                 </div>
                  <div>----------------------------------</div>
                  <div class="bill-total">
                      <h3>Total</h3>
@@ -142,62 +124,25 @@
                      <h3>Payment Method</h3>
                      <div style="display:flex; justify-content:space-between;">
                          <div class="bill-payment-card">
-                             <img src="{% static 'inventory/images/cash.png' %}" alt="">
+                             <img src="{%static 'inventory/images/cash.png' %}" alt="">
                              <h5>Cash</h5>
                          </div>
                          <div class="bill-payment-card">
-                             <img src="{% static 'inventory/images/credit-card.png' %}" alt="">
+                             <img src="{%static 'inventory/images/credit-card.png' %}" alt="">
                              <h5>Card</h5>
                          </div>
                          <div class="bill-payment-card">
-                             <img src="{% static 'inventory/images/bitcoin-wallet.png' %}" alt="">
+                             <img src="{%static 'inventory/images/bitcoin-wallet.png' %}" alt="">
                              <h5>Crypto</h5>
                          </div>
                      </div>
                  </div>
                  <div class="pay-button">
-                     
-                     <a href="{% url 'checkout' %} "><button type="button" class="">Confirm Payment</button></a>
+                     <button type="button" class="">Confirm Payment</button>
                  </div>
              </div>
         </div>
         
     </div>
 </section>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-    $('#form').on('submit', function(e){
-        
-    e.preventDefault();
-    
-      $.ajax({
-           type : "POST", 
-           url: "{% url 'ajax_posting' %}",
-           data: {
-            quantity : $('#quantity').val(),
-            csrfmiddlewaretoken: '{{ csrf_token }}',
-            dataType: "json",
-    
-           },
-           
-           success: function(data){
-              $('#output').html(data.msg) /* response message */
-           },
-    
-           failure: function() {
-               
-           }
-    
-    
-       });
-    
-    
-            });    
-</script>
-{% comment %} <script>
-    var i = 0;
-    function buttonClick() {
-        document.getElementById('inc').value = ++i;
-    }
-</script> {% endcomment %}
 {% endblock %}

@@ -1,5 +1,0 @@
-<form method="POST" hx-post="{% url 'cart_add' %}" hx-target="#quantity">
-    {% csrf_token %}
-    <input type="text"  name="addtocart"><br><br>
-    <input hx-post="{% url 'cart_add' %}" type="submit"/>
-</form>
