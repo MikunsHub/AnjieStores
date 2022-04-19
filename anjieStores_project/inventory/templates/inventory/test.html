@@ -1,7 +1,63 @@
-<form>
+<form method="POST" id="post-form">
+    {% csrf_token %}
     <label for="fname">First name:</label><br>
-    <input type="text" id="fname" name="fname" value="John"><br>
+    <input type="text" id="fname" name="fname"><br>
+
     <label for="lname">Last name:</label><br>
-    <input type="text" id="lname" name="lname" value="Doe"><br><br>
+    <input type="text" id="lname" name="lname"><br><br>
+
+    <label for="lname">Quantity:</label><br>
+    <input type="text" id="qty" name="qty"><br><br>
+
     <input type="submit" value="Submit">
-</form> 
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Quantity</th>
+            <th>Calculation</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Toluwani</th>
+            <th>Alade</th>
+            <th>10</th>
+            <th>20</th>
+        </tr>
+    </tbody>
+</table>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $(document).on('submit','#post-form',function(e){
+        e.preventDefault();
+        console.log("hi");
+        var firstName = $("#fname").val();
+        var lastName = $("#lname").val();
+        var Quantity = $("#qty").val();
+        var Calculation = Quantity * 2
+        var row = "<tr><td>" + firstName + "</td><td>" + lastName + "</td><td>" + Quantity + "</td><td>" + Calculation + "</td></tr>"
+        $("table tbody").append(row);
+        $.ajax({
+            type: 'POST',
+            url: '{% url "test" %}',
+            dataType: 'json',
+            data: {
+                firstName: $('#fname').val(),
+                lastName: $('#lname').val(),
+                quantity: $('#qty').val(),
+                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
+                action: 'post'
+            },
+            success: function(json){
+                console.log("hi")
+                
+            }
+        })
+    })
+</script>

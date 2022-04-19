@@ -17,12 +17,6 @@ class Employee(models.Model):
     def __str__(self):
         return self.fullName
 
-# class Test(models.Model):
-#     name = models.CharField(max_length=35)
-#     qty = models.IntegerField()
-
-#     def __str__(self):
-#         return self.name
 
 class ProductType(models.Model):
     productTypeID = models.IntegerField()
@@ -82,5 +76,18 @@ class Transactions(models.Model):
     paidAt = models.DateTimeField(auto_now_add=True) # confirm for auto_now_add and datetimefield
     # purchasedItems = models.CharField() list out the purchased items and relate them to their products id
 
-class ItemCount(models.Model):
-    count = models.IntegerField()
+
+class Sales(models.Model):
+    # code = models.CharField(max_length=100)
+    sub_total = models.FloatField(default=0)
+    grand_total = models.FloatField(default=0)
+    quantity = models.IntegerField(default=1)
+    # tax_amount = models.FloatField(default=0)
+    # tax = models.FloatField(default=0)
+    # tendered_amount = models.FloatField(default=0)
+    # amount_change = models.FloatField(default=0)
+    # date_added = models.DateTimeField(default=timezone.now) 
+    # date_updated = models.DateTimeField(auto_now=True) 
+
+    def __str__(self):
+        return self.grand_total

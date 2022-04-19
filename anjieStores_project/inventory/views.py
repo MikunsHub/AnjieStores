@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.http.response import HttpResponse
 from .models import Employee,Products,ProductType
 from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
+from django.http import JsonResponse
 
 def index(request):
     
@@ -63,7 +64,25 @@ def pos(request):
 
 
 def test(request):
+    
+    response_data = {}
+
+    if request.POST.get('action') == 'post':
+        firstName = request.POST.get('firstName')
+        lastName = request.POST.get('lastName')
+        qty = request.POST.get('quantity')
+
+        response_data['firstName'] = firstName
+        response_data['lastName'] = lastName
+        response_data['quantity'] = qty
+
+        print(response_data)
+
+        return JsonResponse(response_data)
     return render(request,'inventory/test.html')
+
+# def test_save(request):
+#     pass
     
 
 def usr_mgt(request):
