@@ -1,32 +1,39 @@
-<form method="POST" id="post-form">
+{% comment %} <form method="POST" id="post-form">
     {% csrf_token %}
     <label for="fname">First name:</label><br>
     <input type="text" id="fname" name="fname"><br>
-
     <label for="lname">Last name:</label><br>
     <input type="text" id="lname" name="lname"><br><br>
+    <input type="submit" value="Submit">
+</form> {% endcomment %}
 
+<form method="POST" id="post-form">
+    {% csrf_token %}
+    <label for="prodName">Product name:</label><br>
+    <select id="prodName">
+        <option value="" disabled selected>
+            {% for product in products %}
+                <option value="{{ product.productsID }}">{{ product }}</option>
+            {% endfor %}
+        </option>
+    </select>
+    {% comment %} <input type="text" id="prodName" name="prodName"><br> {% endcomment %}
     <label for="lname">Quantity:</label><br>
-    <input type="text" id="qty" name="qty"><br><br>
-
+    <input type="number" id="qty" name="qty"><br><br>
     <input type="submit" value="Submit">
 </form>
 
 <table>
     <thead>
         <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Product name</th>
             <th>Quantity</th>
-            <th>Calculation</th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <th>Toluwani</th>
-            <th>Alade</th>
-            <th>10</th>
-            <th>20</th>
+            <th>Milo</th>
+            <th>5</th>
         </tr>
     </tbody>
 </table>
@@ -34,28 +41,65 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
+    var price
+    var total
+    var product_json = '{{ product_json }}'
+    console.log(product_json)
+    if (product_json == "" || product_json == "{}") {
+        product_json = {}
+    } else {
+        product_json = product_json.replaceAll('&quot;', '"')
+        product_json = jQuery.parseJSON(product_json)
+        console.log(product_json)
+    }
+    {% comment %} var prod_arr = {} {% endcomment %}
+    {% comment %} if (Object.keys(product_json).length > 0) {
+        Object.keys {% endcomment %}
+        {% comment %} product_json.map(k => {
+            {% comment %} prod_arr[product_json[k].id] = product_json[k] {% endcomment %}
+            
+        {% comment %} })  {% endcomment %}
+        console.log(prodName)
+        {% comment %} id = $('#prodName').val() {% endcomment %}
+     
+    {% comment %} } {% endcomment %}
+    
+    {% comment %} var id = $('#prodName').val() {% endcomment %}
+    {% comment %} console.log(id) {% endcomment %}
+    {% comment %} data = prod_arr[id] {% endcomment %}
+    {% comment %} console.log(data) {% endcomment %}
+    
+
+    {% comment %} data = Object.values(product_json)
+    console.log(data) {% endcomment %}
+
     $(document).on('submit','#post-form',function(e){
         e.preventDefault();
-        console.log("hi");
-        var firstName = $("#fname").val();
-        var lastName = $("#lname").val();
-        var Quantity = $("#qty").val();
-        var Calculation = Quantity * 2
-        var row = "<tr><td>" + firstName + "</td><td>" + lastName + "</td><td>" + Quantity + "</td><td>" + Calculation + "</td></tr>"
+        var prodName = $("#prodName").val();
+        var qty = $("#qty").val();
+        prodName = parseInt(prodName);
+        for(var i = 0; i < product_json.length; i++) {
+            if(product_json[i].id === prodName) {
+                price = product_json[i].price
+            }
+        }
+        total = price * qty
+        var row = "<tr><td>" + prodName + "</td><td>" + qty + "</td><td>" + total + "</td></tr>" 
         $("table tbody").append(row);
         $.ajax({
             type: 'POST',
-            url: '{% url "test" %}',
+            url: '{% url "test_save" %}',
             dataType: 'json',
             data: {
-                firstName: $('#fname').val(),
-                lastName: $('#lname').val(),
-                quantity: $('#qty').val(),
+                prodName: $('#prodName').val(),
+                qty: $('#qty').val(),
                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
                 action: 'post'
             },
             success: function(json){
-                console.log("hi")
+                
+                
+                    
                 
             }
         })

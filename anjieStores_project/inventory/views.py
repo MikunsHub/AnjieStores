@@ -3,6 +3,7 @@ from django.http.response import HttpResponse
 from .models import Employee,Products,ProductType
 from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
 from django.http import JsonResponse
+import json
 
 def index(request):
     
@@ -64,25 +65,34 @@ def pos(request):
 
 
 def test(request):
+    products = Products.objects.filter(status = 1)
+    product_json = []
+    for product in products:
+        product_json.append({'id':product.productsID, 'name':product.productName, 'price':float(product.Price)})
+    print("prod_json",product_json)
+    context = {
+        
+        'products' : products,
+        'product_json' : json.dumps(product_json)
+    }
     
+    return render(request,'inventory/test.html',context)
+
+def test_save(request):
     response_data = {}
-
+    resp = {'status':'failed','msg':''}
     if request.POST.get('action') == 'post':
-        firstName = request.POST.get('firstName')
-        lastName = request.POST.get('lastName')
-        qty = request.POST.get('quantity')
+        prodName = request.POST.get('prodName')
+        qty = request.POST.get('qty')
+        # qty = request.POST.get('quantity')
 
-        response_data['firstName'] = firstName
-        response_data['lastName'] = lastName
-        response_data['quantity'] = qty
+        response_data['prodName'] = prodName
+        response_data['qty'] = qty
+        # response_data['quantity'] = qty
 
         print(response_data)
 
-        return JsonResponse(response_data)
-    return render(request,'inventory/test.html')
-
-# def test_save(request):
-#     pass
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
     
 
 def usr_mgt(request):
