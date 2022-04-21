@@ -3,6 +3,7 @@ from django.http.response import HttpResponse
 from .models import Employee,Products,ProductType
 from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
 from django.http import JsonResponse
+from .inventory_utils import *
 import json
 
 def index(request):
@@ -81,16 +82,29 @@ def test(request):
 def test_save(request):
     response_data = {}
     resp = {'status':'failed','msg':''}
+    
     if request.POST.get('action') == 'post':
-        prodName = request.POST.get('prodName')
+        print("hiiii")
+        productID = request.POST.get('productID')
+        productName = request.POST.get('productName')
         qty = request.POST.get('qty')
-        # qty = request.POST.get('quantity')
+        total = request.POST.get('total')
+        myTableArray = request.POST.get('myTableArray')
 
-        response_data['prodName'] = prodName
+        response_data['productID'] = productID
+        response_data['productName'] = productName
         response_data['qty'] = qty
-        # response_data['quantity'] = qty
+        response_data['total'] = total
+        response_data['myTableArray'] = myTableArray
 
+        dict = []
+        dict.append(response_data)
+        print("dict", dict)
         print(response_data)
+
+        write_json(response_data)
+        save_cart(response_data)
+        # write_json(response_data)
 
     return HttpResponse(json.dumps(response_data), content_type="application/json")
     
@@ -98,4 +112,10 @@ def test_save(request):
 def usr_mgt(request):
     return render(request, 'inventory/user_mgt.html')
 
+# a_dictionary = {"d": 4}
 
+# with open("sample_file.json", "r+") as file:
+#     data = json.load(file)
+#     data.update(a_dictionary)
+#     file.seek(0)
+#     json.dump(data, file)

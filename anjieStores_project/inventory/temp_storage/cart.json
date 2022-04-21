@@ -1,5 +1,7 @@
 {
-    "price": 300000,
-    "productName": "LG5050 Washing Machine",
-    "qty": 10
+    "productID": "1",
+    "productName": "Milo",
+    "qty": "12",
+    "total": "6000",
+    "myTableArray": null
 }

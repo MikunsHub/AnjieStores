@@ -52,26 +52,7 @@
         product_json = jQuery.parseJSON(product_json)
         console.log(product_json)
     }
-    {% comment %} var prod_arr = {} {% endcomment %}
-    {% comment %} if (Object.keys(product_json).length > 0) {
-        Object.keys {% endcomment %}
-        {% comment %} product_json.map(k => {
-            {% comment %} prod_arr[product_json[k].id] = product_json[k] {% endcomment %}
-            
-        {% comment %} })  {% endcomment %}
-        console.log(prodName)
-        {% comment %} id = $('#prodName').val() {% endcomment %}
-     
-    {% comment %} } {% endcomment %}
     
-    {% comment %} var id = $('#prodName').val() {% endcomment %}
-    {% comment %} console.log(id) {% endcomment %}
-    {% comment %} data = prod_arr[id] {% endcomment %}
-    {% comment %} console.log(data) {% endcomment %}
-    
-
-    {% comment %} data = Object.values(product_json)
-    console.log(data) {% endcomment %}
 
     $(document).on('submit','#post-form',function(e){
         e.preventDefault();
@@ -81,23 +62,43 @@
         for(var i = 0; i < product_json.length; i++) {
             if(product_json[i].id === prodName) {
                 price = product_json[i].price
+                productName = product_json[i].name
             }
         }
         total = price * qty
-        var row = "<tr><td>" + prodName + "</td><td>" + qty + "</td><td>" + total + "</td></tr>" 
+        var row = "<tr><td>" + productName + "</td><td>" + qty + "</td><td>" + total + "</td></tr>" 
         $("table tbody").append(row);
+        
+        var myTableArray = [];
+
+        $("table tr").each(function() {
+            var arrayOfThisRow = [];
+            var tableData = $(this).find('td');
+            if (tableData.length > 0) {
+                tableData.each(function() { arrayOfThisRow.push($(this).text()); });
+                myTableArray.push(arrayOfThisRow);
+            }
+        });
+        {% comment %} console.log(myTableArray); {% endcomment %}
+
+        var TableArray = $('myTableArray').serialize();
+        console.log(TableArray);
+
         $.ajax({
             type: 'POST',
+            method: 'POST',
             url: '{% url "test_save" %}',
             dataType: 'json',
             data: {
-                prodName: $('#prodName').val(),
+                productID: $('#prodName').val(),
+                productName: productName,
                 qty: $('#qty').val(),
+                total: total,
                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
                 action: 'post'
             },
             success: function(json){
-                
+                console.log("hi")
                 
                     
                 
