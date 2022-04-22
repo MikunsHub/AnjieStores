@@ -79,6 +79,26 @@ def test(request):
     
     return render(request,'inventory/test.html',context)
 
+
+def test2(request):
+    products = Products.objects.filter(status = 1)
+    product_json = []
+    for product in products:
+        product_json.append({'id':product.productsID, 'name':product.productName, 'price':float(product.Price)})
+    # print("prod_json",product_json)
+    context = {
+        
+        'products' : products,
+        'product_json' : json.dumps(product_json)
+    }
+    
+    return render(request,'inventory/test2.html',context)
+
+import json
+# from django.views.decorators.csrf import csrf_exempt
+
+# @csrf_exempt
+
 def test_save(request):
     response_data = {}
     resp = {'status':'failed','msg':''}
@@ -89,25 +109,36 @@ def test_save(request):
         productName = request.POST.get('productName')
         qty = request.POST.get('qty')
         total = request.POST.get('total')
-        myTableArray = request.POST.get('myTableArray')
+        myTableArray = request.POST.get('randData')
+        arr = json.loads(request.POST.get('arr'))
+        # nums = json.loads(myTableArray)
+        # print(nums)
 
         response_data['productID'] = productID
         response_data['productName'] = productName
         response_data['qty'] = qty
         response_data['total'] = total
         response_data['myTableArray'] = myTableArray
+        response_data['arr'] = arr
 
-        dict = []
-        dict.append(response_data)
-        print("dict", dict)
         print(response_data)
-
-        write_json(response_data)
-        save_cart(response_data)
-        # write_json(response_data)
 
     return HttpResponse(json.dumps(response_data), content_type="application/json")
     
+def test_save2(request):
+    
+    response_data = {}
+
+    myTableArray = request.POST.get('myTableArray')
+    arr = json.loads(request.POST.get('arr'))
+    print(arr)
+
+    print(myTableArray)
+
+    # print(response_data)
+
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
 
 def usr_mgt(request):
     return render(request, 'inventory/user_mgt.html')
@@ -119,3 +150,23 @@ def usr_mgt(request):
 #     data.update(a_dictionary)
 #     file.seek(0)
 #     json.dump(data, file)
+
+# $('#post-form').submit(function(e){
+#             e.preventDefault();
+            
+#             $.ajax({
+                
+#                 url: "{% url 'test_save2' %}",
+#                 data: JSON.stringify({ projId: 1, userId:1 }),
+#                 cache: false,
+#                 contentType: "application/json; charset=utf-8",
+#                 processData: false,
+#                 method: 'POST',
+#                 type: 'POST',
+#                 dataType: 'json',
+
+#                 success:function(json){
+#                     console.log("hi");
+#                 }
+#             })
+#         })

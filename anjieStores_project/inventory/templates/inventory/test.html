@@ -1,11 +1,4 @@
-{% comment %} <form method="POST" id="post-form">
-    {% csrf_token %}
-    <label for="fname">First name:</label><br>
-    <input type="text" id="fname" name="fname"><br>
-    <label for="lname">Last name:</label><br>
-    <input type="text" id="lname" name="lname"><br><br>
-    <input type="submit" value="Submit">
-</form> {% endcomment %}
+
 
 <form method="POST" id="post-form">
     {% csrf_token %}
@@ -17,7 +10,6 @@
             {% endfor %}
         </option>
     </select>
-    {% comment %} <input type="text" id="prodName" name="prodName"><br> {% endcomment %}
     <label for="lname">Quantity:</label><br>
     <input type="number" id="qty" name="qty"><br><br>
     <input type="submit" value="Submit">
@@ -44,21 +36,29 @@
     var price
     var total
     var product_json = '{{ product_json }}'
-    console.log(product_json)
     if (product_json == "" || product_json == "{}") {
         product_json = {}
     } else {
         product_json = product_json.replaceAll('&quot;', '"')
         product_json = jQuery.parseJSON(product_json)
-        console.log(product_json)
     }
-    
+    arr = [1,2]
+    arr = JSON.stringify(arr)
 
+    let randData = []
     $(document).on('submit','#post-form',function(e){
         e.preventDefault();
         var prodName = $("#prodName").val();
         var qty = $("#qty").val();
         prodName = parseInt(prodName);
+        
+        let tableData = {
+            id: $('#prodName').val(),
+            qty: document.getElementById('qty').value,
+        }
+        randData.push(tableData);
+        console.log(randData);
+        randData = JSON.stringify(randData)
         for(var i = 0; i < product_json.length; i++) {
             if(product_json[i].id === prodName) {
                 price = product_json[i].price
@@ -69,20 +69,7 @@
         var row = "<tr><td>" + productName + "</td><td>" + qty + "</td><td>" + total + "</td></tr>" 
         $("table tbody").append(row);
         
-        var myTableArray = [];
-
-        $("table tr").each(function() {
-            var arrayOfThisRow = [];
-            var tableData = $(this).find('td');
-            if (tableData.length > 0) {
-                tableData.each(function() { arrayOfThisRow.push($(this).text()); });
-                myTableArray.push(arrayOfThisRow);
-            }
-        });
-        {% comment %} console.log(myTableArray); {% endcomment %}
-
-        var TableArray = $('myTableArray').serialize();
-        console.log(TableArray);
+        
 
         $.ajax({
             type: 'POST',
@@ -94,6 +81,8 @@
                 productName: productName,
                 qty: $('#qty').val(),
                 total: total,
+                randData:randData,
+                arr,arr,
                 csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
                 action: 'post'
             },

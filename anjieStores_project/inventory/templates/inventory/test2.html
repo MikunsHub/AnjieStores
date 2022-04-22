@@ -1,0 +1,110 @@
+
+<form method="POST" id="post-form">
+    {% csrf_token %}
+    <fieldset>
+        <label for="prodID">Product name:</label><br>
+        <select id="prodID">
+            <option value="" disabled selected>
+                {% for product in products %}
+                    <option value="{{ product.productsID }}">{{ product }}</option>
+                {% endfor %}
+            </option>
+        </select>
+
+        <div>
+            <label for="lname">Quantity:</label><br>
+            <input type="number" id="qty" name="qty"><br><br>
+        </div>
+        
+        <div>
+            <button type="button" id="add_item">Add Item</button>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product name</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Milo</th>
+                        <th>5</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+    <div>
+        <input type="submit" value="Submit">
+    </div>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    var price
+    var total
+    var product_json = '{{ product_json }}'
+    if (product_json == "" || product_json == "{}") {
+        product_json = {}
+    } else {
+        product_json = product_json.replaceAll('&quot;', '"')
+        product_json = jQuery.parseJSON(product_json)
+    }
+
+    let randData = []
+    $(document).ready(function(){
+        $("#add_item").click(function(){
+            var id = $('#prodID').val();
+            var qty = $('#qty').val();
+            var row = "<tr><td>" + id + "</td><td>" + qty  + "</td></tr>" 
+            $("table tbody").append(row);
+            let tableData = {
+                id: $('#prodID').val(),
+                qty: document.getElementById('qty').value,
+            }
+            console.log(tableData);
+            randData.push(tableData);
+            console.log(randData);
+            document.forms[0].reset();
+            localStorage.setItem('TableData', JSON.stringify(randData) );
+
+            
+        })
+        
+    })
+        
+        
+        $('#post-form').submit(function(e){
+            e.preventDefault();
+            randData = JSON.stringify(randData)
+            console.log(randData)
+
+            arr = [1,2]
+            arr = JSON.stringify(arr)
+            console.log("arr",arr)
+
+            
+            $.ajax({
+                
+                url: "{% url 'test_save2' %}",
+                data: {
+                    myTableArray: randData,
+                    arr:arr,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                method: 'POST',
+                dataType: 'json',
+
+                success:function(json){
+                    console.log("hi");
+                }
+            })
+        })
+    
+</script>
+
