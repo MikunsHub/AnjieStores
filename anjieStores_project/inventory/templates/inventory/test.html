@@ -60,6 +60,7 @@
         console.log(randData);
         randData = JSON.stringify(randData)
         for(var i = 0; i < product_json.length; i++) {
+            console.log(prodName)
             if(product_json[i].id === prodName) {
                 price = product_json[i].price
                 productName = product_json[i].name

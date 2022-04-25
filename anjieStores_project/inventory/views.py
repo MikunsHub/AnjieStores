@@ -54,15 +54,25 @@ def order(request):
     return render(request, 'inventory/order.html')
 
 def pos(request):
-    products = Products.objects.all()
-    myFilterPOS = ProductPOSFilter(request.GET, queryset=products)
-    products = myFilterPOS.qs
+    products = Products.objects.filter(status = 1)
+    product_json = []
+    for product in products:
+        product_json.append({'id':product.productsID, 'name':product.productName, 'price':float(product.Price)})
     
     context = {
         "products": products,
-        "myFilterPOS": myFilterPOS,
+        'product_json' : json.dumps(product_json)
     }
     return render(request, 'inventory/pos.html',context)
+
+def save_basket(request):
+    response_data = {}
+
+    myTableArray = request.POST.get('myTableArray')
+    print(myTableArray)
+
+
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
 def test(request):
@@ -143,30 +153,3 @@ def test_save2(request):
 def usr_mgt(request):
     return render(request, 'inventory/user_mgt.html')
 
-# a_dictionary = {"d": 4}
-
-# with open("sample_file.json", "r+") as file:
-#     data = json.load(file)
-#     data.update(a_dictionary)
-#     file.seek(0)
-#     json.dump(data, file)
-
-# $('#post-form').submit(function(e){
-#             e.preventDefault();
-            
-#             $.ajax({
-                
-#                 url: "{% url 'test_save2' %}",
-#                 data: JSON.stringify({ projId: 1, userId:1 }),
-#                 cache: false,
-#                 contentType: "application/json; charset=utf-8",
-#                 processData: false,
-#                 method: 'POST',
-#                 type: 'POST',
-#                 dataType: 'json',
-
-#                 success:function(json){
-#                     console.log("hi");
-#                 }
-#             })
-#         })

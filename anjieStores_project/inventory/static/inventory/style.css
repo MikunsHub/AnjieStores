@@ -674,9 +674,11 @@ form .user-details .input-box{
 .header-search{
     padding: 10px;
     width: 65%;
+    display:flex;
+    flex-direction: column;
 }
 
-.header-search input{
+.header-search select{
     padding:10px;
     border-radius: 3px;
     border-width: 1px;
@@ -695,6 +697,38 @@ form .user-details .input-box{
     flex-wrap: wrap;
     padding:15px;
     margin-bottom: 30px;
+}
+
+.category-cards select{
+    width: 30%;
+    height: 70%;
+}
+
+.category-cards input{
+    width: 30%;
+    height: 70%;
+}
+
+.category-cards button{
+    width: 10%;
+    border-radius: 5px;
+    height: 80%;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.table-container button{
+    width: 55px;
+    height: 35px;
+    background: #af4e4e;
+    padding: 5px ;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-size: 10px;
+    line-height: 25px;
 }
 
 .top-category-card{
@@ -762,7 +796,7 @@ form .user-details .input-box{
     justify-content:center;
 }
 
-.pay-button button{
+.pay-button input{
     background: rgb(240, 240, 240);
     padding:15px;
     width: 100%;

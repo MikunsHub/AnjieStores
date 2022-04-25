@@ -26,14 +26,19 @@
             <table>
                 <thead>
                     <tr>
+                        <th>All <input type="checkbox" id="select-all"></th>
                         <th>Product name</th>
                         <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>Milo</th>
-                        <th>5</th>
+                        <td><input type="checkbox" id="select-row"></td>
+                        <td>example</td>
+                        <td>example</td>
+                        <td>example</td>
                     </tr>
                 </tbody>
             </table>
@@ -48,6 +53,7 @@
 <script>
     var price
     var total
+    var productName
     var product_json = '{{ product_json }}'
     if (product_json == "" || product_json == "{}") {
         product_json = {}
@@ -55,28 +61,77 @@
         product_json = product_json.replaceAll('&quot;', '"')
         product_json = jQuery.parseJSON(product_json)
     }
+    var prod_arr = {}
+    if (Object.keys(product_json).length > 0) {
+        Object.keys(product_json).map(k => {
+            prod_arr[product_json[k].id] = product_json[k]
+        })
+    }
+    console.log(prod_arr)
 
     let randData = []
     $(document).ready(function(){
         $("#add_item").click(function(){
             var id = $('#prodID').val();
             var qty = $('#qty').val();
-            var row = "<tr><td>" + id + "</td><td>" + qty  + "</td></tr>" 
-            $("table tbody").append(row);
-            let tableData = {
-                id: $('#prodID').val(),
-                qty: document.getElementById('qty').value,
-            }
-            console.log(tableData);
-            randData.push(tableData);
-            console.log(randData);
-            document.forms[0].reset();
-            localStorage.setItem('TableData', JSON.stringify(randData) );
+            data = prod_arr[id]
+            price = data.price
+            name = data.name
+            console.log(price)
+            console.log(name)
+            total = price * qty
+            {% comment %} var row = "<tr><td>" + id + "</td><td>" + qty  + "</td></tr>"  {% endcomment %}
+            {% comment %} var row = "<tr><td>" + name + "</td><td>" + qty + "</td><td>" + price + "</td><td>" + total + "</td></tr>" {% endcomment %}
+            {% comment %} $("table tbody").append(row); {% endcomment %}
+            $("table tbody tr").last().after(
+                '<tr>'+
+                    '<td><input type="checkbox" id="select-row"></td>'+
+                    '<td>'+name+'</td>'+
+                    '<td>'+qty+'</td>'+
+                    '<td>'+price+'</td>'+
+                    '<td>'+total+'</td>'+
+                '</tr>'
+            )
 
             
+                
+            let tableData = {
+                id: $('#prodID').val(),
+                name: name,
+                qty: document.getElementById('qty').value,
+                price:price,
+                total: total
+            }
+            
+            randData.push(tableData);
+            document.forms[0].reset();
+
+            sum = 0
+            for (var i = 0, l = randData.length; i < l; i++) {
+                console.log(randData[i].total)
+                
+                sum = total+ sum
+                
+            }
+            console.log("sum =",sum)
+        })
+
+        $("#select-all").click(function(){
+            var isSelected = $(this).is(":checked");
+            if(isSelected){
+                $(".table tbody tr").each(function(){
+                    $(this).find('input[type="checkbox"]').prop('checked', true);
+
+                })
+            }else{
+                $(".table tbody tr").each(function(){
+                    $(this).find('input[type="checkbox"]').prop('checked', true);
+                })
+            }
         })
         
-    })
+    });
+    
         
         
         $('#post-form').submit(function(e){

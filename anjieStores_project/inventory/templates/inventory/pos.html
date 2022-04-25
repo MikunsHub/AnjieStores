@@ -6,143 +6,171 @@
     <div class="main">
         <a href="/index.html"><h1>Anjie<span>Stores</span></h1></a>
         
-        <div class="full-container">
-             <div class="header-search">
-                 <!-- <i class="fas fa-search"></i> -->
-                 <input type="text" placeholder="Search Category..."> 
-                 <button type="button" class="">Search</button>
+        <form method="POST" id="post-form">
+            {% csrf_token %}
+            <div class="full-container">
+                <div class="header-search">
+                    <!-- <i class="fas fa-search"></i> -->
+                    {% comment %} <input type="text" placeholder="Search Category...">  {% endcomment %}
+                    
+                    
+                    <div class="category-cards">
 
-                 <div class="category-cards">
-                     <div class="top-category-card">
-                         <h5>Electronics</h5>
-                     </div>
+                        <label for="prodID">Product name:</label><br>
+                        <select id="prodID">
+                            <option value="" disabled selected>
+                                {% for product in products %}
+                                    <option value="{{ product.productsID }}">{{ product }}</option>
+                                {% endfor %}
+                            </option>
+                        </select>
 
-                     <div class="top-category-card">
-                         <h5>Beverages</h5>
-                     </div>
+                        <label for="lname">Quantity:</label><br>
+                        <input type="number" id="qty" name="qty"><br><br>
 
-                     <div class="top-category-card">
-                         <h5>Groceries</h5>
-                     </div>
+                        <button type="button" class="Edit" id="add_item">Add Item</button>
+                    </div>
+                    
+                    
+                    <div class="table-container">
+                        <table>
+                            <tr>
+                                <th>id</th>
+                                <th>Product Name</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                                <th>Action</th>
+                            </tr>
+                            
+                            
+                        </table>
+                    </div>
 
-                     <div class="top-category-card">
-                         <h5>Toiletries</h5>
-                     </div>
-
-                     <div class="top-category-card">
-                         <h5>Furniture</h5>
-                     </div>
-
-                     <div class="top-category-card">
-                         <h5>Fruits</h5>
-                     </div>
-
-                     <div class="top-category-card">
-                         <h5>Vegetables</h5>
-                     </div>
-
-                     <div class="top-category-card">
-                         <h5>Meat & Fish</h5>
-                     </div>
-
-                     <div class="top-category-card">
-                         <h5>Toys</h5>
-                     </div>
-
-                     <div class="top-category-card">
-                         <h5>Toy</h5>
-                     </div>
-                 </div>
-
-                 <div class="table-container">
-                     <table>
-                         <tr>
-                           <th>id</th>
-                           <th>Product Name</th>
-                           <th>Action</th>
-                         </tr>
-                         <tr>
-                           <td>1</td>
-                           <td>Samsung washing machine</td>
-                           <td>
-                               <a class="Edit" href="#">Add</a>
-                               <a class="Deactivate" href="#">Remove</a>
-                           </td>
-                         </tr>
-                         <tr>
-                             <td>1</td>
-                             <td>Samsung washing machine</td>
-                             <td>
-                                 <a class="Edit" href="#">Add</a>
-                                 <a class="Deactivate" href="#">Remove</a>
-                             </td>
-                           </tr>
-                           <tr>
-                             <td>1</td>
-                             <td>Samsung washing machine</td>
-                             <td>
-                                 <a class="Edit" href="#">Add</a>
-                                 <a class="Deactivate" href="#">Remove</a>
-                             </td>
-                           </tr>
-                     </table>
-                 </div>
-
-             </div>
-             
-             <!-- selected items -->  
-             
-             <div class="bill-container">
-                 <div class="bill-container-title">
-                     <h2>Bills</h2>
-                 </div>
-                 <div class="bill-container-items">
-                     
-                     <div><h3>Milo</h3></div>
-                     
-                     <div class="bill-content">
-                         <div class="bill-items-unit">x 1</div>
-                         <div class="item-price">$12</div>
-                     </div>
-                 </div>
-
-                 <div class="bill-container-items">
-                     
-                     <div><h3>Bournvita</h3></div>
-                     
-                     <div class="bill-content">
-                         <div class="bill-items-unit">x 3</div>
-                         <div class="item-price">$22</div>
-                     </div>
-                 </div>
-                 <div>----------------------------------</div>
-                 <div class="bill-total">
-                     <h3>Total</h3>
-                     <h3>$12</h3>
-                 </div>
-                 <div class="bill-payment-method">
-                     <h3>Payment Method</h3>
-                     <div style="display:flex; justify-content:space-between;">
-                         <div class="bill-payment-card">
-                             <img src="{%static 'inventory/images/cash.png' %}" alt="">
-                             <h5>Cash</h5>
-                         </div>
-                         <div class="bill-payment-card">
-                             <img src="{%static 'inventory/images/credit-card.png' %}" alt="">
-                             <h5>Card</h5>
-                         </div>
-                         <div class="bill-payment-card">
-                             <img src="{%static 'inventory/images/bitcoin-wallet.png' %}" alt="">
-                             <h5>Crypto</h5>
-                         </div>
-                     </div>
-                 </div>
-                 <div class="pay-button">
-                     <button type="button" class="">Confirm Payment</button>
-                 </div>
-             </div>
-        </div>
+                </div>
+                
+                <!-- selected items -->  
+                
+                <div class="bill-container">
+                    <div class="bill-container-title">
+                        <h2>Bills</h2>
+                    </div>
+                    
+                    <div class="bill-total">
+                        <h3>Grand Total</h3>
+                        <h3 id="Events">$</h3>
+                    </div>
+                    <div class="bill-payment-method">
+                        <h3>Payment Method</h3>
+                        <div style="display:flex; justify-content:space-between;">
+                            <div class="bill-payment-card">
+                                <img src="{%static 'inventory/images/cash.png' %}" alt="">
+                                <h5>Cash</h5>
+                            </div>
+                            <div class="bill-payment-card">
+                                <img src="{%static 'inventory/images/credit-card.png' %}" alt="">
+                                <h5>Card</h5>
+                            </div>
+                            <div class="bill-payment-card">
+                                <img src="{%static 'inventory/images/bitcoin-wallet.png' %}" alt="">
+                                <h5>Crypto</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pay-button">
+                        <input type="submit" value="Confirm Payment">
+                    </div>
+                </div>
+            </div>
+        </form>
         
     </div>
 </section>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    var price
+    var total
+    var productName
+    var product_json = '{{ product_json }}'
+    if (product_json == "" || product_json == "{}") {
+        product_json = {}
+    } else {
+        product_json = product_json.replaceAll('&quot;', '"')
+        product_json = jQuery.parseJSON(product_json)
+    }
+    var prod_arr = {}
+    if (Object.keys(product_json).length > 0) {
+        Object.keys(product_json).map(k => {
+            prod_arr[product_json[k].id] = product_json[k]
+        })
+    }
+
+    let randData = []
+    $(document).ready(function(){
+        $("#add_item").click(function(){
+            var id = $('#prodID').val()
+            var qty = $('#qty').val();
+            data = prod_arr[id]
+            price = data.price
+            name = data.name
+            total = price * qty
+
+            $("table tr").last().after(
+                '<tr>'+
+                    '<td>'+id+'</td>'+
+                    '<td>'+name+'</td>'+
+                    '<td>'+qty+'</td>'+
+                    '<td>'+price+'</td>'+
+                    '<td>'+total+'</td>'+
+                    '<td><button class="remove-btn" href="#">Remove</button></td>'+
+                '</tr>'
+            )
+
+            $("table tr").on('click','.remove-btn', function(){
+                $(this).closest('tr').remove();
+            })
+
+            let tableData = {
+                id: $('#prodID').val(),
+                name: name,
+                qty: document.getElementById('qty').value,
+                price:price,
+                total: total
+            }
+
+            randData.push(tableData);
+            document.forms[0].reset();
+
+            var grand_total = 0
+            for (var i = 0, l = randData.length; i < l; i++) {
+                console.log(randData[i].total)
+                
+
+                grand_total = randData[i].total + grand_total
+                console.log("grand_total =",grand_total)
+                $("#Events").text(grand_total);
+            }
+
+        })
+
+        $('#post-form').submit(function(e){
+            e.preventDefault();
+            randData = JSON.stringify(randData);
+
+            $.ajax({
+                url: "{% url 'save_basket' %}",
+                data: {
+                    myTableArray: randData,
+                    csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+                },
+                method: 'POST',
+                dataType: 'json',
+
+                success: function(json){
+                    console.log("successfully transferred")
+                }
+            })
+        })
+    })
+</script>
 {% endblock %}
