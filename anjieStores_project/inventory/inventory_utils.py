@@ -33,7 +33,13 @@ def write_json(new_data, filename=r"C:\Users\HP PC\Documents\PersonalProjects\An
         # convert back to json.
         json.dump(file_data, file, indent = 4)
 
-# z = json.loads(x)
-  
-# # appending the data
-# z.update(y)
+def get_total(arr):
+    lenght = len(arr)
+
+    total = 0
+    for i in range(lenght):
+        for key in arr[i]:
+            if key == "total":
+                total += arr[i]["total"]
+    return total
+

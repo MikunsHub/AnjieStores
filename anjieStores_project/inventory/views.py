@@ -1,10 +1,11 @@
 from django.shortcuts import render,redirect
 from django.http.response import HttpResponse
-from .models import Employee,Products,ProductType
+from .models import Employee,Products,ProductType,Sales
 from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
 from django.http import JsonResponse
+from django.utils.dateparse import parse_date
 from .inventory_utils import *
-import json
+import json, sys
 
 def index(request):
     
@@ -40,6 +41,43 @@ def products(request):
     }
     return render(request, 'inventory/products.html',context)
 
+def add_products(request):
+    productsType = ProductType.objects.filter(status = 1)
+    context = {
+        "productsType": productsType
+    }
+    return render(request,'inventory/add_products.html',context)
+
+def add_products_ajax(request):
+    response_data = {'status':'failed','msg':''}
+    
+    try:
+        print("Getting form data...")
+        prod_name = request.POST.get('prod_name')
+        manufacturer = request.POST.get('manufacturer')
+        catID = int(float(request.POST.get('prodID')))
+        qty = int(float(request.POST.get('qty')))
+        exp_date = parse_date(request.POST.get('exp_date'))
+        price = int(float(request.POST.get('price')))
+        barcode = int(float(request.POST.get('barcode')))
+
+        new_product = Products(
+            productsID = 4,
+            productName=prod_name,
+            manufacturer=manufacturer,
+            Barcode=barcode,
+            Price=price,
+            ExpiryDate=exp_date,
+            quantity=qty,
+            productTypeID=ProductType.objects.filter(productTypeID = catID).first(),
+            status = 1
+        ).save()
+        print("Added to database")
+    except:
+        response_data['msg'] = "An error occured"
+        print("Unexpected error:", sys.exc_info()[0])
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
 def categories(request):
     productsType = ProductType.objects.all()
 
@@ -66,12 +104,18 @@ def pos(request):
     return render(request, 'inventory/pos.html',context)
 
 def save_basket(request):
-    response_data = {}
+    response_data = {'status':'failed','msg':''}
 
-    myTableArray = request.POST.get('myTableArray')
-    print(myTableArray)
-
-
+    myTableArray = json.loads(request.POST.get('myTableArray'))
+    
+    try:
+        total = get_total(myTableArray)
+        sales = Sales(sub_total=total, grand_total = total, noOfItems=len(myTableArray)).save()
+        print(total)
+        print(myTableArray)
+    except:
+        response_data['msg'] = "An error occured"
+        print("Unexpected error:", sys.exc_info()[0])
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
@@ -104,10 +148,7 @@ def test2(request):
     
     return render(request,'inventory/test2.html',context)
 
-import json
-# from django.views.decorators.csrf import csrf_exempt
 
-# @csrf_exempt
 
 def test_save(request):
     response_data = {}

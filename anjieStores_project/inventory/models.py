@@ -1,4 +1,6 @@
 from django.db import models
+from django.utils import timezone
+
 
 # Create your models here.
 
@@ -21,6 +23,7 @@ class Employee(models.Model):
 class ProductType(models.Model):
     productTypeID = models.IntegerField()
     productType = models.CharField(max_length=20)
+    status = models.IntegerField(default=1)
 
     def __str__(self):
         return self.productType
@@ -69,11 +72,9 @@ class Cashier(models.Model):
 
 class Transactions(models.Model):
     transactionID = models.IntegerField()
-    paymentMethod = models.CharField(max_length=10)
-    totalAmount = models.IntegerField()
+    paymentMethod = models.CharField(max_length=10,default="cash")
     cashierID = models.ForeignKey(Cashier,on_delete=models.CASCADE)
-    noOfPurchasedItems = models.IntegerField()
-    paidAt = models.DateTimeField(auto_now_add=True) # confirm for auto_now_add and datetimefield
+    # paidAt = models.DateTimeField(auto_now_add=True) # confirm for auto_now_add and datetimefield
     # purchasedItems = models.CharField() list out the purchased items and relate them to their products id
 
 
@@ -81,13 +82,15 @@ class Sales(models.Model):
     # code = models.CharField(max_length=100)
     sub_total = models.FloatField(default=0)
     grand_total = models.FloatField(default=0)
-    quantity = models.IntegerField(default=1)
+    noOfItems = models.IntegerField(default=0)
+    paymentMethod = models.CharField(max_length=10,default="cash")
     # tax_amount = models.FloatField(default=0)
     # tax = models.FloatField(default=0)
     # tendered_amount = models.FloatField(default=0)
     # amount_change = models.FloatField(default=0)
-    # date_added = models.DateTimeField(default=timezone.now) 
+    date_added = models.DateTimeField(default=timezone.now) 
     # date_updated = models.DateTimeField(auto_now=True) 
 
     def __str__(self):
-        return self.grand_total
+        return str(self.grand_total)
+
