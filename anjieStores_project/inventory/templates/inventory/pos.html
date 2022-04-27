@@ -104,13 +104,24 @@
             prod_arr[product_json[k].id] = product_json[k]
         })
     }
-
+    console.log(prod_arr)
     let randData = []
     $(document).ready(function(){
         $("#add_item").click(function(){
             var id = $('#prodID').val()
             var qty = $('#qty').val();
             data = prod_arr[id]
+            if (id == '' || qty == '' || id == null || qty == null) {
+                alert("Product and Quantity Field is required!")
+                return false
+            }
+
+            if (qty > data.quantity ) {
+                alert("Low stock,alert management!")
+                return false
+            }
+
+            
             price = data.price
             name = data.name
             total = price * qty

@@ -88,7 +88,7 @@ def pos(request):
     products = Products.objects.filter(status = 1)
     product_json = []
     for product in products:
-        product_json.append({'id':product.productsID, 'name':product.productName, 'price':float(product.Price)})
+        product_json.append({'id':product.productsID, 'name':product.productName,'quantity':product.quantity, 'price':float(product.Price)})
     
     context = {
         "products": products,
