@@ -40,7 +40,7 @@
                             <td>{{product.ExpiryDate}}</td>
                             <td>{{product.Price}}</td>
                             <td>
-                                <a class="Promote" href="#">Edit</a> <!-- This button will redirect to a page where you can update Staff Level-->
+                                <a class="Promote" href="{% url 'edit_products' pk=product.productsID %}">Edit</a> <!-- This button will redirect to a page where you can update Staff Level-->
                             </td> 
                         </tr>
                     {% endfor %}

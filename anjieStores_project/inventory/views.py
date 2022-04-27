@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http.response import HttpResponse
 from .models import Employee,Products,ProductType,Sales
+from .forms import ProductsForm
 from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
 from django.http import JsonResponse
 from django.utils.dateparse import parse_date
@@ -42,41 +43,33 @@ def products(request):
     return render(request, 'inventory/products.html',context)
 
 def add_products(request):
-    productsType = ProductType.objects.filter(status = 1)
+
+    form = ProductsForm()
+    if request.method == "POST":
+        form = ProductsForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("products")
     context = {
-        "productsType": productsType
+        "form": form
     }
     return render(request,'inventory/add_products.html',context)
 
-def add_products_ajax(request):
-    response_data = {'status':'failed','msg':''}
-    
-    try:
-        print("Getting form data...")
-        prod_name = request.POST.get('prod_name')
-        manufacturer = request.POST.get('manufacturer')
-        catID = int(float(request.POST.get('prodID')))
-        qty = int(float(request.POST.get('qty')))
-        exp_date = parse_date(request.POST.get('exp_date'))
-        price = int(float(request.POST.get('price')))
-        barcode = int(float(request.POST.get('barcode')))
+def edit_products(request,pk):
 
-        new_product = Products(
-            productsID = 4,
-            productName=prod_name,
-            manufacturer=manufacturer,
-            Barcode=barcode,
-            Price=price,
-            ExpiryDate=exp_date,
-            quantity=qty,
-            productTypeID=ProductType.objects.filter(productTypeID = catID).first(),
-            status = 1
-        ).save()
-        print("Added to database")
-    except:
-        response_data['msg'] = "An error occured"
-        print("Unexpected error:", sys.exc_info()[0])
-    return HttpResponse(json.dumps(response_data), content_type="application/json")
+    product = Products.objects.get(productsID=pk)
+    form = ProductsForm(instance=product)
+    if request.method == "POST":
+        form = ProductsForm(request.POST,instance=product)
+        if form.is_valid():
+            form.save()
+            return redirect("products")
+    context = {
+        "form": form
+    }
+    return render(request,'inventory/add_products.html',context)
+
+
 
 def categories(request):
     productsType = ProductType.objects.all()
@@ -194,3 +187,34 @@ def test_save2(request):
 def usr_mgt(request):
     return render(request, 'inventory/user_mgt.html')
 
+
+
+# def add_products_ajax(request):
+#     response_data = {'status':'failed','msg':''}
+    
+#     try:
+#         print("Getting form data...")
+#         prod_name = request.POST.get('prod_name')
+#         manufacturer = request.POST.get('manufacturer')
+#         catID = int(float(request.POST.get('prodID')))
+#         qty = int(float(request.POST.get('qty')))
+#         exp_date = parse_date(request.POST.get('exp_date'))
+#         price = int(float(request.POST.get('price')))
+#         barcode = int(float(request.POST.get('barcode')))
+
+#         new_product = Products(
+#             productsID = 4,
+#             productName=prod_name,
+#             manufacturer=manufacturer,
+#             Barcode=barcode,
+#             Price=price,
+#             ExpiryDate=exp_date,
+#             quantity=qty,
+#             productTypeID=ProductType.objects.filter(productTypeID = catID).first(),
+#             status = 1
+#         ).save()
+#         print("Added to database")
+#     except:
+#         response_data['msg'] = "An error occured"
+#         print("Unexpected error:", sys.exc_info()[0])
+#     return HttpResponse(json.dumps(response_data), content_type="application/json")

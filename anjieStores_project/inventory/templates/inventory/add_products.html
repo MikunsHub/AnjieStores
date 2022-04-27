@@ -15,76 +15,15 @@
         <div>
             <form method="POST" id="post-form">
                 {% csrf_token %}
-                <div class="user-details">
-                    <div class="input-box">
-                        <span><b>Product name</b></span>
-                        <input type="text" placeholder="Enter your name" id="prod_name">
-                    </div>
-                    <div class="input-box">
-                        <span><b>Manufacturer</b></span>
-                        <input type="text" placeholder="Enter manufacturer" id="manufacturer">
-                    </div>
-                    <div  class="input-box">
-                        <span><b>Category</b></span>
-                        <select id="prodID">
-                            <option value="" disabled selected>
-                                {% for producttype in productsType %}
-                                    <option value="{{ producttype.productTypeID }}">{{ producttype }}</option>
-                                {% endfor %}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="input-box">
-                        <span><b>Quantity(cartons)</b></span>
-                        <input type="number" placeholder="Enter your quantity" id="qty">
-                    </div>
-                    <div class="input-box">
-                        <span><b>ExpiryDate</b></span>
-                        <input type="date" id="exp_date">
-                    </div>
-                    <div class="input-box">
-                        <span><b>Barcode</b></span>
-                        <input type="text" id="barcode">
-                    </div>
-                    <div class="input-box">
-                        <span><b>Price</b></span>
-                        <input type="number" id="price">
-                    </div>
+                {{form}}
                     
-                    <div class="order-button">
-                        <input type="submit" value="Submit">  
-                    </div>
+                <div class="order-button">
+                    <input type="submit" value="Submit">  
+                </div>
                 </div>
             </form>
         </div>
     </div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    $('#post-form').submit(function(e){
-        e.preventDefault();
-        catID = $('#prodID').val();
-        console.log(catID);
 
-        $.ajax({
-            url: "{% url 'add_products_ajax' %}",
-            data: {
-                prod_name: $('#prod_name').val(),
-                manufacturer: $('#manufacturer').val(),
-                prodID: $('#prodID').val(),
-                qty: $('#qty').val(),
-                exp_date: $('#exp_date').val(),
-                price: $('#price').val(),
-                barcode: $('#barcode').val(),
-                csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-            },
-            method: 'POST',
-            dataType: 'json',
-
-            success: function(json){
-                console.log("successfully transferred")
-            }
-        })
-    })
-</script>
 </html>

@@ -1,14 +1,10 @@
-from django import forms
-from .models import ItemCount
+from django.forms import ModelForm
+from .models import Products
 
-class ItemForm(forms.Form):
-    productqty = forms.CharField(max_length=30)
-    
-    
 
-    def clean(self):
-        cleaned_data = super(ItemForm, self).clean()
-        productqty = cleaned_data.get('productqty')
-        if not productqty :
-            raise forms.ValidationError('You have to write something!')
+class ProductsForm(ModelForm):
+    class Meta:
+        model = Products
+        exclude = ['productsID','status']
+
 

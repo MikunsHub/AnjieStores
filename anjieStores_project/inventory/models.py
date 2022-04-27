@@ -30,7 +30,7 @@ class ProductType(models.Model):
 
 
 class Products(models.Model):
-    productsID = models.IntegerField(primary_key=True) 
+    productsID = models.AutoField(primary_key=True) 
     productName = models.CharField(max_length=30)
     Barcode = models.IntegerField()
     ExpiryDate = models.DateField()
