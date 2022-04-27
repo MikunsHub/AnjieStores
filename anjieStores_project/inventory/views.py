@@ -100,6 +100,8 @@ def save_basket(request):
     response_data = {'status':'failed','msg':''}
 
     myTableArray = json.loads(request.POST.get('myTableArray'))
+
+    #TODO :: put safety net for empty basket transactions
     
     try:
         total = get_total(myTableArray)
