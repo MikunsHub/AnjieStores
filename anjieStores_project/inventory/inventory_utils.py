@@ -1,6 +1,8 @@
 # from .models import Employee,Products,ProductType
 import json
 from django.shortcuts import HttpResponse
+from .models import Products
+import sys
 # def productTypeFilter(request):
 #     productsType = ProductType.objects.filter(productsType=)
 
@@ -34,12 +36,37 @@ def write_json(new_data, filename=r"C:\Users\HP PC\Documents\PersonalProjects\An
         json.dump(file_data, file, indent = 4)
 
 def get_total(arr):
-    lenght = len(arr)
+    length = len(arr)
 
     total = 0
-    for i in range(lenght):
+    for i in range(length):
         for key in arr[i]:
             if key == "total":
                 total += arr[i]["total"]
     return total
 
+def get_qty(arr):
+    length = len(arr)
+
+    for i in range(length):
+        for key in arr[i]:
+            if key == "qty":
+                try:
+                    print(arr[i]["name"])
+                    sale_qty = arr[i]["qty"]
+                    product = Products.objects.get(productsID=arr[i]["id"])
+                    
+                    product.quantity -= int(float(sale_qty))
+                    product.save()
+
+                except AttributeError as e:
+                    print(e)
+                    # response_data['msg'] = "An error occured"
+                    print("Unexpected error:", sys.exc_info()[0])
+                
+    return "working"
+
+# prod_qty = product.quantity #-= sale_qty
+# print("prod_qty= ",prod_qty)
+# new_qty = prod_qty - int(float(sale_qty))
+# print("new_qty= ",new_qty)

@@ -121,7 +121,6 @@
                 return false
             }
 
-            
             price = data.price
             name = data.name
             total = price * qty
@@ -179,6 +178,7 @@
 
                 success: function(json){
                     console.log("successfully transferred")
+                    alert("successfully transferred,reload to start new transaction")
                 }
             })
         })

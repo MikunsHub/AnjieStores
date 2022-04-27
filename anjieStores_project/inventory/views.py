@@ -104,7 +104,8 @@ def save_basket(request):
     try:
         total = get_total(myTableArray)
         sales = Sales(sub_total=total, grand_total = total, noOfItems=len(myTableArray)).save()
-        print(total)
+        val = get_qty(myTableArray)
+        # print(total)
         print(myTableArray)
     except:
         response_data['msg'] = "An error occured"
