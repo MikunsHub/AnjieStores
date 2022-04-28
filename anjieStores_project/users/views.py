@@ -2,20 +2,24 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.forms import UserCreationForm
+from .forms import *
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 def register(request):
     page = "register"
-    form = UserCreationForm()
+    form = CreateUserForm()
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = CreateUserForm(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.username = user.username.lower()
             user.save()
             auth.login(request,user)
-            return redirect("dashboard") #problem with redirect
+            user_get = form.cleaned_data.get("username")
+            messages.success(request,"Account was created successfully for " + user_get)
+            return redirect("login_page") 
         else:
             messages.error(request,"error occurred during registration")
     return render(request, 'users/signup.html',{'form':form})  #faulty function
@@ -42,9 +46,9 @@ def login_page(request):
             print("I am working")
             return redirect("dashboard")
         else:
-            messages.error(request,"Username or Password does not exist")
-    else:
-        return render(request, 'users/login.html')
+            messages.info(request,"Username or Password does not exist")
+    return render(request, 'users/login.html')
+
 
 def logoutUser(request):
     auth.logout(request)

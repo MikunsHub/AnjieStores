@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http.response import HttpResponse
+from django.contrib.auth.decorators import login_required
 from .models import Employee,Products,ProductType,Sales
 from .forms import ProductsForm
 from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
@@ -7,9 +8,10 @@ from django.http import JsonResponse
 from django.utils.dateparse import parse_date
 from .inventory_utils import *
 import json, sys
+from users.views import *
 
+@login_required(login_url='login_page')
 def index(request):
-    
     employee = Employee.objects.get(stateOfOrigin="Ekiti")
     productsType = ProductType.objects.all()
     products = Products.objects.all()
@@ -29,6 +31,7 @@ def index(request):
     }
     return render(request, 'inventory/index.html',context)
 
+@login_required(login_url='login_page')
 def dashboard(request):
     return render(request, 'inventory/dashboard.html')
 
@@ -42,6 +45,7 @@ def products(request):
     }
     return render(request, 'inventory/products.html',context)
 
+@login_required(login_url='login_page')
 def add_products(request):
 
     form = ProductsForm()
@@ -55,6 +59,7 @@ def add_products(request):
     }
     return render(request,'inventory/add_products.html',context)
 
+@login_required(login_url='login_page')
 def edit_products(request,pk):
 
     product = Products.objects.get(productsID=pk)
@@ -70,7 +75,7 @@ def edit_products(request,pk):
     return render(request,'inventory/add_products.html',context)
 
 
-
+@login_required(login_url='login_page')
 def categories(request):
     productsType = ProductType.objects.all()
 
@@ -81,9 +86,11 @@ def categories(request):
     }
     return render(request, 'inventory/categories.html',context)
 
+@login_required(login_url='login_page')
 def order(request):
     return render(request, 'inventory/order.html')
 
+@login_required(login_url='login_page')
 def pos(request):
     products = Products.objects.filter(status = 1)
     product_json = []
@@ -96,6 +103,7 @@ def pos(request):
     }
     return render(request, 'inventory/pos.html',context)
 
+@login_required(login_url='login_page')
 def save_basket(request):
     response_data = {'status':'failed','msg':''}
 
@@ -106,7 +114,7 @@ def save_basket(request):
     try:
         total = get_total(myTableArray)
         sales = Sales(sub_total=total, grand_total = total, noOfItems=len(myTableArray)).save()
-        val = get_qty(myTableArray)
+        val = update_stock(myTableArray)
         # print(total)
         print(myTableArray)
     except:
@@ -114,7 +122,7 @@ def save_basket(request):
         print("Unexpected error:", sys.exc_info()[0])
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
-
+@login_required(login_url='login_page')
 def test(request):
     products = Products.objects.filter(status = 1)
     product_json = []
@@ -130,6 +138,7 @@ def test(request):
     return render(request,'inventory/test.html',context)
 
 
+@login_required(login_url='login_page')
 def test2(request):
     products = Products.objects.filter(status = 1)
     product_json = []
@@ -145,7 +154,7 @@ def test2(request):
     return render(request,'inventory/test2.html',context)
 
 
-
+@login_required(login_url='login_page')
 def test_save(request):
     response_data = {}
     resp = {'status':'failed','msg':''}
@@ -171,7 +180,8 @@ def test_save(request):
         print(response_data)
 
     return HttpResponse(json.dumps(response_data), content_type="application/json")
-    
+
+@login_required(login_url='login_page') 
 def test_save2(request):
     
     response_data = {}
@@ -186,7 +196,7 @@ def test_save2(request):
 
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
-
+@login_required(login_url='login_page')
 def usr_mgt(request):
     return render(request, 'inventory/user_mgt.html')
 

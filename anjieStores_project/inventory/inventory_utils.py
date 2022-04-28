@@ -45,7 +45,11 @@ def get_total(arr):
                 total += arr[i]["total"]
     return total
 
-def get_qty(arr):
+def update_stock(arr):
+    """
+    This function takes the immediate products bought and updates the
+    stock in the supermarket warehouse.
+    """
     length = len(arr)
 
     for i in range(length):
@@ -66,7 +70,3 @@ def get_qty(arr):
                 
     return "working"
 
-# prod_qty = product.quantity #-= sale_qty
-# print("prod_qty= ",prod_qty)
-# new_qty = prod_qty - int(float(sale_qty))
-# print("new_qty= ",new_qty)
