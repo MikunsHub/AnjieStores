@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.http.response import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Employee,Products,ProductType,Sales
-from .forms import ProductsForm
+from .forms import ProductsForm,EmployeeForm
 from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
 from django.http import JsonResponse
 from django.utils.dateparse import parse_date
@@ -12,7 +12,7 @@ from users.views import *
 
 @login_required(login_url='login_page')
 def index(request):
-    employee = Employee.objects.get(stateOfOrigin="Ekiti")
+    employee = Employee.objects.all()
     productsType = ProductType.objects.all()
     products = Products.objects.all()
 
@@ -198,7 +198,27 @@ def test_save2(request):
 
 @login_required(login_url='login_page')
 def usr_mgt(request):
-    return render(request, 'inventory/user_mgt.html')
+    employees = Employee.objects.all()
+
+    context= {
+        "employees": employees
+    }
+    return render(request, 'inventory/user_mgt.html',context)
+
+@login_required(login_url='login_page')
+def employee_profile(request):
+    form = EmployeeForm(initial={'user': request.user})
+
+    if request.method == "POST":
+        form = EmployeeForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("usr_mgt")
+
+    context = {
+        "form":form
+    }
+    return render(request, 'inventory/employee.html',context)
 
 
 

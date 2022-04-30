@@ -1,11 +1,13 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 
 # Create your models here.
 
 class Employee(models.Model):
-    employeeID = models.IntegerField()
+    employeeID = models.AutoField(primary_key=True) 
+    user = models.OneToOneField(User,null=True,blank=True,on_delete=models.CASCADE)
     fullName = models.CharField(max_length=35,blank=False,null=False) #not null
     age = models.IntegerField()
     doB = models.DateField()
@@ -15,6 +17,7 @@ class Employee(models.Model):
     stateOfOrigin= models.CharField(max_length=10)
     employmentDate = models.DateField()
     status = models.CharField(max_length=10)
+    profile_pic = models.ImageField(default="user.png",null=True, blank=True)
 
     def __str__(self):
         return self.fullName
@@ -60,22 +63,6 @@ class Orders(models.Model):
     productsID = models.ForeignKey(Products,on_delete=models.CASCADE)
     employeeID = models.ForeignKey(Employee,on_delete=models.CASCADE)  
     suppliersID = models.ForeignKey(Suppliers,on_delete=models.CASCADE)
-
-
-class Cashier(models.Model):
-    cashierID = models.IntegerField()
-    employeeID =  models.ForeignKey(Employee,on_delete=models.CASCADE)
-    stationStart = models.DateTimeField(auto_now_add=True) # confirm for auto_now_add
-    stationEnd = models.DateTimeField(auto_now_add=True)
-    
-
-
-class Transactions(models.Model):
-    transactionID = models.IntegerField()
-    paymentMethod = models.CharField(max_length=10,default="cash")
-    cashierID = models.ForeignKey(Cashier,on_delete=models.CASCADE)
-    # paidAt = models.DateTimeField(auto_now_add=True) # confirm for auto_now_add and datetimefield
-    # purchasedItems = models.CharField() list out the purchased items and relate them to their products id
 
 
 class Sales(models.Model):

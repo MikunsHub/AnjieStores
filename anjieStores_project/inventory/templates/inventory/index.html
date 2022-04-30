@@ -13,8 +13,9 @@
     <body>
         <div class="sidebar">
             <div class="div-img">
-                <img src="{% static 'inventory/images/user.png' %}" alt="current user">
-                <h2>{{user}}</h2>
+                {% comment %} <img src="{% static 'inventory/images/user.png' %}" alt="current user"> {% endcomment %}
+                <img src="{{request.user.employee.profile_pic.url}}" alt="current user">
+                <a href="{% url 'employee_profile' %}"><h2>{{user}}</h2></a>
             </div>
             <ul class="nav">
                 <li>

@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'inventory/staff.css' %}" />
+    <title>Add New Product</title>
+</head>
+<body>
+    <a href="{% url 'products' %}"><h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1></a>
+    <div class="container">
+        <div>
+            <form method="POST" id="post-form" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                    
+                <div class="order-button">
+                    <input type="submit" value="Submit">  
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

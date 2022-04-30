@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.models import User, auth
 from django.contrib.auth.forms import UserCreationForm
 from .forms import *
+from inventory.views import employee_profile
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -19,7 +20,7 @@ def register(request):
             auth.login(request,user)
             user_get = form.cleaned_data.get("username")
             messages.success(request,"Account was created successfully for " + user_get)
-            return redirect("login_page") 
+            return redirect("employee_profile") 
         else:
             messages.error(request,"error occurred during registration")
     return render(request, 'users/signup.html',{'form':form})  #faulty function
