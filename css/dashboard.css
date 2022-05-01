@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+/* reset */
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body{
+    box-sizing: border-box;
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* background-color: rgb(31, 30, 30); */
+}
+
+/* Sidebar start here  */
+.sidebar{
+    position: fixed;
+    background: rgb(126, 48, 106);
+    width: 20%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.div-img img{
+    display: flex;
+    justify-content:center;
+    /* text-align: center; */
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: white;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom:10px ;
+    
+}
+
+.sidebar h2{
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #3b3a4b;
+    padding: 10px;
+    font-weight: bold;
+}
+
+
+.sidebar ul li {
+    margin: 25px 0;
+}
+
+.sidebar ul li a{
+    color: #ffffff;
+    padding: 0 30px;
+    display:block;
+
+}
+.sidebar ul li a:hover{
+    color: #000000;
+    margin-left: 20px;
+    transition: 0.2s;
+}
+
+
+/* Sidebar ends Here  */
+
+/* Main Content Section Start Here  */
+
+.main{
+    margin-left: 20%;
+    height:100vh;
+    width:80%;
+    overflow: hidden;
+}
+
+
+
+.main h1{
+    background-color: rgb(209, 209, 224);
+    padding:6px;
+    text-align: center;
+    font-family: Geneva, Verdana, sans-serif;
+    
+}
+
+.search-box{
+    position: relative;
+    /* height: 50px; */
+    max-width: 550px;
+    width: 100%;
+    margin: 0 20px; 
+}
+
+
+.main .overview-boxes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top:15px;
+    padding: 0 20px;
+    /* margin-bottom: 10px; */
+    gap: 1rem;
+}
+
+.overview-boxes .box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% / 4 - 14px);
+    background: #fff;
+    padding: 1px 1px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.overview-boxes .box-topic{
+font-size: 15px;
+font-weight: 500;
+}
+
+.main .box .number{
+display: inline-block;
+font-size: 23px;
+margin-top: -6px;
+font-weight: 600;
+}
+
+.main .box .indicator{
+display: flex;
+align-items: center;
+}
+
+.main .box .indicator i{
+height: 20px;
+width: 20px;
+background: #8FDACB;
+line-height: 20px;
+text-align: center;
+border-radius: 50%;
+color: #fff;
+font-size: 20px;
+margin-right: 5px;
+}
+
+.box .indicator i.down{
+background: #e87d88;
+}
+
+.main .box .indicator .text{
+font-size: 12px;
+}
+
+.main .box .cart{
+display: inline-block;
+font-size: 32px;
+height: 50px;
+width: 50px;
+background: #cce5ff;
+line-height: 50px;
+text-align: center;
+color: #66b0ff;
+border-radius: 12px;
+margin: -15px 0 0 6px;
+}
+
+.main .box .cart.two{
+    color: #2BD47D;
+    background: #C0F2D8;
+}
+
+.main .box .cart.three{
+    color: #ffc233;
+    background: #ffe8b3;
+}
+
+.main .box .cart.four{
+    color: #e05260;
+    background: #f7d4d7;
+}
+
+.main .total-order{
+font-size: 20px;
+font-weight: 500;
+}
+
+.main .sales-boxes{
+display: flex;
+justify-content: space-between;
+/* padding: 0 20px; */
+}
+
+.cards{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top:15px;
+    padding: 0 25px;
+    margin-bottom: 26px;
+    flex-wrap: wrap;
+}
+
+.cards .card-table table {
+    border-collapse: collapse;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+    background-color: #fff;
+    text-align: center;
+    margin-bottom:25px;
+}
+
+.cards .card-table thead {
+    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+}
+
+.cards .card-table th {
+    padding: 0.5em 1em;
+    text-transform: uppercase;
+    letter-spacing: 0.1px;
+    font-size:0.7em;
+}
+
+.cards .card-table td {
+    padding: 0.5em 1em;
+    font-size:1.0em;
+}

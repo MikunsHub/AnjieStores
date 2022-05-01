@@ -6,21 +6,14 @@
     <div class="main">
         <a href="/index.html">
             <h1>Anjie<span style="color:rgb(126, 48, 106)">Stores</span></h1>
+        
         </a>
-        {% comment %} {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %} {% endcomment %}
-
         <!-- dashboard cards -->
         <div class="overview-boxes">
             <div class="box">
                 <div class="right-side">
-                    <div class="box-topic">Total Order</div>
-                    <div class="number">{{ employee.age }}</div>
+                    <div class="box-topic">Top Category</div>
+                    <div class="number">Beverages</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
                         <span class="text">Up from yesterday</span>
@@ -31,7 +24,7 @@
             <div class="box">
                 <div class="right-side">
                     <div class="box-topic">Total Sales</div>
-                    <div class="number">{{ Total_Sales }}</div>
+                    <div class="number">38,876</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
                         <span class="text">Up from yesterday</span>
@@ -41,8 +34,8 @@
             </div>
             <div class="box">
                 <div class="right-side">
-                    <div class="box-topic">Total Profit</div>
-                    <div class="number">${{ Profit }}</div>
+                    <div class="box-topic">Total Return</div>
+                    <div class="number">$12,876</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
                         <span class="text">Up from yesterday</span>
@@ -52,8 +45,8 @@
             </div>
             <div class="box">
                 <div class="right-side">
-                    <div class="box-topic">Total Return</div>
-                    <div class="number">11,086</div>
+                    <div class="box-topic">Total Product</div>
+                    <div class="number">Milo</div>
                     <div class="indicator">
                         <i class='bx bx-down-arrow-alt down'></i>
                         <span class="text">Down From Today</span>
@@ -62,95 +55,202 @@
                 <i class='bx bxs-cart-download cart four'></i>
             </div>
         </div>
-
-        <div>
-            <div
-                style="margin-bottom:35px; margin-left:20px; display:flex; gap:20px; flex-wrap:wrap; justify-content:center;">
-                <div class="newtable">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>id</th>
-                                <th>Category</th>
-                                <th>Product name</th>
-                                <th>Amount</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Beverages</td>
-                                <td>Milo</td>
-                                <td>₦500</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>Beverages</td>
-                                <td>Bournvita</td>
-                                <td>₦1500</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>Toiletries</td>
-                                <td>Petals</td>
-                                <td>₦700</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>Groceries</td>
-                                <td>Tomatoes</td>
-                                <td>₦300</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>Electronics</td>
-                                <td>Samsung Front-loader</td>
-                                <td>₦30</td>
-                            </tr>
-                        </tbody>
-                    </table>      
+    
+        <div class="cards">
+            
+            <div class="card-table">
+                <div class="cards-title">
+                    <h3>Top 5 Sales(Returns)</h3>
                 </div>
-                <div class="top-cashier">
-                    <div class="card">
-                        <div class="card-topic">
-                            <h2><b>Cashier's Performance</b></h2>
-                        </div>
-                        <div class="img_container">
-                            <img src="{% static 'inventory/images/Mikun.jpg' %}" alt="cashier image">
-                            <img src="{% static 'inventory/images/Ife.jfif' %}" alt="cashier image">
-                            <img src="{% static 'inventory/images/Ayomikun.jpeg' %}" alt="cashier image">
-                        </div>
-                        <div class="value-container">
-                            <div class="card-content-container">
-                                <div class="card-content-name">Ayomikun</div>
-                                <div class="card-content-number">5</div>
-                                <div class="card-content-metric">Customer/min</div>
-                                <div class="card-content-amount">₦ 500</div>
-                                <div class="card-content-time">per hour</div>
-                            </div>
-
-                            <div class="card-content-container">
-                                <div class="card-content-name">Ife</div>
-                                <div class="card-content-number">5</div>
-                                <div class="card-content-metric">Customer/min</div>
-                                <div class="card-content-amount">₦ 500</div>
-                                <div class="card-content-time">per hour</div>
-                            </div>
-
-                            <div class="card-content-container">
-                                <div class="card-content-name">Mikun</div>
-                                <div class="card-content-number">5</div>
-                                <div class="card-content-metric">Customer/min</div>
-                                <div class="card-content-amount">₦ 500</div>
-                                <div class="card-content-time">per hour</div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product id</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Total Sales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Milo</td>
+                            <td>Beverages</td>
+                            <td>20000</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>LG washing machine</td>
+                            <td>Electronics</td>
+                            <td>200000</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Super Mik</td>
+                            <td>Premium</td>
+                            <td>1000000000</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Super Mik</td>
+                            <td>Premium</td>
+                            <td>1000000000</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Super Mik</td>
+                            <td>Premium</td>
+                            <td>1000000000</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
+    
+            <div class="card-table">
+                <div class="cards-title">
+                    <h3>Top 5 Sales(Purchase Frequency)</h3>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product id</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Total Sales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Milo</td>
+                            <td>Beverages</td>
+                            <td>20000</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>LG washing machine</td>
+                            <td>Electronics</td>
+                            <td>200000</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Super Mik</td>
+                            <td>Premium</td>
+                            <td>1000000000</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Super Mik</td>
+                            <td>Premium</td>
+                            <td>1000000000</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Super Mik</td>
+                            <td>Premium</td>
+                            <td>1000000000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+            <div class="card-table">
+                <div class="cards-title">
+                    <h3>Total Returns(Last 5 Months)</h3>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product id</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Total Sales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Milo</td>
+                            <td>Beverages</td>
+                            <td>20000</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>LG washing machine</td>
+                            <td>Electronics</td>
+                            <td>200000</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Super Mik</td>
+                            <td>Premium</td>
+                            <td>1000000000</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Super Mik</td>
+                            <td>Premium</td>
+                            <td>1000000000</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Super Mik</td>
+                            <td>Premium</td>
+                            <td>1000000000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card-table">
+                <div class="cards-title">
+                    <h3>Top Categories</h3>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product id</th>
+                            <th>Product Name</th>
+                            <th>Category</th>
+                            <th>Total Sales</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Milo</td>
+                            <td>Beverages</td>
+                            <td>20000</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>LG washing machine</td>
+                            <td>Electronics</td>
+                            <td>200000</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Super Mik</td>
+                            <td>Premium</td>
+                            <td>1000000000</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>Super Mik</td>
+                            <td>Premium</td>
+                            <td>1000000000</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Super Mik</td>
+                            <td>Premium</td>
+                            <td>1000000000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
         </div>
-
     </div>
 </section>
 {% endblock %}
