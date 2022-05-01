@@ -31,9 +31,22 @@ def index(request):
     }
     return render(request, 'inventory/index.html',context)
 
+from django.db.models import Sum
+
 @login_required(login_url='login_page')
 def dashboard(request):
-    return render(request, 'inventory/dashboard.html')
+    sales = Sales.objects.all()
+    total_sales = sales.count()
+    tot_returns = Sales.objects.all()
+    tot_returns = int(sum(tot_returns.values_list('grand_total', flat=True)))
+    top_sales = Sales.objects.all().order_by('-grand_total')[:5]
+    print(top_sales)
+    context = {
+        "returns": tot_returns,
+        "total_sales": total_sales,
+        "top_sales": top_sales
+    }
+    return render(request, 'inventory/dashboard.html',context)
 
 def products(request):
     products = Products.objects.all()

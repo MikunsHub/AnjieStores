@@ -24,7 +24,7 @@
             <div class="box">
                 <div class="right-side">
                     <div class="box-topic">Total Sales</div>
-                    <div class="number">38,876</div>
+                    <div class="number">{{total_sales}}</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
                         <span class="text">Up from yesterday</span>
@@ -35,7 +35,7 @@
             <div class="box">
                 <div class="right-side">
                     <div class="box-topic">Total Return</div>
-                    <div class="number">$12,876</div>
+                    <div class="number">${{returns}}</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
                         <span class="text">Up from yesterday</span>
@@ -65,43 +65,24 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>Product id</th>
-                            <th>Product Name</th>
-                            <th>Category</th>
-                            <th>Total Sales</th>
+                            <th>Sales id</th>
+                            <th>Payment Method</th>
+                            <th>No of Items</th>
+                            <th>Date of Transaction</th>
+                            <th>Grand Total</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Milo</td>
-                            <td>Beverages</td>
-                            <td>20000</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>LG washing machine</td>
-                            <td>Electronics</td>
-                            <td>200000</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Super Mik</td>
-                            <td>Premium</td>
-                            <td>1000000000</td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>Super Mik</td>
-                            <td>Premium</td>
-                            <td>1000000000</td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>Super Mik</td>
-                            <td>Premium</td>
-                            <td>1000000000</td>
-                        </tr>
+                        {% for top_sale in top_sales %}
+                            <tr>
+                                <td>{{top_sale.id}}</td>
+                                <td>{{top_sale.paymentMethod}}</td>
+                                <td>{{top_sale.noOfItems}}</td>
+                                <td>{{ top_sale.date_added|date:"Y-m-d" }}</td>
+                                <td>{{top_sale.grand_total}}</td>
+                            </tr>
+                        {% endfor %}
+                        
                     </tbody>
                 </table>
             </div>
