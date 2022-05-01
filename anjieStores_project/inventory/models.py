@@ -81,3 +81,7 @@ class Sales(models.Model):
     def __str__(self):
         return str(self.grand_total)
 
+class ProductSalesAT(models.Model):
+    productID = models.ForeignKey(Products,on_delete=models.CASCADE)
+    qtybought = models.IntegerField(default=0)
+    salesID =  models.ForeignKey(Sales,on_delete=models.CASCADE)

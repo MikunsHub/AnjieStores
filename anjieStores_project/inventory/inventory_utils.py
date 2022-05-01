@@ -1,7 +1,7 @@
 # from .models import Employee,Products,ProductType
 import json
 from django.shortcuts import HttpResponse
-from .models import Products
+from .models import Products,ProductSalesAT
 import sys
 # def productTypeFilter(request):
 #     productsType = ProductType.objects.filter(productsType=)
@@ -59,7 +59,7 @@ def update_stock(arr):
                     print(arr[i]["name"])
                     sale_qty = arr[i]["qty"]
                     product = Products.objects.get(productsID=arr[i]["id"])
-                    
+                    print(product)
                     product.quantity -= int(float(sale_qty))
                     product.save()
 
@@ -68,5 +68,19 @@ def update_stock(arr):
                     # response_data['msg'] = "An error occured"
                     print("Unexpected error:", sys.exc_info()[0])
                 
+    return "working"
+
+def purchasedItems(arr,sales_id):
+    length = len(arr)
+    
+    for i in range(length):
+        for key in arr[i]:
+            if key == "qty":
+                prod_id = arr[i]["id"]
+                qty_bought = arr[i]["qty"]
+                sales = ProductSalesAT(productID=prod_id,qtybought=qty_bought,salesID=sales_id).save()
+        
+                # print("Unexpected error:", sys.exc_info()[0])
+
     return "working"
 

@@ -126,7 +126,10 @@ def save_basket(request):
     
     try:
         total = get_total(myTableArray)
-        sales = Sales(sub_total=total, grand_total = total, noOfItems=len(myTableArray)).save()
+        # sales = Sales(sub_total=total, grand_total = total, noOfItems=len(myTableArray)).save()
+        sales = Sales.objects.create(sub_total=total, grand_total = total, noOfItems=len(myTableArray))
+        print("sales_id = ",sales.id)
+        itemspurchased = purchasedItems(myTableArray,sales.id)
         val = update_stock(myTableArray)
         # print(total)
         print(myTableArray)
