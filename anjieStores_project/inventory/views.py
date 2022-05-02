@@ -38,13 +38,27 @@ def dashboard(request):
     sales = Sales.objects.all()
     total_sales = sales.count()
     tot_returns = Sales.objects.all()
-    top_product = ProductSalesAT.objects.all()
     most_common = ProductSalesAT.objects.values("productsID").annotate(count=Count('productsID')).order_by("-count")[:1]
-    most_common1 = ProductSalesAT.objects.values("productsID").annotate(count=Count('productsID')).order_by("-count")[:5]
+    most_common1 = list(ProductSalesAT.objects.values("productsID").annotate(count=Count('productsID')).order_by("-count")[:5])
+
+    
+    a_list = []
+    for i in range(len(most_common1)):
+        dict = {}
+        for key in most_common1[i]:
+            if key == "productsID":
+                var = Products.objects.get(productsID=most_common1[i]["productsID"])
+                # print(var.Barcode)
+                # print(var)
+                dict["productsID"] = most_common1[i]["productsID"]
+                dict["productName"] = var.productName
+                dict["count"] = most_common1[i]["count"]
+                a_list.append(dict)
+    print(a_list)
 
     test = ""
     for i in most_common:
-        print(i["productsID"])
+        # print(i["productsID"])
         test = i["productsID"]
         test = Products.objects.get(productsID=test)
    
@@ -58,7 +72,8 @@ def dashboard(request):
         "top_sales": top_sales,
         "most_common": most_common,
         "most_common1": most_common1,
-        "test": test
+        "test": test,
+        "a_list": a_list,
     }
     return render(request, 'inventory/dashboard.html',context)
 
