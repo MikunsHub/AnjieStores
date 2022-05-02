@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http.response import HttpResponse
 from django.contrib.auth.decorators import login_required
-from .models import Employee,Products,ProductType,Sales
+from .models import Employee,Products,ProductType,Sales,ProductSalesAT
 from .forms import ProductsForm,EmployeeForm
 from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
 from django.http import JsonResponse
@@ -31,20 +31,34 @@ def index(request):
     }
     return render(request, 'inventory/index.html',context)
 
-from django.db.models import Sum
+from django.db.models import Sum,Count
 
 @login_required(login_url='login_page')
 def dashboard(request):
     sales = Sales.objects.all()
     total_sales = sales.count()
     tot_returns = Sales.objects.all()
+    top_product = ProductSalesAT.objects.all()
+    most_common = ProductSalesAT.objects.values("productsID").annotate(count=Count('productsID')).order_by("-count")[:1]
+    most_common1 = ProductSalesAT.objects.values("productsID").annotate(count=Count('productsID')).order_by("-count")[:5]
+
+    test = ""
+    for i in most_common:
+        print(i["productsID"])
+        test = i["productsID"]
+        test = Products.objects.get(productsID=test)
+   
+
     tot_returns = int(sum(tot_returns.values_list('grand_total', flat=True)))
     top_sales = Sales.objects.all().order_by('-grand_total')[:5]
-    print(top_sales)
+    # print(top_sales)
     context = {
         "returns": tot_returns,
         "total_sales": total_sales,
-        "top_sales": top_sales
+        "top_sales": top_sales,
+        "most_common": most_common,
+        "most_common1": most_common1,
+        "test": test
     }
     return render(request, 'inventory/dashboard.html',context)
 
@@ -126,14 +140,15 @@ def save_basket(request):
     
     try:
         total = get_total(myTableArray)
+        print(myTableArray)
         # sales = Sales(sub_total=total, grand_total = total, noOfItems=len(myTableArray)).save()
         sales = Sales.objects.create(sub_total=total, grand_total = total, noOfItems=len(myTableArray))
-        print("sales_id = ",sales.id)
+
         itemspurchased = purchasedItems(myTableArray,sales.id)
         val = update_stock(myTableArray)
-        # print(total)
-        print(myTableArray)
-    except:
+
+    except ValueError as e:
+        print(e)
         response_data['msg'] = "An error occured"
         print("Unexpected error:", sys.exc_info()[0])
     return HttpResponse(json.dumps(response_data), content_type="application/json")
@@ -236,34 +251,3 @@ def employee_profile(request):
     }
     return render(request, 'inventory/employee.html',context)
 
-
-
-# def add_products_ajax(request):
-#     response_data = {'status':'failed','msg':''}
-    
-#     try:
-#         print("Getting form data...")
-#         prod_name = request.POST.get('prod_name')
-#         manufacturer = request.POST.get('manufacturer')
-#         catID = int(float(request.POST.get('prodID')))
-#         qty = int(float(request.POST.get('qty')))
-#         exp_date = parse_date(request.POST.get('exp_date'))
-#         price = int(float(request.POST.get('price')))
-#         barcode = int(float(request.POST.get('barcode')))
-
-#         new_product = Products(
-#             productsID = 4,
-#             productName=prod_name,
-#             manufacturer=manufacturer,
-#             Barcode=barcode,
-#             Price=price,
-#             ExpiryDate=exp_date,
-#             quantity=qty,
-#             productTypeID=ProductType.objects.filter(productTypeID = catID).first(),
-#             status = 1
-#         ).save()
-#         print("Added to database")
-#     except:
-#         response_data['msg'] = "An error occured"
-#         print("Unexpected error:", sys.exc_info()[0])
-#     return HttpResponse(json.dumps(response_data), content_type="application/json")

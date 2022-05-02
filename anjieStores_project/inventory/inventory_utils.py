@@ -1,7 +1,7 @@
 # from .models import Employee,Products,ProductType
 import json
 from django.shortcuts import HttpResponse
-from .models import Products,ProductSalesAT
+from .models import Products,ProductSalesAT,Sales
 import sys
 # def productTypeFilter(request):
 #     productsType = ProductType.objects.filter(productsType=)
@@ -56,17 +56,17 @@ def update_stock(arr):
         for key in arr[i]:
             if key == "qty":
                 try:
-                    print(arr[i]["name"])
+                    # print(arr[i]["name"])
                     sale_qty = arr[i]["qty"]
                     product = Products.objects.get(productsID=arr[i]["id"])
-                    print(product)
+                    # print(product)
                     product.quantity -= int(float(sale_qty))
                     product.save()
 
                 except AttributeError as e:
                     print(e)
                     # response_data['msg'] = "An error occured"
-                    print("Unexpected error:", sys.exc_info()[0])
+                    print("Unexpected error at update_stock:", sys.exc_info()[0])
                 
     return "working"
 
@@ -76,11 +76,16 @@ def purchasedItems(arr,sales_id):
     for i in range(length):
         for key in arr[i]:
             if key == "qty":
-                prod_id = arr[i]["id"]
-                qty_bought = arr[i]["qty"]
-                sales = ProductSalesAT(productID=prod_id,qtybought=qty_bought,salesID=sales_id).save()
-        
-                # print("Unexpected error:", sys.exc_info()[0])
+                try:
+                    prod_id = int(arr[i]["id"])
+                    product = Products.objects.get(productsID=prod_id)
+                    sales = Sales.objects.get(id=sales_id)
+                    qty_bought = arr[i]["qty"]
+                    sub_total = int(arr[i]["total"])
+                    sales = ProductSalesAT.objects.create(productsID=product,qtybought=int(qty_bought),salesID=sales)
+                except ValueError as e:
+                    print(e)
+                    print("Unexpected error at purchasedItems:", sys.exc_info()[0])
 
     return "working"
 
