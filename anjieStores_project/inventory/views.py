@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from .models import Employee,Products,ProductType,Sales,ProductSalesAT
 from .forms import ProductsForm,EmployeeForm
 from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
-from django.http import JsonResponse
 from django.utils.dateparse import parse_date
 from .inventory_utils import *
 import json, sys
@@ -41,20 +40,7 @@ def dashboard(request):
     most_common = ProductSalesAT.objects.values("productsID").annotate(count=Count('productsID')).order_by("-count")[:1]
     most_common1 = list(ProductSalesAT.objects.values("productsID").annotate(count=Count('productsID')).order_by("-count")[:5])
 
-    
-    a_list = []
-    for i in range(len(most_common1)):
-        dict = {}
-        for key in most_common1[i]:
-            if key == "productsID":
-                var = Products.objects.get(productsID=most_common1[i]["productsID"])
-                # print(var.Barcode)
-                # print(var)
-                dict["productsID"] = most_common1[i]["productsID"]
-                dict["productName"] = var.productName
-                dict["count"] = most_common1[i]["count"]
-                a_list.append(dict)
-    print(a_list)
+    a_list = mst_commn(most_common1)
 
     test = ""
     for i in most_common:
@@ -65,7 +51,8 @@ def dashboard(request):
 
     tot_returns = int(sum(tot_returns.values_list('grand_total', flat=True)))
     top_sales = Sales.objects.all().order_by('-grand_total')[:5]
-    # print(top_sales)
+
+
     context = {
         "returns": tot_returns,
         "total_sales": total_sales,

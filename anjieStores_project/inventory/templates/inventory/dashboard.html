@@ -16,7 +16,7 @@
                     <div class="number">Beverages</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
-                        <span class="text">Up from yesterday</span>
+                        {% comment %} <span class="text">Up from yesterday</span> {% endcomment %}
                     </div>
                 </div>
                 <i class='bx bx-cart-alt cart'></i>
@@ -27,7 +27,7 @@
                     <div class="number">{{total_sales}}</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
-                        <span class="text">Up from yesterday</span>
+                        {% comment %} <span class="text">Up from yesterday</span> {% endcomment %}
                     </div>
                 </div>
                 <i class='bx bxs-cart-add cart two'></i>
@@ -38,7 +38,7 @@
                     <div class="number">${{returns}}</div>
                     <div class="indicator">
                         <i class='bx bx-up-arrow-alt'></i>
-                        <span class="text">Up from yesterday</span>
+                        {% comment %} <span class="text">Up from yesterday</span> {% endcomment %}
                     </div>
                 </div>
                 <i class='bx bx-cart cart three'></i>
@@ -49,7 +49,7 @@
                     <div class="number">{{test.productName}}</div>
                     <div class="indicator">
                         <i class='bx bx-down-arrow-alt down'></i>
-                        <span class="text">Down From Today</span>
+                        {% comment %} <span class="text">Down From Today</span> {% endcomment %}
                     </div>
                 </div>
                 <i class='bx bxs-cart-download cart four'></i>
@@ -106,7 +106,7 @@
                                 <td>{{i.productsID}}</td>
                                 <td>{{i.productName}}</td>
                                 <td>{{i.count}}</td>
-                                <td></td>
+                                <td>{{i.total}}</td>
                             </tr>
                         {% endfor %}
                     </tbody>

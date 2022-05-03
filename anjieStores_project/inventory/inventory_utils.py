@@ -3,8 +3,8 @@ import json
 from django.shortcuts import HttpResponse
 from .models import Products,ProductSalesAT,Sales
 import sys
-# def productTypeFilter(request):
-#     productsType = ProductType.objects.filter(productsType=)
+from django.db.models import Sum,Count
+
 
 
 def get_info(cart):
@@ -82,10 +82,29 @@ def purchasedItems(arr,sales_id):
                     sales = Sales.objects.get(id=sales_id)
                     qty_bought = arr[i]["qty"]
                     sub_total = int(arr[i]["total"])
-                    sales = ProductSalesAT.objects.create(productsID=product,qtybought=int(qty_bought),salesID=sales)
+                    selling_price = arr[i]["price"]
+                    print(sub_total)
+                    sales = ProductSalesAT.objects.create(productsID=product,qtybought=int(qty_bought),subTotal=int(sub_total),price=int(selling_price),salesID=sales)
                 except ValueError as e:
                     print(e)
                     print("Unexpected error at purchasedItems:", sys.exc_info()[0])
 
     return "working"
+
+
+def mst_commn(arr):
+    sales_freq_arr = []
+    for i in range(len(arr)):
+        dict = {}
+        for key in arr[i]:
+            if key == "productsID":
+                var = ProductSalesAT.objects.filter(productsID=arr[i]["productsID"]).aggregate(Sum('subTotal'))  
+                get_prodName = Products.objects.get(productsID=arr[i]["productsID"])
+
+                dict["productsID"] = arr[i]["productsID"]
+                dict["productName"] = get_prodName.productName
+                dict["count"] = arr[i]["count"]
+                dict["total"] = var["subTotal__sum"]
+                sales_freq_arr.append(dict)
+    return sales_freq_arr
 

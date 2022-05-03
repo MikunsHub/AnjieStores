@@ -86,3 +86,7 @@ class ProductSalesAT(models.Model):
     qtybought = models.IntegerField(default=0)
     salesID =  models.ForeignKey(Sales,on_delete=models.CASCADE)
     subTotal = models.IntegerField(default=0)
+    price = models.IntegerField(default=0)
+
+    def __str__(self):
+        return str(self.productsID.productName)
