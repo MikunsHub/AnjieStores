@@ -2,8 +2,9 @@ from django.shortcuts import render,redirect
 from django.http.response import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import Employee,Products,ProductType,Sales,ProductSalesAT
-from .forms import ProductsForm,EmployeeForm
+from .forms import ProductsForm,EmployeeForm,CategoryForm, OrdersForm
 from .filters import ProductFilter,ProductTypeFilter,ProductPOSFilter
+from django.db.models import Sum,Count
 from django.utils.dateparse import parse_date
 from .inventory_utils import *
 import json, sys
@@ -30,7 +31,7 @@ def index(request):
     }
     return render(request, 'inventory/index.html',context)
 
-from django.db.models import Sum,Count
+
 
 @login_required(login_url='login_page')
 def dashboard(request):
@@ -103,6 +104,15 @@ def edit_products(request,pk):
     }
     return render(request,'inventory/add_products.html',context)
 
+def delete_products(request,pk):
+    product = Products.objects.get(productsID=pk)
+    if request.method == "POST":
+        product.delete()
+        return redirect("products")
+    context = {
+        "item": product
+    }
+    return render(request, "inventory/delete.html",context)
 
 @login_required(login_url='login_page')
 def categories(request):
@@ -116,8 +126,18 @@ def categories(request):
     return render(request, 'inventory/categories.html',context)
 
 @login_required(login_url='login_page')
-def order(request):
-    return render(request, 'inventory/order.html')
+def add_categories(request):
+
+    form = CategoryForm()
+    if request.method == "POST":
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("products")
+    context = {
+        "form": form
+    }
+    return render(request,'inventory/add_categories.html',context)
 
 @login_required(login_url='login_page')
 def pos(request):
@@ -131,6 +151,8 @@ def pos(request):
         'product_json' : json.dumps(product_json)
     }
     return render(request, 'inventory/pos.html',context)
+
+
 
 @login_required(login_url='login_page')
 def save_basket(request):
@@ -253,3 +275,17 @@ def employee_profile(request):
     }
     return render(request, 'inventory/employee.html',context)
 
+@login_required(login_url='login_page')
+def order(request):
+    form = OrdersForm()
+
+    if request.method == "POST":
+        form = OrdersForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect("usr_mgt")
+
+    context = {
+        "form":form
+    }
+    return render(request, 'inventory/order.html',context)

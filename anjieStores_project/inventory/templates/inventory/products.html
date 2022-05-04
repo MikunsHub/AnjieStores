@@ -23,7 +23,7 @@
             <div class="table-container">
                 <table>
                     <tr>
-                        <th>Product id</th>
+                        <th style="text-transform: uppercase;">Product id</th>
                         <th>Product Name</th>
                         <th>Category</th>
                         <th>Qty(cartons)</th>
@@ -33,14 +33,15 @@
                     </tr>
                     {% for product in products %}
                         <tr>
-                            <td>{{product.productsID}}</td>
-                            <td>{{product.productName}}</td>
+                            <td style="text-transform: uppercase;">{{product.productsID}}</td>
+                            <td style="padding: 0.5em 0.5em;">{{product.productName}}</td>
                             <td>{{product.productTypeID.productType}}</td>
                             <td>{{product.quantity}}</td>
                             <td>{{product.ExpiryDate}}</td>
                             <td>{{product.Price}}</td>
-                            <td>
+                            <td style="padding: 0.5em 0.5em;">
                                 <a class="Promote" href="{% url 'edit_products' pk=product.productsID %}">Edit</a> <!-- This button will redirect to a page where you can update Staff Level-->
+                                <a class="Deactivate" href="{% url 'delete_products' pk=product.productsID %}">Delete</a>
                             </td> 
                         </tr>
                     {% endfor %}

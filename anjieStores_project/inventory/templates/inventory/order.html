@@ -25,10 +25,12 @@
 
                 <div style="display:flex; justify-content:center; align-items:center;">
                     <form action="#">
+                        {% csrf_token %}
                         <div class="user-details">
                             <div class="input-box">
                                 <span><b>Employee Name</b></span>
                                 <input type="text" placeholder="Enter your name" id="">
+                                
                             </div>
                             <div class="input-box">
                                 <span><b>Employee Number</b></span>
@@ -50,7 +52,7 @@
                             </div>
                             <div class="input-box">
                                 <span><b>Date</b></span>
-                                <input type="date" placeholder="Enter your quantity" min="10">
+                                {{form.orderDate}}
                             </div>
                             <div class="input-box">
                                 <span><b>Supplier</b></span>

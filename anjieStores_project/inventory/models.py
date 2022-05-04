@@ -90,3 +90,4 @@ class ProductSalesAT(models.Model):
 
     def __str__(self):
         return str(self.productsID.productName)
+        
