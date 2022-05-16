@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_filters',
+    'django_celery_results',
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'static/images')
 
 
 MEDIA_URL = '/images/'
+
+
+# CELERY SETTINGS
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Africa/Lagos'
+CELERY_RESULT_BACKEND = 'django-db'
+

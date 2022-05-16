@@ -9,6 +9,7 @@ from django.utils.dateparse import parse_date
 from .inventory_utils import *
 import json, sys
 from users.views import *
+from .tasks import test_func, check_stock
 
 @login_required(login_url='login_page')
 def index(request):
@@ -289,3 +290,12 @@ def order(request):
         "form":form
     }
     return render(request, 'inventory/order.html',context)
+
+
+def test_task(request):
+    test_func.delay()
+    return HttpResponse("done")
+
+def check_stock_task(request):
+    check_stock.delay()
+    return HttpResponse("done")

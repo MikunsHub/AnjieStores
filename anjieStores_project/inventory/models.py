@@ -40,6 +40,8 @@ class Products(models.Model):
     Price = models.IntegerField()
     manufacturer =  models.CharField(max_length=35)
     quantity = models.IntegerField()
+    min_quantity = models.IntegerField(default=0)
+    order_quantity = models.IntegerField(default=5)
     productTypeID = models.ForeignKey(ProductType,on_delete=models.CASCADE)
     status = models.IntegerField(default=1)
 
